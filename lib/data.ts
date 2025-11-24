@@ -1,24 +1,24 @@
 import { Place, Article } from "./types";
-import placesData from "@/data/places.json";
 
-export function getPlaces(): Place[] {
-  return placesData as Place[];
+export async function getPlaces(): Promise<Place[]> {
+  const res = await fetch("/api/places", { cache: "no-store" });
+  if (!res.ok) return [];
+  return res.json();
 }
 
-export function getPlace(id: string): Place | undefined {
-  return placesData.find((place) => place.id === id) as Place | undefined;
+export async function getPlace(id: string): Promise<Place | undefined> {
+  const res = await fetch(`/api/places/${id}`, { cache: "no-store" });
+  if (!res.ok) return undefined;
+  return res.json();
 }
 
 export async function getArticle(
   placeId: string,
   style: string
 ): Promise<Article | null> {
-  try {
-    const article = await import(`@/data/articles/${placeId}_${style}.json`);
-    return article.default as Article;
-  } catch {
-    return null;
-  }
+  const res = await fetch(`/api/articles/${placeId}/${style}`, { cache: "no-store" });
+  if (!res.ok) return null;
+  return res.json();
 }
 
 export async function getAllArticlesForPlace(

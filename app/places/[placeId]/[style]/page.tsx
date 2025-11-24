@@ -34,7 +34,7 @@ export default function ArticlePage({ params }: ArticlePageProps) {
       const resolvedParams = await params;
       setPlaceId(resolvedParams.placeId);
       setStyle(resolvedParams.style);
-      const placeData = getPlace(resolvedParams.placeId);
+      const placeData = await getPlace(resolvedParams.placeId);
       const articleData = await getArticle(resolvedParams.placeId, resolvedParams.style);
       
       if (!placeData || !articleData) {

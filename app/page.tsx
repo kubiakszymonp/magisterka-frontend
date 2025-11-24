@@ -1,12 +1,18 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { getPlaces } from "@/lib/data";
 import { PlaceCard } from "@/components/PlaceCard";
 import { StudyInfoCard } from "@/components/StudyInfoCard";
+import { Place } from "@/lib/types";
 
 export default function HomePage() {
-  const places = getPlaces();
+  const [places, setPlaces] = useState<Place[]>([]);
+
+  useEffect(() => {
+    getPlaces().then(setPlaces);
+  }, []);
 
   return (
     <main className="container mx-auto px-4 py-16 max-w-4xl">

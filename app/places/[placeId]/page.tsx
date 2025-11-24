@@ -27,7 +27,7 @@ export default function PlacePage({ params }: PlacePageProps) {
     async function loadData() {
       const resolvedParams = await params;
       setPlaceId(resolvedParams.placeId);
-      const placeData = getPlace(resolvedParams.placeId);
+      const placeData = await getPlace(resolvedParams.placeId);
       if (!placeData) {
         notFound();
         return;
