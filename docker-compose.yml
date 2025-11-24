@@ -1,0 +1,21 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: magisterka-frontend
+    restart: unless-stopped
+    ports:
+      - "3100:3000"
+    volumes:
+      - ./data:/app/data:ro
+      - ./public:/app/public:ro
+    environment:
+      - NODE_ENV=production
+    networks:
+      - magisterka-network
+
+networks:
+  magisterka-network:
+    driver: bridge
+
