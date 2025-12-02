@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "process-articles": "tsx scripts/process-articles.ts"
+    "process-articles": "tsx --env-file=.env scripts/process-articles.ts",
+    "process-articles:debug": "npx --node-options='--inspect' tsx --env-file=.env scripts/process-articles.ts --dry-run"
   },
   "dependencies": {
     "@radix-ui/react-label": "^2.1.8",
@@ -20,6 +21,7 @@
     "framer-motion": "^12.23.24",
     "lucide-react": "^0.554.0",
     "next": "16.0.4",
+    "openai": "^6.9.1",
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "tailwind-merge": "^3.4.0",

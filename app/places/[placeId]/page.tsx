@@ -72,7 +72,7 @@ export default function PlacePage({ params }: PlacePageProps) {
         transition={{ duration: 0.4, delay: 0.1 }}
         className="mb-12"
       >
-        <div className="relative aspect-[5/3] w-full rounded-md overflow-hidden bg-muted mb-6 shadow-md">
+        <div className="relative h-64 w-full rounded-md overflow-hidden bg-muted mb-6 shadow-md"> 
           <Image
             src={place.thumbnail}
             alt={place.name}
