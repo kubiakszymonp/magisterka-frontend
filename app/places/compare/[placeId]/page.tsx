@@ -20,7 +20,7 @@ export default function ComparePage({ params }: ComparePageProps) {
   const [articles, setArticles] = useState<{
     adult_full: Article | null;
     adult_short: Article | null;
-    child_full: Article | null;
+    child_short: Article | null;
   } | null>(null);
   const [placeId, setPlaceId] = useState<string>("");
 

@@ -23,13 +23,13 @@ export async function getArticle(
 
 export async function getAllArticlesForPlace(
   placeId: string
-): Promise<{ adult_full: Article | null; adult_short: Article | null; child_full: Article | null }> {
-  const [adult_full, adult_short, child_full] = await Promise.all([
+): Promise<{ adult_full: Article | null; adult_short: Article | null; child_short: Article | null }> {
+  const [adult_full, adult_short, child_short] = await Promise.all([
     getArticle(placeId, "adult_full"),
     getArticle(placeId, "adult_short"),
-    getArticle(placeId, "child_full"),
+    getArticle(placeId, "child_short"),
   ]);
 
-  return { adult_full, adult_short, child_full };
+  return { adult_full, adult_short, child_short };
 }
 

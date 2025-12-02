@@ -19,7 +19,7 @@ export default function PlacePage({ params }: PlacePageProps) {
   const [articles, setArticles] = useState<{
     adult_full: Article | null;
     adult_short: Article | null;
-    child_full: Article | null;
+    child_short: Article | null;
   } | null>(null);
   const [placeId, setPlaceId] = useState<string>("");
 
@@ -46,7 +46,7 @@ export default function PlacePage({ params }: PlacePageProps) {
   const articleConfigs = [
     { key: "adult_full", label: "Dorośli – pełny", icon: "1", article: articles.adult_full },
     { key: "adult_short", label: "Dorośli – skrót", icon: "2", article: articles.adult_short },
-    { key: "child_full", label: "Dzieci – pełny", icon: "3", article: articles.child_full },
+    { key: "child_short", label: "Dzieci – skrót", icon: "3", article: articles.child_short },
   ];
 
   return (
@@ -72,7 +72,7 @@ export default function PlacePage({ params }: PlacePageProps) {
         transition={{ duration: 0.4, delay: 0.1 }}
         className="mb-12"
       >
-        <div className="relative h-48 w-full rounded-md overflow-hidden bg-muted mb-6 shadow-md">
+        <div className="relative aspect-[5/3] w-full rounded-md overflow-hidden bg-muted mb-6 shadow-md">
           <Image
             src={place.thumbnail}
             alt={place.name}
@@ -81,7 +81,7 @@ export default function PlacePage({ params }: PlacePageProps) {
             priority
           />
         </div>
-        <h1 className="text-2xl font-medium mb-2">{place.name}</h1>
+        <h1 className="text-4xl font-medium mb-2">{place.name}</h1>
         <p className="text-muted-foreground text-sm">{place.description}</p>
       </motion.header>
 

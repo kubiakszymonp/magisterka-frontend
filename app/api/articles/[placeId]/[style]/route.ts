@@ -11,11 +11,13 @@ export async function GET(
   const { placeId, style } = await params;
 
   try {
+    // New structure: data/articles/{placeId}/{style}.json
     const filePath = path.join(
       process.cwd(),
       "data",
       "articles",
-      `${placeId}_${style}.json`
+      placeId,
+      `${style}.json`
     );
     const fileContents = fs.readFileSync(filePath, "utf8");
     const article = JSON.parse(fileContents);

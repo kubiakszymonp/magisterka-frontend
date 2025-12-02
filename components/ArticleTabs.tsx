@@ -10,7 +10,7 @@ interface ArticleTabsProps {
   articles: {
     adult_full: Article | null;
     adult_short: Article | null;
-    child_full: Article | null;
+    child_short: Article | null;
   };
 }
 
@@ -23,7 +23,7 @@ export function ArticleTabs({ articles }: ArticleTabsProps) {
   const tabs = [
     { key: "adult_full", label: "Dorośli pełny", article: articles.adult_full },
     { key: "adult_short", label: "Dorośli skrót", article: articles.adult_short },
-    { key: "child_full", label: "Dzieci pełny", article: articles.child_full },
+    { key: "child_short", label: "Dzieci skrót", article: articles.child_short },
   ];
 
   const activeArticle = tabs.find(t => t.key === activeTab)?.article || null;

@@ -15,7 +15,7 @@ interface RatingCompareFormProps {
 const versionOptions = [
   { value: "adult_full", label: "Dorośli – pełny" },
   { value: "adult_short", label: "Dorośli – skrót" },
-  { value: "child_full", label: "Dzieci – pełny" },
+  { value: "child_short", label: "Dzieci – skrót" },
 ];
 
 function VersionSelect({

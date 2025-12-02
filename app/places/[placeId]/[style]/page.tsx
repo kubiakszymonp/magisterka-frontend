@@ -18,7 +18,7 @@ interface ArticlePageProps {
 const styleLabels: Record<string, string> = {
   adult_full: "Dorośli – pełny",
   adult_short: "Dorośli – skrót",
-  child_full: "Dzieci – pełny",
+  child_short: "Dzieci – skrót",
 };
 
 export default function ArticlePage({ params }: ArticlePageProps) {
