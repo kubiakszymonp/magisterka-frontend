@@ -1,8 +1,98 @@
 [
   {
-    "id": "wawel",
-    "name": "Zamek Królewski na Wawelu",
-    "thumbnail": "/images/wawel.webp",
-    "description": "Rezydencja królów Polski i symbol polskiej państwowości. Jeden z najważniejszych zabytków architektury w Polsce."
+    "id": "ratusz_w_kaliszu",
+    "name": "Ratusz w Kaliszu",
+    "thumbnail": "https://movitech.pl/img/duze_realizacje/31.Ratusz_w_Kaliszu.jpg",
+    "description": ""
+  },
+  {
+    "id": "katedra_sw_mikolaja_biskupa_w_kaliszu",
+    "name": "Katedra św. Mikołaja Biskupa w Kaliszu",
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Kalisz_182-22.jpg/1200px-Kalisz_182-22.jpg",
+    "description": ""
+  },
+  {
+    "id": "mury_obronne_w_kaliszu",
+    "name": "Mury obronne w Kaliszu",
+    "thumbnail": "https://www.kalisz.pl/storage/image/core_files/2020/5/20/e8a80bbf77df50e83bbc3ae6b84a32af/umkalisz/preview/baszta%20marcin.jpg",
+    "description": ""
+  },
+  {
+    "id": "kolegiata_pw_wniebowziecia_nmp_kosciol_pw_sw_jozefa",
+    "name": "Kolegiata pw. Wniebowzięcia NMP (kościół pw. św. Józefa)",
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/0/03/Kalisz%2C_bazylika_kolegiacka_1.jpg",
+    "description": ""
+  },
+  {
+    "id": "kosciol_i_klasztor_oo_franciszkanow",
+    "name": "Kościół i klasztor OO. Franciszkanów",
+    "thumbnail": "https://franciszkaniekalisz.pl/wp-content/uploads/elementor/thumbs/dzieje_okladka_1000x1235-qw9qm21mj3kzw2wwzd6wo74frd03fxqkpivv151ogk.jpg",
+    "description": ""
+  },
+  {
+    "id": "kosciol_poreformacki_obecnie_ss_nazaretanek",
+    "name": "Kościół poreformacki (obecnie ss. Nazaretanek)",
+    "thumbnail": "https://drdk.pl/wp-content/uploads/2022/12/sw-rodziny-Kalisz.jpg",
+    "description": ""
+  },
+  {
+    "id": "kosciol_pobernardynski_obecnie_oo_jezuitow",
+    "name": "Kościół pobernardyński (obecnie OO. Jezuitów)",
+    "thumbnail": "https://jezuicikalisz.pl/photos/kosciol.jpeg",
+    "description": ""
+  },
+  {
+    "id": "kosciol_pw_swsw_stanislawa_i_wojciecha_garnizonowy",
+    "name": "Kościół pw. św.św. Stanisława i Wojciecha (garnizonowy)",
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Ko%C5%9Bci%C3%B3%C5%82_garnizonowy_w_Kaliszu.jpg/1536px-Ko%C5%9Bci%C3%B3%C5%82_garnizonowy_w_Kaliszu.jpg",
+    "description": ""
+  },
+  {
+    "id": "kosciol_pw_sw_wojciecha_na_zawodziu",
+    "name": "Kościół pw. św. Wojciecha na Zawodziu",
+    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_y52Z7Wa-Ey9Sm9-5wBBSImPBtwIOpiqU_w&s",
+    "description": ""
+  },
+  {
+    "id": "grodzisko_na_zawodziu",
+    "name": "Grodzisko na Zawodziu",
+    "thumbnail": "https://www.kalisz.pl/storage/image/core_files/2025/7/2/f41e848372ef6800cc4bcd777c3d2a83/umkalisz/preview/22.jpg",
+    "description": ""
+  },
+  {
+    "id": "teatr_w_kaliszu",
+    "name": "Teatr w Kaliszu",
+    "thumbnail": "https://lh4.googleusercontent.com/proxy/K2tX2nR8N6tU66N9zO7PbN5eUfAb0k7awcOB8yiTnwZNn3bxjTAwVvlBpOTVaSh118aWijY7GeaSLudScGKy6RI7aEzyrXR0e1w6-HiqiGjRcrWbtXrLkOrrGXt6vg",
+    "description": ""
+  },
+  {
+    "id": "park_miejski_w_kaliszu",
+    "name": "Park Miejski w Kaliszu",
+    "thumbnail": "https://www.kalisz.pl/storage/image/core_files/2018/7/2/f38a3ae6e889ed03e79443b3e69929e0/umkalisz/preview/ParkMiejski1_fotTomekSkorzewski.jpg",
+    "description": ""
+  },
+  {
+    "id": "kolegium_jezuickie_w_kaliszu",
+    "name": "Kolegium jezuickie w Kaliszu",
+    "thumbnail": "https://www.krajoznawcy.info.pl/wp-content/uploads/2024/01/kalisz-jezuici-rus-7-900x675.jpg",
+    "description": ""
+  },
+  {
+    "id": "palac_trybunalski_w_kaliszu",
+    "name": "Pałac Trybunalski w Kaliszu",
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Pa%C5%82ac_Trybunalski_w_Kaliszu.jpg/2560px-Pa%C5%82ac_Trybunalski_w_Kaliszu.jpg",
+    "description": ""
+  },
+  {
+    "id": "rogatka_wroclawska_w_kaliszu",
+    "name": "Rogatka wrocławska w Kaliszu",
+    "thumbnail": "https://agro-star.com.pl/assets/images/agro-star/kalisz/05-rogatka/kalisz-rogatka-01.jpg",
+    "description": ""
+  },
+  {
+    "id": "zamek_w_kaliszu",
+    "name": "Zamek w Kaliszu",
+    "thumbnail": "https://cdn.galleries.smcloud.net/t/galleries/gf-KiJx-yFrT-Xy3U_zamek-kazimierzowski-w-kaliszu-1920x1080-nocrop.jpg",
+    "description": ""
   }
 ]

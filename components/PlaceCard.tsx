@@ -18,7 +18,7 @@ export function PlaceCard({ place, index = 0 }: PlaceCardProps) {
                 whileHover={{ y: -2 }}
                 transition={{ duration: 0.2 }}
             >
-                <div className="relative h-40 w-full overflow-hidden bg-muted">
+                <div className="relative h-60 w-full overflow-hidden bg-muted">
                     <Image
                         src={place.thumbnail}
                         alt={place.name}
