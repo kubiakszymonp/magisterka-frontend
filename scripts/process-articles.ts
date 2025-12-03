@@ -17,37 +17,38 @@ const SINGLE_PLACE = process.argv.find((a) => a.startsWith("--place="))?.split("
 // === Main ===
 
 async function processPlace(placeId: string, placeName: string, sourceArticles: SourceArticle[]): Promise<number> {
-  let generated = 0;
+  console.log(`  → Generowanie ${VARIANTS.length} wariantów równolegle...`);
 
-  for (const variant of VARIANTS) {
-    const ctx: ChainContext = {
-      placeId,
-      placeName,
-      sourceArticles,
-      variant,
-    };
+  const results = await Promise.all(
+    VARIANTS.map(async (variant) => {
+      const ctx: ChainContext = {
+        placeId,
+        placeName,
+        sourceArticles,
+        variant,
+      };
 
-    console.log(`  → ${variant.style}...`);
+      const { result, log } = await runChain(ctx);
 
-    const { result, log } = await runChain(ctx);
+      const article: GeneratedArticle = {
+        placeId,
+        style: variant.style,
+        ageTarget: variant.ageTarget,
+        volume: variant.volume,
+        title: result.title.trim(),
+        content: result.markdown,
+      };
 
-    const article: GeneratedArticle = {
-      placeId,
-      style: variant.style,
-      ageTarget: variant.ageTarget,
-      volume: variant.volume,
-      title: result.title.trim(),
-      content: result.markdown,
-    };
+      saveArticle(article);
+      saveGenerationLog(log);
 
-    saveArticle(article);
-    saveGenerationLog(log);
+      console.log(`    ✓ ${variant.style}: ${log.total_tokens} tokens, ${log.total_duration_ms}ms`);
 
-    console.log(`    ✓ ${log.total_tokens} tokens, ${log.total_duration_ms}ms`);
-    generated++;
-  }
+      return log;
+    })
+  );
 
-  return generated;
+  return results.length;
 }
 
 async function main(): Promise<void> {
