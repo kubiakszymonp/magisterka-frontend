@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useRef, useMemo, useEffect } from "react";
+import { useState, useRef } from "react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { TextToSpeech, TextToSpeechRef, getSentenceBoundaries } from "@/components/TextToSpeech";
+import { TextToSpeech, TextToSpeechRef } from "@/components/TextToSpeech";
 import { useVoice } from "@/lib/voice-context";
 import { Article } from "@/lib/types";
+import { HighlightedHtml, stripMarkdown } from "@/utils/highlightedHtml";
 
 interface ArticleTabsProps {
   articles: {
@@ -35,56 +36,8 @@ export function ArticleTabs({ articles }: ArticleTabsProps) {
     setActiveTab(newTab);
   };
 
-  // Precompute sentence boundaries for active article
-  const sentenceBoundaries = useMemo(() => {
-    if (!activeArticle) return [];
-    return getSentenceBoundaries(activeArticle.content);
-  }, [activeArticle]);
-
   const handleSentenceClick = (sentenceIndex: number) => {
     textToSpeechRef.current?.playFromSentence(sentenceIndex);
-  };
-
-  const renderHighlightedText = (
-    content: string,
-    boundaries: { start: number; end: number; text: string }[],
-    currentIndex: number | null
-  ) => {
-    let lastEnd = 0;
-    const elements: React.ReactNode[] = [];
-
-    boundaries.forEach((boundary, index) => {
-      if (boundary.start > lastEnd) {
-        elements.push(
-          <span key={`gap-${index}`}>
-            {content.slice(lastEnd, boundary.start)}
-          </span>
-        );
-      }
-
-      const isHighlighted = currentIndex === index;
-      elements.push(
-        <span
-          key={`sentence-${index}`}
-          onClick={() => handleSentenceClick(index)}
-          className={`cursor-pointer rounded px-1 transition-all duration-200 ${
-            isHighlighted 
-              ? "bg-primary/15 text-foreground border-b-2 border-primary/40" 
-              : "hover:bg-muted/50"
-          }`}
-        >
-          {boundary.text}
-        </span>
-      );
-
-      lastEnd = boundary.end;
-    });
-
-    if (lastEnd < content.length) {
-      elements.push(<span key="end">{content.slice(lastEnd)}</span>);
-    }
-
-    return elements;
   };
 
   return (
@@ -106,19 +59,23 @@ export function ArticleTabs({ articles }: ArticleTabsProps) {
         {activeArticle ? (
           <div className="space-y-4">
             <h3 className="font-medium">{activeArticle.title}</h3>
-            <TextToSpeech 
-              key={activeTab} // Force remount on tab change
-              ref={textToSpeechRef}
-              text={activeArticle.content} 
-              title={activeArticle.title}
-              onSentenceChange={setCurrentSentenceIndex}
-            />
-            <div className="text-sm text-muted-foreground leading-relaxed select-none whitespace-pre-wrap">
-              {renderHighlightedText(
-                activeArticle.content,
-                sentenceBoundaries,
-                currentSentenceIndex
-              )}
+            <div className="bg-card border border-border rounded-md p-6 shadow-sm">
+              <div className="mb-4">
+                <TextToSpeech 
+                  key={activeTab} // Force remount on tab change
+                  ref={textToSpeechRef}
+                  text={stripMarkdown(activeArticle.content)} 
+                  title={activeArticle.title}
+                  onSentenceChange={setCurrentSentenceIndex}
+                />
+              </div>
+              <div className="text-sm leading-relaxed text-muted-foreground select-none prose-headings:text-foreground">
+                <HighlightedHtml
+                  markdown={activeArticle.content}
+                  currentSentenceIndex={currentSentenceIndex}
+                  onSentenceClick={handleSentenceClick}
+                />
+              </div>
             </div>
           </div>
         ) : (
