@@ -16,22 +16,26 @@ export async function runChain(ctx: ChainContext): Promise<RunChainResult> {
   let totalInputTokens = 0;
   let totalOutputTokens = 0;
 
+  const logPrefix = `      [${ctx.variant.style}]`;
+
   // Step 1: Generate outline
+  console.log(`${logPrefix} 🔄 Krok 1/3: Generowanie konspektu...`);
   const outlinePrompt = outlineStep.buildPrompt(ctx);
   const outlineStartedAt = new Date();
-  const outlineResult = await complete(outlinePrompt.system, outlinePrompt.user, outlineStep.TEMPERATURE);
+  const outlineResult = await complete(outlinePrompt.system, outlinePrompt.user);
   const outlineFinishedAt = new Date();
+  const outlineDuration = outlineFinishedAt.getTime() - outlineStartedAt.getTime();
+  console.log(`${logPrefix} ✅ Krok 1/3: Konspekt gotowy (${outlineDuration}ms, ${outlineResult.total_tokens} tokens)`);
 
   steps.push({
     name: outlineStep.STEP_NAME,
     system_prompt: outlinePrompt.system,
     user_prompt: outlinePrompt.user,
-    temperature: outlineStep.TEMPERATURE,
     response: outlineResult.content,
     input_tokens: outlineResult.input_tokens,
     output_tokens: outlineResult.output_tokens,
     total_tokens: outlineResult.total_tokens,
-    duration_ms: outlineFinishedAt.getTime() - outlineStartedAt.getTime(),
+    duration_ms: outlineDuration,
     started_at: outlineStartedAt.toISOString(),
     finished_at: outlineFinishedAt.toISOString(),
   });
@@ -39,21 +43,23 @@ export async function runChain(ctx: ChainContext): Promise<RunChainResult> {
   totalOutputTokens += outlineResult.output_tokens;
 
   // Step 2: Generate content
+  console.log(`${logPrefix} 🔄 Krok 2/3: Generowanie treści...`);
   const contentPrompt = contentStep.buildPrompt(ctx, outlineResult.content);
   const contentStartedAt = new Date();
-  const contentResult = await complete(contentPrompt.system, contentPrompt.user, contentStep.TEMPERATURE);
+  const contentResult = await complete(contentPrompt.system, contentPrompt.user);
   const contentFinishedAt = new Date();
+  const contentDuration = contentFinishedAt.getTime() - contentStartedAt.getTime();
+  console.log(`${logPrefix} ✅ Krok 2/3: Treść gotowa (${contentDuration}ms, ${contentResult.total_tokens} tokens)`);
 
   steps.push({
     name: contentStep.STEP_NAME,
     system_prompt: contentPrompt.system,
     user_prompt: contentPrompt.user,
-    temperature: contentStep.TEMPERATURE,
     response: contentResult.content,
     input_tokens: contentResult.input_tokens,
     output_tokens: contentResult.output_tokens,
     total_tokens: contentResult.total_tokens,
-    duration_ms: contentFinishedAt.getTime() - contentStartedAt.getTime(),
+    duration_ms: contentDuration,
     started_at: contentStartedAt.toISOString(),
     finished_at: contentFinishedAt.toISOString(),
   });
@@ -61,15 +67,18 @@ export async function runChain(ctx: ChainContext): Promise<RunChainResult> {
   totalOutputTokens += contentResult.output_tokens;
 
   // Step 3: Format to Markdown and generate title (structured output)
+  console.log(`${logPrefix} 🔄 Krok 3/3: Formatowanie markdown + tytuł...`);
   const markdownPrompt = markdownStep.buildPrompt(ctx, contentResult.content);
   const markdownStartedAt = new Date();
   const markdownResult = await completeStructured<MarkdownAndTitleResponse>(
     markdownPrompt.system,
     markdownPrompt.user,
-    markdownStep.TEMPERATURE,
     markdownStep.RESPONSE_SCHEMA
   );
   const markdownFinishedAt = new Date();
+  const markdownDuration = markdownFinishedAt.getTime() - markdownStartedAt.getTime();
+  const markdownTokens = markdownResult.input_tokens + markdownResult.output_tokens;
+  console.log(`${logPrefix} ✅ Krok 3/3: Markdown + tytuł gotowe (${markdownDuration}ms, ${markdownTokens} tokens)`);
 
   const { markdown, title } = markdownResult.data;
 
@@ -77,12 +86,11 @@ export async function runChain(ctx: ChainContext): Promise<RunChainResult> {
     name: markdownStep.STEP_NAME,
     system_prompt: markdownPrompt.system,
     user_prompt: markdownPrompt.user,
-    temperature: markdownStep.TEMPERATURE,
     response: JSON.stringify(markdownResult.data),
     input_tokens: markdownResult.input_tokens,
     output_tokens: markdownResult.output_tokens,
-    total_tokens: markdownResult.input_tokens + markdownResult.output_tokens,
-    duration_ms: markdownFinishedAt.getTime() - markdownStartedAt.getTime(),
+    total_tokens: markdownTokens,
+    duration_ms: markdownDuration,
     started_at: markdownStartedAt.toISOString(),
     finished_at: markdownFinishedAt.toISOString(),
   });
@@ -90,6 +98,8 @@ export async function runChain(ctx: ChainContext): Promise<RunChainResult> {
   totalOutputTokens += markdownResult.output_tokens;
 
   const generationFinishedAt = new Date();
+  const totalDuration = generationFinishedAt.getTime() - generationStartedAt.getTime();
+  console.log(`${logPrefix} 🏁 Zakończono (łącznie: ${totalDuration}ms, ${totalInputTokens + totalOutputTokens} tokens)`);
 
   const log: GenerationLog = {
     generated_at: generationStartedAt.toISOString(),

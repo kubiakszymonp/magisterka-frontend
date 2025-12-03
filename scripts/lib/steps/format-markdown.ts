@@ -2,7 +2,6 @@ import type { ChainContext } from "../types";
 import { getAgeTargetDescription, getVolumeDescription } from "../prompts";
 
 export const STEP_NAME = "format_markdown_and_title";
-export const TEMPERATURE = 0.1;
 
 export interface MarkdownAndTitleResponse {
   markdown: string;

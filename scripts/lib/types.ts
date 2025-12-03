@@ -61,7 +61,6 @@ export interface StepLog {
   name: string;
   system_prompt: string;
   user_prompt: string;
-  temperature: number;
   response: string;
   input_tokens: number;
   output_tokens: number;

@@ -2,7 +2,6 @@ import type { ChainContext } from "../types";
 import { getAgeTargetDescription, getVolumeDescription, buildSourcesPrompt } from "../prompts";
 
 export const STEP_NAME = "generate_outline";
-export const TEMPERATURE = 0.5;
 
 export function buildPrompt(ctx: ChainContext): { system: string; user: string } {
   const age = getAgeTargetDescription(ctx);

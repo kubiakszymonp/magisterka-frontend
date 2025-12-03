@@ -1,6 +1,6 @@
 import OpenAI from "openai";
 
-export const MODEL = "gpt-4o";
+export const MODEL = "gpt-5-mini";
 
 let _client: OpenAI | null = null;
 
@@ -20,8 +20,7 @@ export interface CompletionResult {
 
 export async function complete(
   systemPrompt: string,
-  userPrompt: string,
-  temperature: number
+  userPrompt: string
 ): Promise<CompletionResult> {
   const response = await getClient().chat.completions.create({
     model: MODEL,
@@ -29,7 +28,6 @@ export async function complete(
       { role: "system", content: systemPrompt },
       { role: "user", content: userPrompt },
     ],
-    temperature,
   });
 
   return {
@@ -50,7 +48,6 @@ export interface StructuredCompletionResult<T> {
 export async function completeStructured<T>(
   systemPrompt: string,
   userPrompt: string,
-  temperature: number,
   schema: {
     name: string;
     schema: Record<string, unknown>;
@@ -62,7 +59,6 @@ export async function completeStructured<T>(
       { role: "system", content: systemPrompt },
       { role: "user", content: userPrompt },
     ],
-    temperature,
     response_format: {
       type: "json_schema",
       json_schema: {
