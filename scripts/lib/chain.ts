@@ -1,9 +1,9 @@
 import type { ChainContext, ChainResult, StepLog, GenerationLog } from "./types";
-import { complete, MODEL } from "./openai";
+import { complete, completeStructured, MODEL } from "./openai";
 import * as outlineStep from "./steps/generate-outline";
 import * as contentStep from "./steps/generate-content";
 import * as markdownStep from "./steps/format-markdown";
-import * as titleStep from "./steps/generate-title";
+import type { MarkdownAndTitleResponse } from "./steps/format-markdown";
 
 export interface RunChainResult {
   result: ChainResult;
@@ -60,49 +60,34 @@ export async function runChain(ctx: ChainContext): Promise<RunChainResult> {
   totalInputTokens += contentResult.input_tokens;
   totalOutputTokens += contentResult.output_tokens;
 
-  // Step 3: Format to Markdown
+  // Step 3: Format to Markdown and generate title (structured output)
   const markdownPrompt = markdownStep.buildPrompt(ctx, contentResult.content);
   const markdownStartedAt = new Date();
-  const markdownResult = await complete(markdownPrompt.system, markdownPrompt.user, markdownStep.TEMPERATURE);
+  const markdownResult = await completeStructured<MarkdownAndTitleResponse>(
+    markdownPrompt.system,
+    markdownPrompt.user,
+    markdownStep.TEMPERATURE,
+    markdownStep.RESPONSE_SCHEMA
+  );
   const markdownFinishedAt = new Date();
+
+  const { markdown, title } = markdownResult.data;
 
   steps.push({
     name: markdownStep.STEP_NAME,
     system_prompt: markdownPrompt.system,
     user_prompt: markdownPrompt.user,
     temperature: markdownStep.TEMPERATURE,
-    response: markdownResult.content,
+    response: JSON.stringify(markdownResult.data),
     input_tokens: markdownResult.input_tokens,
     output_tokens: markdownResult.output_tokens,
-    total_tokens: markdownResult.total_tokens,
+    total_tokens: markdownResult.input_tokens + markdownResult.output_tokens,
     duration_ms: markdownFinishedAt.getTime() - markdownStartedAt.getTime(),
     started_at: markdownStartedAt.toISOString(),
     finished_at: markdownFinishedAt.toISOString(),
   });
   totalInputTokens += markdownResult.input_tokens;
   totalOutputTokens += markdownResult.output_tokens;
-
-  // Step 4: Generate title
-  const titlePrompt = titleStep.buildPrompt(ctx);
-  const titleStartedAt = new Date();
-  const titleResult = await complete(titlePrompt.system, titlePrompt.user, titleStep.TEMPERATURE);
-  const titleFinishedAt = new Date();
-
-  steps.push({
-    name: titleStep.STEP_NAME,
-    system_prompt: titlePrompt.system,
-    user_prompt: titlePrompt.user,
-    temperature: titleStep.TEMPERATURE,
-    response: titleResult.content,
-    input_tokens: titleResult.input_tokens,
-    output_tokens: titleResult.output_tokens,
-    total_tokens: titleResult.total_tokens,
-    duration_ms: titleFinishedAt.getTime() - titleStartedAt.getTime(),
-    started_at: titleStartedAt.toISOString(),
-    finished_at: titleFinishedAt.toISOString(),
-  });
-  totalInputTokens += titleResult.input_tokens;
-  totalOutputTokens += titleResult.output_tokens;
 
   const generationFinishedAt = new Date();
 
@@ -123,15 +108,15 @@ export async function runChain(ctx: ChainContext): Promise<RunChainResult> {
     total_output_tokens: totalOutputTokens,
     total_tokens: totalInputTokens + totalOutputTokens,
     steps,
-    final_title: titleResult.content.trim(),
-    final_markdown: markdownResult.content,
+    final_title: title.trim(),
+    final_markdown: markdown,
   };
 
   const result: ChainResult = {
     outline: outlineResult.content,
     content: contentResult.content,
-    markdown: markdownResult.content,
-    title: titleResult.content,
+    markdown: markdown,
+    title: title,
   };
 
   return { result, log };

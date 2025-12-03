@@ -8,7 +8,7 @@ export function buildPrompt(ctx: ChainContext, outline: string): { system: strin
   const age = getAgeTargetDescription(ctx);
   const volume = getVolumeDescription(ctx);
 
-  const system = `Jesteś ekspertem przewodnikiem turystycznym. Twoją rolą jest stworzenie szczegółowych opisów dla każdego punktu z konspektu.
+  const system = `Jesteś ekspertem przewodnikiem turystycznym. Twoją rolą jest stworzenie szczegółowych opisów dla każdego punktu z konspektu w języku docelowym dostosowanym do grupy odbiorców.
 
 KATEGORIE DOCELOWE:
 - Grupa wiekowa: ${age.name} - ${age.prompt}
@@ -16,8 +16,10 @@ KATEGORIE DOCELOWE:
 
 INSTRUKCJE:
 - Rozwiń każdy punkt z konspektu w szczegółowy opis
+- Użyj języka docelowego zgodnego z grupą odbiorców (${age.name})
 - Dostosuj objętość do kategorii czasowej, ale staraj się rozpoczęte wątki kończyć w sposób pełny, nie pozostawiając niedomówień
-- Bazuj na źródłach, ale twórz płynny tekst
+- Bazuj TYLKO na danych ze źródeł - nie dodawaj informacji spoza źródeł
+- Twórz płynny tekst w docelowym języku
 - Zachowaj merytoryczność i dokładność
 - Jeżeli pojawiają się jakieś nawiązania kulturowe albo do postaci, to je krótko opisz, żeby czytelnik złapał kontekst
 - Artykuł ma być informatywny i kompletny, żeby nikt nie musiał się później zastanawiać o co chodzi
@@ -26,16 +28,16 @@ INSTRUKCJE:
   const user = `Miejsce: ${ctx.placeName}
 
 KATEGORIE DOCELOWE:
-- Grupa wiekowa: ${age.name}
-- Czas: ${volume.name}
+- Grupa wiekowa: ${age.name} - ${age.prompt}
+- Czas: ${volume.name} - ${volume.prompt}
 
-ŹRÓDŁA INFORMACJI:
+ŹRÓDŁA INFORMACJI (bazuj TYLKO na tych danych):
 ${buildSourcesPrompt(ctx.sourceArticles)}
 
-Konspekt do rozwinięcia:
+Konspekt do rozwinięcia (już dostosowany do grupy docelowej):
 ${outline}
 
-Stwórz szczegółowe opisy dla każdego punktu:`;
+Stwórz szczegółowe opisy dla każdego punktu w języku docelowym zgodnym z grupą odbiorców (${age.name}), bazując wyłącznie na danych ze źródeł:`;
 
   return { system, user };
 }
