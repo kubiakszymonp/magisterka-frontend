@@ -1,15 +1,16 @@
 "use client";
 
 import { notFound } from "next/navigation";
-import { useEffect, useState, useMemo, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { getPlace, getArticle } from "@/lib/data";
 import { RatingSingleForm } from "@/components/RatingSingleForm";
-import { TextToSpeech, TextToSpeechRef, getSentenceBoundaries } from "@/components/TextToSpeech";
+import { TextToSpeech, TextToSpeechRef } from "@/components/TextToSpeech";
 import { Footer } from "@/components/Footer";
 import { Place, Article } from "@/lib/types";
+import { HighlightedHtml, stripMarkdown } from "@/utils/highlightedHtml";
 
 interface ArticlePageProps {
   params: Promise<{ placeId: string; style: string }>;
@@ -48,12 +49,6 @@ export default function ArticlePage({ params }: ArticlePageProps) {
     loadData();
   }, [params]);
 
-  // Get sentence boundaries for highlighting
-  const sentenceBoundaries = useMemo(() => {
-    if (!article) return [];
-    return getSentenceBoundaries(article.content);
-  }, [article]);
-
   const handleSentenceClick = (sentenceIndex: number) => {
     textToSpeechRef.current?.playFromSentence(sentenceIndex);
   };
@@ -62,48 +57,8 @@ export default function ArticlePage({ params }: ArticlePageProps) {
     return null;
   }
 
-  // Render text with sentence highlighting
-  const renderHighlightedText = () => {
-    let lastEnd = 0;
-    const elements: React.ReactNode[] = [];
-
-    sentenceBoundaries.forEach((boundary, index) => {
-      // Add any text before this sentence (whitespace, etc.)
-      if (boundary.start > lastEnd) {
-        elements.push(
-          <span key={`gap-${index}`}>
-            {article.content.slice(lastEnd, boundary.start)}
-          </span>
-        );
-      }
-
-      const isHighlighted = currentSentenceIndex === index;
-      elements.push(
-        <span
-          key={`sentence-${index}`}
-          onClick={() => handleSentenceClick(index)}
-          className={`cursor-pointer rounded px-1 transition-all duration-200 ${
-            isHighlighted 
-              ? "bg-primary/15 text-foreground border-b-2 border-primary/40" 
-              : "hover:bg-muted/50"
-          }`}
-        >
-          {boundary.text}
-        </span>
-      );
-
-      lastEnd = boundary.end;
-    });
-
-    // Add any remaining text
-    if (lastEnd < article.content.length) {
-      elements.push(
-        <span key="end">{article.content.slice(lastEnd)}</span>
-      );
-    }
-
-    return elements;
-  };
+  // Get plain text for TextToSpeech (strip markdown formatting)
+  const plainTextContent = stripMarkdown(article.content);
 
   return (
     <>
@@ -162,13 +117,17 @@ export default function ArticlePage({ params }: ArticlePageProps) {
           <div className="mb-4">
             <TextToSpeech 
               ref={textToSpeechRef}
-              text={article.content} 
+              text={plainTextContent} 
               title={article.title}
               onSentenceChange={setCurrentSentenceIndex}
             />
           </div>
-          <div className="text-sm leading-relaxed text-muted-foreground select-none whitespace-pre-wrap">
-            {renderHighlightedText()}
+          <div className="text-sm leading-relaxed text-muted-foreground select-none prose-headings:text-foreground">
+            <HighlightedHtml
+              markdown={article.content}
+              currentSentenceIndex={currentSentenceIndex}
+              onSentenceClick={handleSentenceClick}
+            />
           </div>
         </div>
       </motion.section>
