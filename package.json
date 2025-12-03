@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "process-articles": "tsx --env-file=.env scripts/process-articles.ts",
-    "process-articles:debug": "npx --node-options='--inspect' tsx --env-file=.env scripts/process-articles.ts --dry-run"
+    "process-articles:debug": "npx --node-options='--inspect' tsx --env-file=.env scripts/process-articles.ts"
   },
   "dependencies": {
     "@radix-ui/react-label": "^2.1.8",

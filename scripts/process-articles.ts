@@ -4,38 +4,32 @@ import {
   loadPlaces,
   loadSourceArticles,
   getSourceArticleIds,
-  combineSourceContent,
   saveArticle,
+  saveGenerationLog,
 } from "./lib/files";
-import { VARIANTS, type GeneratedArticle, type ChainContext } from "./lib/types";
-import { runChain, dryRunChain } from "./lib/openai";
+import { VARIANTS, type GeneratedArticle, type ChainContext, type SourceArticle } from "./lib/types";
+import { runChain } from "./lib/openai";
 
 // === Config ===
 
-const DRY_RUN = process.argv.includes("--dry-run");
 const SINGLE_PLACE = process.argv.find((a) => a.startsWith("--place="))?.split("=")[1];
 
 // === Main ===
 
-async function processPlace(placeId: string, placeName: string, sourceContent: string): Promise<number> {
+async function processPlace(placeId: string, placeName: string, sourceArticles: SourceArticle[]): Promise<number> {
   let generated = 0;
 
   for (const variant of VARIANTS) {
     const ctx: ChainContext = {
       placeId,
       placeName,
-      sourceContent,
+      sourceArticles,
       variant,
     };
 
-    if (DRY_RUN) {
-      dryRunChain(ctx);
-      continue;
-    }
-
     console.log(`  → ${variant.style}...`);
 
-    const result = await runChain(ctx);
+    const { result, log } = await runChain(ctx);
 
     const article: GeneratedArticle = {
       placeId,
@@ -47,6 +41,9 @@ async function processPlace(placeId: string, placeName: string, sourceContent: s
     };
 
     saveArticle(article);
+    saveGenerationLog(log);
+
+    console.log(`    ✓ ${log.total_tokens} tokens, ${log.total_duration_ms}ms`);
     generated++;
   }
 
@@ -55,10 +52,6 @@ async function processPlace(placeId: string, placeName: string, sourceContent: s
 
 async function main(): Promise<void> {
   console.log("🚀 Rozpoczynam przetwarzanie artykułów...\n");
-
-  if (DRY_RUN) {
-    console.log("⚠️  Tryb DRY RUN - bez wywołań API\n");
-  }
 
   const places = loadPlaces();
   console.log(`📍 Załadowano ${places.size} miejsc`);
@@ -89,8 +82,7 @@ async function main(): Promise<void> {
 
     console.log(`📝 ${place.name}`);
 
-    const sourceContent = combineSourceContent(sources);
-    const count = await processPlace(placeId, place.name, sourceContent);
+    const count = await processPlace(placeId, place.name, sources);
 
     articlesCount += count;
     processedCount++;

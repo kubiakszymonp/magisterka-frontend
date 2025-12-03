@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import * as path from "path";
-import type { Place, SourceArticle, GeneratedArticle } from "./types";
+import type { Place, SourceArticle, GeneratedArticle, GenerationLog } from "./types";
 
 // === Paths ===
 
@@ -8,6 +8,7 @@ const DATA_DIR = path.join(process.cwd(), "data");
 export const PLACES_FILE = path.join(DATA_DIR, "places.json");
 export const SOURCE_ARTICLES_DIR = path.join(DATA_DIR, "source-articles");
 export const OUTPUT_DIR = path.join(DATA_DIR, "articles");
+export const LOGS_DIR = path.join(DATA_DIR, "generation-logs");
 
 // === Load Functions ===
 
@@ -49,6 +50,14 @@ export function saveArticle(article: GeneratedArticle): void {
 
   const filePath = path.join(placeDir, `${article.style}.json`);
   fs.writeFileSync(filePath, JSON.stringify(article, null, 2), "utf-8");
+}
+
+export function saveGenerationLog(log: GenerationLog): void {
+  const placeDir = path.join(LOGS_DIR, log.place_id);
+  ensureDir(placeDir);
+
+  const filePath = path.join(placeDir, `${log.style}.json`);
+  fs.writeFileSync(filePath, JSON.stringify(log, null, 2), "utf-8");
 }
 
 // === Content Helpers ===

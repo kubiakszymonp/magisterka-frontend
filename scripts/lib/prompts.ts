@@ -28,6 +28,22 @@ function getTimeTargetDescription(ctx: ChainContext): { name: string; prompt: st
   };
 }
 
+function formatSourceArticles(articles: import("./types").SourceArticle[]): string {
+  return articles
+    .map((article, index) => {
+      const parts = [`--- Źródło ${index + 1} ---`];
+      if (article.sourceUrl) {
+        parts.push(`URL: ${article.sourceUrl}`);
+      }
+      if (article.comment) {
+        parts.push(`Komentarz: ${article.comment}`);
+      }
+      parts.push(`\n${article.content}`);
+      return parts.join("\n");
+    })
+    .join("\n\n");
+}
+
 function buildContextPrompt(ctx: ChainContext, instruction: string): string {
   const age = getAgeTargetDescription(ctx);
   const time = getTimeTargetDescription(ctx);
@@ -39,7 +55,7 @@ KATEGORIE DOCELOWE:
 - Czas: ${time.name}
 
 ŹRÓDŁA INFORMACJI:
-${ctx.sourceContent}
+${formatSourceArticles(ctx.sourceArticles)}
 
 ${instruction}`;
 }
