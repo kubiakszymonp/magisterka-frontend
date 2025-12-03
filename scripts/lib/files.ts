@@ -60,12 +60,3 @@ export function saveGenerationLog(log: GenerationLog): void {
   fs.writeFileSync(filePath, JSON.stringify(log, null, 2), "utf-8");
 }
 
-// === Content Helpers ===
-
-export function combineSourceContent(sources: SourceArticle[]): string {
-  return sources
-    .map((s) => s.content)
-    .filter((c) => c.trim().length > 0)
-    .join("\n\n---\n\n");
-}
-

@@ -48,11 +48,6 @@ export interface ChainContext {
   variant: ArticleVariant;
 }
 
-export interface ChainStep {
-  name: string;
-  prompt: (ctx: ChainContext, previousOutput?: string) => string;
-}
-
 export interface ChainResult {
   outline: string;
   content: string;

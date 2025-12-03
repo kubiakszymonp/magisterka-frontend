@@ -8,7 +8,7 @@ import {
   saveGenerationLog,
 } from "./lib/files";
 import { VARIANTS, type GeneratedArticle, type ChainContext, type SourceArticle } from "./lib/types";
-import { runChain } from "./lib/openai";
+import { runChain } from "./lib/chain";
 
 // === Config ===
 
