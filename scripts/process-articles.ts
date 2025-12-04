@@ -13,7 +13,7 @@ import { runChain } from "./lib/chain";
 // === Config ===
 
 const SINGLE_PLACE = process.argv.find((a) => a.startsWith("--place="))?.split("=")[1];
-const BATCH_SIZE = parseInt(process.argv.find((a) => a.startsWith("--batch="))?.split("=")[1] ?? "10", 10);
+const BATCH_SIZE = parseInt(process.argv.find((a) => a.startsWith("--batch="))?.split("=")[1] ?? "20", 10);
 
 // === Utils ===
 
