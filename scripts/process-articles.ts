@@ -13,6 +13,17 @@ import { runChain } from "./lib/chain";
 // === Config ===
 
 const SINGLE_PLACE = process.argv.find((a) => a.startsWith("--place="))?.split("=")[1];
+const BATCH_SIZE = parseInt(process.argv.find((a) => a.startsWith("--batch="))?.split("=")[1] ?? "10", 10);
+
+// === Utils ===
+
+function chunk<T>(array: T[], size: number): T[][] {
+  const chunks: T[][] = [];
+  for (let i = 0; i < array.length; i += size) {
+    chunks.push(array.slice(i, i + size));
+  }
+  return chunks;
+}
 
 // === Main ===
 
@@ -58,11 +69,15 @@ async function main(): Promise<void> {
   console.log(`📍 Załadowano ${places.size} miejsc`);
 
   const sourceIds = SINGLE_PLACE ? [SINGLE_PLACE] : getSourceArticleIds();
-  console.log(`📄 Do przetworzenia: ${sourceIds.length} miejsc\n`);
+  console.log(`📄 Do przetworzenia: ${sourceIds.length} miejsc`);
+  console.log(`⚡ Rozmiar batcha: ${BATCH_SIZE} miejsc równolegle\n`);
 
   let processedCount = 0;
   let skippedCount = 0;
   let articlesCount = 0;
+
+  // Przygotuj dane miejsc do przetworzenia
+  const placesToProcess: { placeId: string; placeName: string; sources: SourceArticle[] }[] = [];
 
   for (const placeId of sourceIds) {
     const place = places.get(placeId);
@@ -81,12 +96,28 @@ async function main(): Promise<void> {
       continue;
     }
 
-    console.log(`📝 ${place.name}`);
+    placesToProcess.push({ placeId, placeName: place.name, sources });
+  }
 
-    const count = await processPlace(placeId, place.name, sources);
+  // Przetwarzaj w batchach
+  const batches = chunk(placesToProcess, BATCH_SIZE);
 
-    articlesCount += count;
-    processedCount++;
+  for (let i = 0; i < batches.length; i++) {
+    const batch = batches[i];
+    console.log(`\n📦 Batch ${i + 1}/${batches.length} (${batch.length} miejsc)`);
+
+    const results = await Promise.all(
+      batch.map(async ({ placeId, placeName, sources }) => {
+        console.log(`  📝 ${placeName}`);
+        const count = await processPlace(placeId, placeName, sources);
+        return count;
+      })
+    );
+
+    for (const count of results) {
+      articlesCount += count;
+      processedCount++;
+    }
   }
 
   console.log(`\n📊 Podsumowanie:`);
