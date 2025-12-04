@@ -13,7 +13,7 @@ import { runChain } from "./lib/chain";
 // === Config ===
 
 const SINGLE_PLACE = process.argv.find((a) => a.startsWith("--place="))?.split("=")[1];
-const BATCH_SIZE = parseInt(process.argv.find((a) => a.startsWith("--batch="))?.split("=")[1] ?? "20", 10);
+const BATCH_SIZE = parseInt(process.argv.find((a) => a.startsWith("--batch="))?.split("=")[1] ?? "5", 10);
 
 // === Utils ===
 
@@ -28,7 +28,8 @@ function chunk<T>(array: T[], size: number): T[][] {
 // === Main ===
 
 async function processPlace(placeId: string, placeName: string, sourceArticles: SourceArticle[]): Promise<number> {
-  console.log(`  → Generowanie ${VARIANTS.length} wariantów równolegle...`);
+  const tag = `[${placeName}]`;
+  console.log(`${tag} → Generowanie ${VARIANTS.length} wariantów...`);
 
   const results = await Promise.all(
     VARIANTS.map(async (variant) => {
@@ -53,12 +54,13 @@ async function processPlace(placeId: string, placeName: string, sourceArticles: 
       saveArticle(article);
       saveGenerationLog(log);
 
-      console.log(`    ✓ ${variant.style}: ${log.total_tokens} tokens, ${log.total_duration_ms}ms`);
+      console.log(`${tag} ✓ ${variant.style}: ${log.total_tokens} tokens, ${log.total_duration_ms}ms`);
 
       return log;
     })
   );
 
+  console.log(`${tag} ✅ Zakończono (${results.length} wariantów)`);
   return results.length;
 }
 
@@ -104,11 +106,11 @@ async function main(): Promise<void> {
 
   for (let i = 0; i < batches.length; i++) {
     const batch = batches[i];
-    console.log(`\n📦 Batch ${i + 1}/${batches.length} (${batch.length} miejsc)`);
+    const placeNames = batch.map((p) => p.placeName).join(", ");
+    console.log(`\n📦 Batch ${i + 1}/${batches.length}: ${placeNames}`);
 
     const results = await Promise.all(
       batch.map(async ({ placeId, placeName, sources }) => {
-        console.log(`  📝 ${placeName}`);
         const count = await processPlace(placeId, placeName, sources);
         return count;
       })
