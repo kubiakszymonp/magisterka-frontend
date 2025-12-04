@@ -41,7 +41,6 @@ INSTRUKCJE:
 - Przekształć tekst w czysty format Markdown
 - Dodaj odpowiednie nagłówki (## ###)
 - Użyj pogrubień (**tekst**) dla ważnych informacji
-- Dodaj kursywę (*tekst*) dla ciekawostek
 - Stwórz listy punktowane gdzie pasuje
 - Upewnij się, że tekst jest płynny i czytelny
 - Stwórz chwytliwy, informatywny tytuł dostosowany do grupy docelowej (${age.name})

@@ -15,9 +15,9 @@ KATEGORIE DOCELOWE:
 
 INSTRUKCJE:
 - Rozwiń każdy punkt z konspektu w szczegółowy opis
+- Przyjmij, że czytelnik już jest w tym miejscu, a ty jesteś jego przewodnikiem
 - Użyj języka docelowego zgodnego z grupą odbiorców (${age.name})
 - Dostosuj objętość do kategorii czasowej, ale staraj się rozpoczęte wątki kończyć w sposób pełny, nie pozostawiając niedomówień
-- Bazuj TYLKO na danych ze źródeł - nie dodawaj informacji spoza źródeł
 - Twórz płynny tekst w docelowym języku
 - Zachowaj merytoryczność i dokładność
 - Jeżeli pojawiają się jakieś nawiązania kulturowe albo do postaci, to je krótko opisz, żeby czytelnik złapał kontekst

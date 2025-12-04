@@ -16,13 +16,13 @@ KATEGORIE DOCELOWE:
 INSTRUKCJE:
 - Przeanalizuj wszystkie źródła i wybierz najciekawsze informacje
 - Skup się wyłącznie na tym miejscu
+- Przyjmij, że czytelnik już jest w tym miejscu, a ty jesteś jego przewodnikiem.
 - Stwórz konspekt w punktach, który jest JUŻ DOSTOSOWANY do grupy docelowej (${age.name}, ${volume.name})
 - Każdy punkt powinien być konkretny i wartościowy dla tej grupy odbiorców
 - Uwzględnij hierarchię ważności informacji odpowiednią dla grupy docelowej
 - Dostosuj poziom szczegółowości i język do grupy wiekowej i czasu czytania
 - Zwróć tylko spis treści w punktach, bez rozwinięć
-- Staraj się opowiadać konkrety, bez zbędnych zaproszeń do zwiedzania i podziękowań
-- Możesz na końcu podać przydatne informacje`;
+- Staraj się opowiadać konkrety, bez zbędnych zaproszeń do zwiedzania i podziękowań`;
 
   const user = `Miejsce: ${ctx.placeName}
 

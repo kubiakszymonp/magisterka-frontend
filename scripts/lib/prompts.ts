@@ -4,12 +4,12 @@ export function getAgeTargetDescription(ctx: ChainContext): { name: string; prom
   if (ctx.variant.ageTarget === "child") {
     return {
       name: "Dzieci (8-12 lat)",
-      prompt: "Używaj prostego języka, ciekawostek i angażującego tonu. Wyjaśniaj trudne pojęcia.",
+      prompt: "Używaj prostego języka, ciekawostek i angażującego tonu. Wyjaśniaj trudne pojęcia. Masz opowiadać ciekawie jak do dzieci, aby je zachęcić i zainteresować.",
     };
   }
   return {
     name: "Dorośli",
-    prompt: "Używaj profesjonalnego, ale przystępnego języka. Możesz używać terminologii specjalistycznej.",
+    prompt: "Używaj profesjonalnego, ale przystępnego języka. Możesz używać terminologii specjalistycznej. wyjaśniaj złożone zjawiska.",
   };
 }
 
@@ -21,8 +21,8 @@ export function getVolumeDescription(ctx: ChainContext): { name: string; prompt:
     };
   }
   return {
-    name: "Pełny (15 min)",
-    prompt: "Szczegółowy artykuł wyczerpujący temat. 1500-2000 słów.",
+    name: "Pełny (10 min)",
+    prompt: "Szczegółowy artykuł wyczerpujący temat. Maksymalnie 1000-1200 słów.",
   };
 }
 
