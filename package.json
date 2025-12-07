@@ -10,7 +10,8 @@
     "process-articles": "tsx --env-file=.env scripts/process-articles.ts",
     "process-articles:debug": "npx --node-options='--inspect' tsx --env-file=.env scripts/process-articles.ts",
     "analytics:setup": "cd analytics && python3 -m venv .venv && .venv/bin/pip install -r requirements.txt && .venv/bin/python -m spacy download pl_core_news_sm",
-    "analytics:run": "cd analytics && .venv/bin/python run_all.py"
+    "analytics:run": "cd analytics && .venv/bin/python run_all.py",
+    "analytics:charts": "cd analytics/charts && ../.venv/bin/python run_all_charts.py"
   },
   "dependencies": {
     "@radix-ui/react-label": "^2.1.8",
