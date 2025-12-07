@@ -1,0 +1,20 @@
+# NLP Analytics - wymagane zależności
+# Instalacja: pip install -r requirements.txt
+
+# Podstawowe NLP
+spacy>=3.7.0
+
+# Lexical diversity metrics (TTR, MTLD, etc.)
+lexical-diversity>=0.1.1
+
+# TF-IDF i analiza tekstów
+scikit-learn>=1.3.0
+
+# Utilities
+numpy>=1.24.0
+
+# Po instalacji wymagań, zainstaluj model spaCy dla polskiego:
+# python -m spacy download pl_core_news_lg
+# lub mniejszy model:
+# python -m spacy download pl_core_news_sm
+
