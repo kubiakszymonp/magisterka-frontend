@@ -1,0 +1,19 @@
+{
+  "metric": "lexical_density",
+  "article": "rogatka_wroclawska_w_kaliszu",
+  "version": "adult_full",
+  "value": 69.61,
+  "computed_at": "2025-12-07T20:53:10.143712",
+  "extra": {
+    "content_words_count": 685,
+    "total_words_count": 984,
+    "function_words_count": 299,
+    "pos_breakdown": {
+      "nouns": 386,
+      "verbs": 81,
+      "adjectives": 195,
+      "adverbs": 23
+    },
+    "interpretation": "bardzo_gęsty"
+  }
+}

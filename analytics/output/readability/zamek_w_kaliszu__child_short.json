@@ -1,0 +1,17 @@
+{
+  "metric": "readability",
+  "article": "zamek_w_kaliszu",
+  "version": "child_short",
+  "value": {
+    "flesch_reading_ease": -1.78,
+    "fog_index": 20.06,
+    "readability_level": "bardzo_trudny"
+  },
+  "computed_at": "2025-12-07T20:57:40.498802",
+  "extra": {
+    "avg_sentence_length": 10.84,
+    "avg_syllables_per_word": 2.34,
+    "hard_words_count": 213,
+    "hard_words_percent": 39.3
+  }
+}

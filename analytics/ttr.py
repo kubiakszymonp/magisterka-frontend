@@ -35,6 +35,7 @@ from common import (
     get_lemmas,
     list_articles,
     load_article,
+    save_aggregated_metric,
     save_metric_result,
     VERSIONS,
 )
@@ -88,7 +89,11 @@ def process_all_articles():
     
     print(f"Przetwarzanie {len(articles)} artykułów...")
     
+    aggregated = {}
+    
     for article_name in articles:
+        aggregated[article_name] = {}
+        
         for version in VERSIONS:
             try:
                 data = load_article(article_name, version)
@@ -96,14 +101,16 @@ def process_all_articles():
                 
                 results = calculate_ttr_from_text(content)
                 
+                value = {
+                    "ttr_tokens": results["ttr_tokens"],
+                    "ttr_lemmas": results["ttr_lemmas"]
+                }
+                
                 save_metric_result(
                     metric_name="ttr",
                     article_name=article_name,
                     version=version,
-                    value={
-                        "ttr_tokens": results["ttr_tokens"],
-                        "ttr_lemmas": results["ttr_lemmas"]
-                    },
+                    value=value,
                     extra_data={
                         "unique_tokens": results["unique_tokens"],
                         "total_tokens": results["total_tokens"],
@@ -112,10 +119,15 @@ def process_all_articles():
                     }
                 )
                 
+                aggregated[article_name][version] = value
+                
                 print(f"  {article_name}/{version}: TTR(tokens)={results['ttr_tokens']:.3f}, TTR(lemmas)={results['ttr_lemmas']:.3f}")
                 
             except FileNotFoundError:
                 print(f"  POMINIĘTO: {article_name}/{version} (brak pliku)")
+    
+    # Zapisz agregowany JSON
+    save_aggregated_metric("ttr", aggregated)
     
     print("\nZakończono!")
 

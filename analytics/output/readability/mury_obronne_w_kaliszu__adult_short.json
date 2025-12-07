@@ -1,0 +1,17 @@
+{
+  "metric": "readability",
+  "article": "mury_obronne_w_kaliszu",
+  "version": "adult_short",
+  "value": {
+    "flesch_reading_ease": -27.83,
+    "fog_index": 24.21,
+    "readability_level": "bardzo_trudny"
+  },
+  "computed_at": "2025-12-07T20:57:44.371689",
+  "extra": {
+    "avg_sentence_length": 13.11,
+    "avg_syllables_per_word": 2.62,
+    "hard_words_count": 230,
+    "hard_words_percent": 47.42
+  }
+}

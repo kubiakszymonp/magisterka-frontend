@@ -1,0 +1,16 @@
+{
+  "metric": "ttr",
+  "article": "kosciol_i_klasztor_oo_franciszkanow",
+  "version": "adult_short",
+  "value": {
+    "ttr_tokens": 0.7202,
+    "ttr_lemmas": 0.6618
+  },
+  "computed_at": "2025-12-07T20:52:03.517355",
+  "extra": {
+    "unique_tokens": 296,
+    "total_tokens": 411,
+    "unique_lemmas": 272,
+    "total_lemmas": 411
+  }
+}

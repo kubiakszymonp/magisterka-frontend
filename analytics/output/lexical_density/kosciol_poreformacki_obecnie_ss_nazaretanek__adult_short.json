@@ -1,0 +1,19 @@
+{
+  "metric": "lexical_density",
+  "article": "kosciol_poreformacki_obecnie_ss_nazaretanek",
+  "version": "adult_short",
+  "value": 63.21,
+  "computed_at": "2025-12-07T20:53:09.509761",
+  "extra": {
+    "content_words_count": 201,
+    "total_words_count": 318,
+    "function_words_count": 117,
+    "pos_breakdown": {
+      "nouns": 117,
+      "verbs": 24,
+      "adjectives": 56,
+      "adverbs": 4
+    },
+    "interpretation": "bardzo_gęsty"
+  }
+}

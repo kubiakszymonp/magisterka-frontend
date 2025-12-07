@@ -1,0 +1,17 @@
+{
+  "metric": "readability",
+  "article": "kolegiata_pw_wniebowziecia_nmp_kosciol_pw_sw_jozefa",
+  "version": "child_short",
+  "value": {
+    "flesch_reading_ease": -26.66,
+    "fog_index": 25.22,
+    "readability_level": "bardzo_trudny"
+  },
+  "computed_at": "2025-12-07T20:58:55.533688",
+  "extra": {
+    "avg_sentence_length": 14.24,
+    "avg_syllables_per_word": 2.59,
+    "hard_words_count": 285,
+    "hard_words_percent": 48.8
+  }
+}

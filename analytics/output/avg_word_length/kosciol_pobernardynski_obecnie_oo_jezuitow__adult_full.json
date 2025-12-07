@@ -1,0 +1,11 @@
+{
+  "metric": "avg_word_length",
+  "article": "kosciol_pobernardynski_obecnie_oo_jezuitow",
+  "version": "adult_full",
+  "value": 6.64,
+  "computed_at": "2025-12-07T20:53:18.704490",
+  "extra": {
+    "total_chars": 5970,
+    "word_count": 899
+  }
+}

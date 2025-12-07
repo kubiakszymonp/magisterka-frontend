@@ -1,0 +1,14 @@
+{
+  "metric": "mtld",
+  "article": "kosciol_poreformacki_obecnie_ss_nazaretanek",
+  "version": "adult_short",
+  "value": {
+    "mtld_tokens": 367.72,
+    "mtld_lemmas": 184.0
+  },
+  "computed_at": "2025-12-07T20:52:48.420169",
+  "extra": {
+    "token_count": 318,
+    "lemma_count": 318
+  }
+}

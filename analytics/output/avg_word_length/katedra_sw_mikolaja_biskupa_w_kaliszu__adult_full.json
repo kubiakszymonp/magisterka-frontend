@@ -1,0 +1,11 @@
+{
+  "metric": "avg_word_length",
+  "article": "katedra_sw_mikolaja_biskupa_w_kaliszu",
+  "version": "adult_full",
+  "value": 6.24,
+  "computed_at": "2025-12-07T20:53:23.267917",
+  "extra": {
+    "total_chars": 5678,
+    "word_count": 910
+  }
+}

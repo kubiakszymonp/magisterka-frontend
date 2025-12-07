@@ -1,0 +1,11 @@
+{
+  "metric": "avg_word_length",
+  "article": "kolegium_jezuickie_w_kaliszu",
+  "version": "adult_full",
+  "value": 6.52,
+  "computed_at": "2025-12-07T20:53:26.338786",
+  "extra": {
+    "total_chars": 8615,
+    "word_count": 1321
+  }
+}

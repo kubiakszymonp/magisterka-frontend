@@ -1,0 +1,14 @@
+{
+  "metric": "mtld",
+  "article": "teatr_w_kaliszu",
+  "version": "adult_full",
+  "value": {
+    "mtld_tokens": 316.3,
+    "mtld_lemmas": 149.12
+  },
+  "computed_at": "2025-12-07T20:52:28.922586",
+  "extra": {
+    "token_count": 1200,
+    "lemma_count": 1200
+  }
+}

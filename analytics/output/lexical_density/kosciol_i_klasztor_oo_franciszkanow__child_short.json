@@ -1,0 +1,19 @@
+{
+  "metric": "lexical_density",
+  "article": "kosciol_i_klasztor_oo_franciszkanow",
+  "version": "child_short",
+  "value": 58.98,
+  "computed_at": "2025-12-07T20:53:04.954648",
+  "extra": {
+    "content_words_count": 325,
+    "total_words_count": 551,
+    "function_words_count": 226,
+    "pos_breakdown": {
+      "nouns": 170,
+      "verbs": 76,
+      "adjectives": 53,
+      "adverbs": 26
+    },
+    "interpretation": "gęsty"
+  }
+}

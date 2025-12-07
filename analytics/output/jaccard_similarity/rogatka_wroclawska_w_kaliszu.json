@@ -1,0 +1,10 @@
+{
+  "metric": "jaccard_similarity",
+  "article": "rogatka_wroclawska_w_kaliszu",
+  "comparisons": {
+    "adult_full__adult_short": 0.3081,
+    "adult_full__child_short": 0.255,
+    "adult_short__child_short": 0.2965
+  },
+  "computed_at": "2025-12-07T20:59:28.632095"
+}

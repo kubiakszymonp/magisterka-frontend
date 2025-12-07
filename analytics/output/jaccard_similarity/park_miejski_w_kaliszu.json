@@ -1,0 +1,10 @@
+{
+  "metric": "jaccard_similarity",
+  "article": "park_miejski_w_kaliszu",
+  "comparisons": {
+    "adult_full__adult_short": 0.2845,
+    "adult_full__child_short": 0.2361,
+    "adult_short__child_short": 0.255
+  },
+  "computed_at": "2025-12-07T20:59:20.572814"
+}

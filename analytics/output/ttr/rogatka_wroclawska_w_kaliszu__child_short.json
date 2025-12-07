@@ -1,0 +1,16 @@
+{
+  "metric": "ttr",
+  "article": "rogatka_wroclawska_w_kaliszu",
+  "version": "child_short",
+  "value": {
+    "ttr_tokens": 0.6171,
+    "ttr_lemmas": 0.4991
+  },
+  "computed_at": "2025-12-07T20:52:15.252272",
+  "extra": {
+    "unique_tokens": 361,
+    "total_tokens": 585,
+    "unique_lemmas": 292,
+    "total_lemmas": 585
+  }
+}

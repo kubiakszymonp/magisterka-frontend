@@ -1,0 +1,11 @@
+{
+  "metric": "avg_word_length",
+  "article": "kosciol_poreformacki_obecnie_ss_nazaretanek",
+  "version": "adult_short",
+  "value": 6.53,
+  "computed_at": "2025-12-07T20:53:30.540303",
+  "extra": {
+    "total_chars": 2077,
+    "word_count": 318
+  }
+}

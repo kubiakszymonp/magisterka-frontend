@@ -1,0 +1,11 @@
+{
+  "metric": "avg_sentence_length",
+  "article": "grodzisko_na_zawodziu",
+  "version": "child_short",
+  "value": 14.73,
+  "computed_at": "2025-12-07T20:49:50.490529",
+  "extra": {
+    "word_count": 486,
+    "sentence_count": 33
+  }
+}

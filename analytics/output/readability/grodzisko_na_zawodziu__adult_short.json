@@ -1,0 +1,17 @@
+{
+  "metric": "readability",
+  "article": "grodzisko_na_zawodziu",
+  "version": "adult_short",
+  "value": {
+    "flesch_reading_ease": -51.82,
+    "fog_index": 31.11,
+    "readability_level": "bardzo_trudny"
+  },
+  "computed_at": "2025-12-07T20:58:43.187245",
+  "extra": {
+    "avg_sentence_length": 21.4,
+    "avg_syllables_per_word": 2.8,
+    "hard_words_count": 181,
+    "hard_words_percent": 56.39
+  }
+}

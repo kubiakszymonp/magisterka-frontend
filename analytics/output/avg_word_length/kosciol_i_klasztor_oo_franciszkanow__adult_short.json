@@ -1,0 +1,11 @@
+{
+  "metric": "avg_word_length",
+  "article": "kosciol_i_klasztor_oo_franciszkanow",
+  "version": "adult_short",
+  "value": 6.39,
+  "computed_at": "2025-12-07T20:53:25.482926",
+  "extra": {
+    "total_chars": 2627,
+    "word_count": 411
+  }
+}

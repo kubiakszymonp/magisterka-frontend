@@ -1,0 +1,19 @@
+{
+  "metric": "lexical_density",
+  "article": "kolegiata_pw_wniebowziecia_nmp_kosciol_pw_sw_jozefa",
+  "version": "adult_short",
+  "value": 65.15,
+  "computed_at": "2025-12-07T20:53:08.552606",
+  "extra": {
+    "content_words_count": 443,
+    "total_words_count": 680,
+    "function_words_count": 237,
+    "pos_breakdown": {
+      "nouns": 260,
+      "verbs": 48,
+      "adjectives": 132,
+      "adverbs": 3
+    },
+    "interpretation": "bardzo_gęsty"
+  }
+}

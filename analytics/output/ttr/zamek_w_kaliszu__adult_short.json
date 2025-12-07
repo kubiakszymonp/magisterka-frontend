@@ -1,0 +1,16 @@
+{
+  "metric": "ttr",
+  "article": "zamek_w_kaliszu",
+  "version": "adult_short",
+  "value": {
+    "ttr_tokens": 0.6395,
+    "ttr_lemmas": 0.5417
+  },
+  "computed_at": "2025-12-07T20:51:46.084821",
+  "extra": {
+    "unique_tokens": 353,
+    "total_tokens": 552,
+    "unique_lemmas": 299,
+    "total_lemmas": 552
+  }
+}

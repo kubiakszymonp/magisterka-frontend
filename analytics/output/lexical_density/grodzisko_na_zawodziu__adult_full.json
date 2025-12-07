@@ -1,0 +1,19 @@
+{
+  "metric": "lexical_density",
+  "article": "grodzisko_na_zawodziu",
+  "version": "adult_full",
+  "value": 68.22,
+  "computed_at": "2025-12-07T20:53:06.482201",
+  "extra": {
+    "content_words_count": 734,
+    "total_words_count": 1076,
+    "function_words_count": 342,
+    "pos_breakdown": {
+      "nouns": 405,
+      "verbs": 105,
+      "adjectives": 212,
+      "adverbs": 12
+    },
+    "interpretation": "bardzo_gęsty"
+  }
+}

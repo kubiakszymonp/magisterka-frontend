@@ -1,0 +1,16 @@
+{
+  "metric": "ttr",
+  "article": "teatr_w_kaliszu",
+  "version": "adult_full",
+  "value": {
+    "ttr_tokens": 0.5983,
+    "ttr_lemmas": 0.4675
+  },
+  "computed_at": "2025-12-07T20:51:52.674550",
+  "extra": {
+    "unique_tokens": 718,
+    "total_tokens": 1200,
+    "unique_lemmas": 561,
+    "total_lemmas": 1200
+  }
+}

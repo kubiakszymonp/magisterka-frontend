@@ -1,0 +1,19 @@
+{
+  "metric": "lexical_density",
+  "article": "kosciol_pobernardynski_obecnie_oo_jezuitow",
+  "version": "adult_short",
+  "value": 68.94,
+  "computed_at": "2025-12-07T20:52:57.074692",
+  "extra": {
+    "content_words_count": 333,
+    "total_words_count": 483,
+    "function_words_count": 150,
+    "pos_breakdown": {
+      "nouns": 194,
+      "verbs": 44,
+      "adjectives": 85,
+      "adverbs": 10
+    },
+    "interpretation": "bardzo_gęsty"
+  }
+}

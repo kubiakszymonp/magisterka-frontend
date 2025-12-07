@@ -1,0 +1,16 @@
+{
+  "metric": "ttr",
+  "article": "kolegium_jezuickie_w_kaliszu",
+  "version": "child_short",
+  "value": {
+    "ttr_tokens": 0.635,
+    "ttr_lemmas": 0.5307
+  },
+  "computed_at": "2025-12-07T20:52:06.274613",
+  "extra": {
+    "unique_tokens": 414,
+    "total_tokens": 652,
+    "unique_lemmas": 346,
+    "total_lemmas": 652
+  }
+}

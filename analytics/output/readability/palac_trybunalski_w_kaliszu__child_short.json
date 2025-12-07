@@ -1,0 +1,17 @@
+{
+  "metric": "readability",
+  "article": "palac_trybunalski_w_kaliszu",
+  "version": "child_short",
+  "value": {
+    "flesch_reading_ease": -8.35,
+    "fog_index": 20.11,
+    "readability_level": "bardzo_trudny"
+  },
+  "computed_at": "2025-12-07T20:58:50.009942",
+  "extra": {
+    "avg_sentence_length": 9.25,
+    "avg_syllables_per_word": 2.43,
+    "hard_words_count": 201,
+    "hard_words_percent": 41.02
+  }
+}

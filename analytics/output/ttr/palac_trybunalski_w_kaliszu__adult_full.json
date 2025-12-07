@@ -1,0 +1,16 @@
+{
+  "metric": "ttr",
+  "article": "palac_trybunalski_w_kaliszu",
+  "version": "adult_full",
+  "value": {
+    "ttr_tokens": 0.5628,
+    "ttr_lemmas": 0.4355
+  },
+  "computed_at": "2025-12-07T20:52:08.751218",
+  "extra": {
+    "unique_tokens": 650,
+    "total_tokens": 1155,
+    "unique_lemmas": 503,
+    "total_lemmas": 1155
+  }
+}

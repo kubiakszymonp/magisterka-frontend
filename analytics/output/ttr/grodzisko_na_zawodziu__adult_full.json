@@ -1,0 +1,16 @@
+{
+  "metric": "ttr",
+  "article": "grodzisko_na_zawodziu",
+  "version": "adult_full",
+  "value": {
+    "ttr_tokens": 0.5613,
+    "ttr_lemmas": 0.4387
+  },
+  "computed_at": "2025-12-07T20:52:07.102638",
+  "extra": {
+    "unique_tokens": 604,
+    "total_tokens": 1076,
+    "unique_lemmas": 472,
+    "total_lemmas": 1076
+  }
+}

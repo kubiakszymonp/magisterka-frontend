@@ -1,0 +1,17 @@
+{
+  "metric": "readability",
+  "article": "park_miejski_w_kaliszu",
+  "version": "adult_full",
+  "value": {
+    "flesch_reading_ease": -26.28,
+    "fog_index": 25.42,
+    "readability_level": "bardzo_trudny"
+  },
+  "computed_at": "2025-12-07T20:58:11.613439",
+  "extra": {
+    "avg_sentence_length": 14.25,
+    "avg_syllables_per_word": 2.58,
+    "hard_words_count": 534,
+    "hard_words_percent": 49.31
+  }
+}

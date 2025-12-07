@@ -1,0 +1,13 @@
+{
+  "metric": "tfidf_overlap",
+  "article": "teatr_w_kaliszu",
+  "comparisons": {
+    "adult_full__adult_short": 70.0,
+    "adult_full__child_short": 65.0,
+    "adult_short__child_short": 60.0
+  },
+  "computed_at": "2025-12-07T20:54:02.139300",
+  "extra": {
+    "top_n_keywords": 20
+  }
+}

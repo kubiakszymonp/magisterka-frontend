@@ -1,0 +1,11 @@
+{
+  "metric": "avg_word_length",
+  "article": "ratusz_w_kaliszu",
+  "version": "adult_short",
+  "value": 6.13,
+  "computed_at": "2025-12-07T20:53:21.726227",
+  "extra": {
+    "total_chars": 2662,
+    "word_count": 434
+  }
+}

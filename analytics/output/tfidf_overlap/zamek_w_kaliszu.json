@@ -1,0 +1,13 @@
+{
+  "metric": "tfidf_overlap",
+  "article": "zamek_w_kaliszu",
+  "comparisons": {
+    "adult_full__adult_short": 60.0,
+    "adult_full__child_short": 75.0,
+    "adult_short__child_short": 60.0
+  },
+  "computed_at": "2025-12-07T20:53:58.401680",
+  "extra": {
+    "top_n_keywords": 20
+  }
+}

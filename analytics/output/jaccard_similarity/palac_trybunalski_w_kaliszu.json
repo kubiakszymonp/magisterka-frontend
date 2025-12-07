@@ -1,0 +1,10 @@
+{
+  "metric": "jaccard_similarity",
+  "article": "palac_trybunalski_w_kaliszu",
+  "comparisons": {
+    "adult_full__adult_short": 0.2983,
+    "adult_full__child_short": 0.2529,
+    "adult_short__child_short": 0.2861
+  },
+  "computed_at": "2025-12-07T20:59:25.980027"
+}

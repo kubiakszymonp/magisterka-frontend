@@ -1,0 +1,10 @@
+{
+  "metric": "jaccard_similarity",
+  "article": "katedra_sw_mikolaja_biskupa_w_kaliszu",
+  "comparisons": {
+    "adult_full__adult_short": 0.2823,
+    "adult_full__child_short": 0.2241,
+    "adult_short__child_short": 0.258
+  },
+  "computed_at": "2025-12-07T20:59:21.499267"
+}

@@ -1,0 +1,17 @@
+{
+  "metric": "readability",
+  "article": "kosciol_i_klasztor_oo_franciszkanow",
+  "version": "adult_short",
+  "value": {
+    "flesch_reading_ease": -41.89,
+    "fog_index": 27.0,
+    "readability_level": "bardzo_trudny"
+  },
+  "computed_at": "2025-12-07T20:58:29.864818",
+  "extra": {
+    "avg_sentence_length": 10.82,
+    "avg_syllables_per_word": 2.81,
+    "hard_words_count": 233,
+    "hard_words_percent": 56.69
+  }
+}

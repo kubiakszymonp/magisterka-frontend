@@ -1,0 +1,17 @@
+{
+  "metric": "readability",
+  "article": "kosciol_pw_swsw_stanislawa_i_wojciecha_garnizonowy",
+  "version": "adult_full",
+  "value": {
+    "flesch_reading_ease": -55.86,
+    "fog_index": 30.15,
+    "readability_level": "bardzo_trudny"
+  },
+  "computed_at": "2025-12-07T20:57:53.006251",
+  "extra": {
+    "avg_sentence_length": 18.31,
+    "avg_syllables_per_word": 2.89,
+    "hard_words_count": 533,
+    "hard_words_percent": 57.07
+  }
+}

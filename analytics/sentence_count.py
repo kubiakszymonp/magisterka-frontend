@@ -21,6 +21,7 @@ from common import (
     get_sentences,
     list_articles,
     load_article,
+    save_aggregated_metric,
     save_metric_result,
     VERSIONS,
 )
@@ -46,7 +47,11 @@ def process_all_articles():
     
     print(f"Przetwarzanie {len(articles)} artykułów...")
     
+    aggregated = {}
+    
     for article_name in articles:
+        aggregated[article_name] = {}
+        
         for version in VERSIONS:
             try:
                 data = load_article(article_name, version)
@@ -61,10 +66,15 @@ def process_all_articles():
                     value=sentence_count
                 )
                 
+                aggregated[article_name][version] = sentence_count
+                
                 print(f"  {article_name}/{version}: {sentence_count} zdań")
                 
             except FileNotFoundError:
                 print(f"  POMINIĘTO: {article_name}/{version} (brak pliku)")
+    
+    # Zapisz agregowany JSON
+    save_aggregated_metric("sentence_count", aggregated)
     
     print("\nZakończono!")
 

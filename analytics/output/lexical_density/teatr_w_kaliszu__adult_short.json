@@ -1,0 +1,19 @@
+{
+  "metric": "lexical_density",
+  "article": "teatr_w_kaliszu",
+  "version": "adult_short",
+  "value": 68.28,
+  "computed_at": "2025-12-07T20:52:58.855604",
+  "extra": {
+    "content_words_count": 310,
+    "total_words_count": 454,
+    "function_words_count": 144,
+    "pos_breakdown": {
+      "nouns": 183,
+      "verbs": 36,
+      "adjectives": 86,
+      "adverbs": 5
+    },
+    "interpretation": "bardzo_gęsty"
+  }
+}

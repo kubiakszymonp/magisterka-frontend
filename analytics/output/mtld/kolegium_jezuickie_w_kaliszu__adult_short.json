@@ -1,0 +1,14 @@
+{
+  "metric": "mtld",
+  "article": "kolegium_jezuickie_w_kaliszu",
+  "version": "adult_short",
+  "value": {
+    "mtld_tokens": 314.26,
+    "mtld_lemmas": 192.18
+  },
+  "computed_at": "2025-12-07T20:52:40.820125",
+  "extra": {
+    "token_count": 573,
+    "lemma_count": 573
+  }
+}

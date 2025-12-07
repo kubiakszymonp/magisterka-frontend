@@ -1,0 +1,11 @@
+{
+  "metric": "avg_word_length",
+  "article": "kolegiata_pw_wniebowziecia_nmp_kosciol_pw_sw_jozefa",
+  "version": "child_short",
+  "value": 5.79,
+  "computed_at": "2025-12-07T20:53:29.834697",
+  "extra": {
+    "total_chars": 3379,
+    "word_count": 584
+  }
+}

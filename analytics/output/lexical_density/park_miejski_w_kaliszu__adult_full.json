@@ -1,0 +1,19 @@
+{
+  "metric": "lexical_density",
+  "article": "park_miejski_w_kaliszu",
+  "version": "adult_full",
+  "value": 69.25,
+  "computed_at": "2025-12-07T20:53:00.464735",
+  "extra": {
+    "content_words_count": 750,
+    "total_words_count": 1083,
+    "function_words_count": 333,
+    "pos_breakdown": {
+      "nouns": 425,
+      "verbs": 92,
+      "adjectives": 212,
+      "adverbs": 21
+    },
+    "interpretation": "bardzo_gęsty"
+  }
+}

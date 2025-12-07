@@ -1,0 +1,11 @@
+{
+  "metric": "avg_word_length",
+  "article": "mury_obronne_w_kaliszu",
+  "version": "child_short",
+  "value": 5.63,
+  "computed_at": "2025-12-07T20:53:18.279463",
+  "extra": {
+    "total_chars": 3281,
+    "word_count": 583
+  }
+}

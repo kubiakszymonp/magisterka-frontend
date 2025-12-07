@@ -1,0 +1,19 @@
+{
+  "metric": "lexical_density",
+  "article": "ratusz_w_kaliszu",
+  "version": "adult_short",
+  "value": 68.43,
+  "computed_at": "2025-12-07T20:52:59.798190",
+  "extra": {
+    "content_words_count": 297,
+    "total_words_count": 434,
+    "function_words_count": 137,
+    "pos_breakdown": {
+      "nouns": 170,
+      "verbs": 32,
+      "adjectives": 89,
+      "adverbs": 6
+    },
+    "interpretation": "bardzo_gęsty"
+  }
+}

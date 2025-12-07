@@ -1,0 +1,14 @@
+{
+  "metric": "mtld",
+  "article": "kosciol_pw_swsw_stanislawa_i_wojciecha_garnizonowy",
+  "version": "adult_full",
+  "value": {
+    "mtld_tokens": 314.83,
+    "mtld_lemmas": 160.6
+  },
+  "computed_at": "2025-12-07T20:52:25.369591",
+  "extra": {
+    "token_count": 934,
+    "lemma_count": 934
+  }
+}

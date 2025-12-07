@@ -1,0 +1,11 @@
+{
+  "metric": "avg_word_length",
+  "article": "kosciol_pw_sw_wojciecha_na_zawodziu",
+  "version": "adult_short",
+  "value": 6.53,
+  "computed_at": "2025-12-07T20:53:24.643325",
+  "extra": {
+    "total_chars": 3428,
+    "word_count": 525
+  }
+}

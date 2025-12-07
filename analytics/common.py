@@ -36,15 +36,15 @@ def get_nlp():
     global _nlp_model
     if _nlp_model is None:
         try:
-            _nlp_model = spacy.load("pl_core_news_lg")
+            _nlp_model = spacy.load("pl_core_news_sm")
         except OSError:
-            print("Model pl_core_news_lg nie znaleziony, próbuję pl_core_news_sm...")
+            print("Model pl_core_news_sm nie znaleziony, próbuję pl_core_news_lg...")
             try:
-                _nlp_model = spacy.load("pl_core_news_sm")
+                _nlp_model = spacy.load("pl_core_news_lg")
             except OSError:
                 raise RuntimeError(
                     "Brak modelu spaCy dla polskiego. Zainstaluj: "
-                    "python -m spacy download pl_core_news_lg"
+                    "python -m spacy download pl_core_news_sm"
                 )
     return _nlp_model
 
@@ -180,6 +180,88 @@ def save_comparison_result(
         result["extra"] = extra_data
     
     file_path = output_dir / f"{article_name}.json"
+    
+    with open(file_path, "w", encoding="utf-8") as f:
+        json.dump(result, f, ensure_ascii=False, indent=2)
+    
+    return file_path
+
+
+def save_aggregated_metric(
+    metric_name: str,
+    aggregated_data: dict[str, dict[str, Any]]
+) -> Path:
+    """
+    Zapisuje agregowany JSON z wszystkimi wynikami metryki.
+    
+    Struktura:
+    {
+      "article_name": {
+        "adult_full": value,
+        "adult_short": value,
+        "child_short": value
+      },
+      ...
+    }
+    
+    Args:
+        metric_name: Nazwa metryki
+        aggregated_data: Słownik {article_name: {version: value}}
+    
+    Returns:
+        Ścieżka do zapisanego pliku
+    """
+    output_dir = OUTPUT_DIR / metric_name
+    output_dir.mkdir(parents=True, exist_ok=True)
+    
+    result = {
+        "metric": metric_name,
+        "aggregated_at": datetime.now().isoformat(),
+        "data": aggregated_data
+    }
+    
+    file_path = output_dir / "aggregated.json"
+    
+    with open(file_path, "w", encoding="utf-8") as f:
+        json.dump(result, f, ensure_ascii=False, indent=2)
+    
+    return file_path
+
+
+def save_aggregated_comparison_metric(
+    metric_name: str,
+    aggregated_data: dict[str, dict[str, Any]]
+) -> Path:
+    """
+    Zapisuje agregowany JSON dla metryk porównawczych.
+    
+    Struktura:
+    {
+      "article_name": {
+        "adult_full__adult_short": value,
+        "adult_full__child_short": value,
+        "adult_short__child_short": value
+      },
+      ...
+    }
+    
+    Args:
+        metric_name: Nazwa metryki
+        aggregated_data: Słownik {article_name: {comparison_key: value}}
+    
+    Returns:
+        Ścieżka do zapisanego pliku
+    """
+    output_dir = OUTPUT_DIR / metric_name
+    output_dir.mkdir(parents=True, exist_ok=True)
+    
+    result = {
+        "metric": metric_name,
+        "aggregated_at": datetime.now().isoformat(),
+        "data": aggregated_data
+    }
+    
+    file_path = output_dir / "aggregated.json"
     
     with open(file_path, "w", encoding="utf-8") as f:
         json.dump(result, f, ensure_ascii=False, indent=2)

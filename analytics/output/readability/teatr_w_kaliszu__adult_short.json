@@ -1,0 +1,17 @@
+{
+  "metric": "readability",
+  "article": "teatr_w_kaliszu",
+  "version": "adult_short",
+  "value": {
+    "flesch_reading_ease": -38.82,
+    "fog_index": 25.05,
+    "readability_level": "bardzo_trudny"
+  },
+  "computed_at": "2025-12-07T20:58:00.081179",
+  "extra": {
+    "avg_sentence_length": 11.07,
+    "avg_syllables_per_word": 2.77,
+    "hard_words_count": 234,
+    "hard_words_percent": 51.54
+  }
+}

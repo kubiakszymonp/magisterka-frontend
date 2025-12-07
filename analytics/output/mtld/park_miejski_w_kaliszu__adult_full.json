@@ -1,0 +1,14 @@
+{
+  "metric": "mtld",
+  "article": "park_miejski_w_kaliszu",
+  "version": "adult_full",
+  "value": {
+    "mtld_tokens": 276.4,
+    "mtld_lemmas": 148.86
+  },
+  "computed_at": "2025-12-07T20:52:32.575835",
+  "extra": {
+    "token_count": 1083,
+    "lemma_count": 1083
+  }
+}

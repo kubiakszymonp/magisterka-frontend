@@ -1,0 +1,14 @@
+{
+  "metric": "mtld",
+  "article": "katedra_sw_mikolaja_biskupa_w_kaliszu",
+  "version": "adult_full",
+  "value": {
+    "mtld_tokens": 324.4,
+    "mtld_lemmas": 169.72
+  },
+  "computed_at": "2025-12-07T20:52:34.475996",
+  "extra": {
+    "token_count": 910,
+    "lemma_count": 910
+  }
+}

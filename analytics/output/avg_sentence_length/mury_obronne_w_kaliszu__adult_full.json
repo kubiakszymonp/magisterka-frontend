@@ -1,0 +1,11 @@
+{
+  "metric": "avg_sentence_length",
+  "article": "mury_obronne_w_kaliszu",
+  "version": "adult_full",
+  "value": 14.33,
+  "computed_at": "2025-12-07T20:49:10.695505",
+  "extra": {
+    "word_count": 946,
+    "sentence_count": 66
+  }
+}

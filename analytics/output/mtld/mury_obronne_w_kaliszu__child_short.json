@@ -1,0 +1,14 @@
+{
+  "metric": "mtld",
+  "article": "mury_obronne_w_kaliszu",
+  "version": "child_short",
+  "value": {
+    "mtld_tokens": 215.65,
+    "mtld_lemmas": 116.98
+  },
+  "computed_at": "2025-12-07T20:52:22.937934",
+  "extra": {
+    "token_count": 583,
+    "lemma_count": 583
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "metric": "ttr",
+  "article": "kosciol_pw_sw_wojciecha_na_zawodziu",
+  "version": "adult_short",
+  "value": {
+    "ttr_tokens": 0.6514,
+    "ttr_lemmas": 0.5276
+  },
+  "computed_at": "2025-12-07T20:52:01.800597",
+  "extra": {
+    "unique_tokens": 342,
+    "total_tokens": 525,
+    "unique_lemmas": 277,
+    "total_lemmas": 525
+  }
+}

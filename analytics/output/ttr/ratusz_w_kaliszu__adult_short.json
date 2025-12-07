@@ -1,0 +1,16 @@
+{
+  "metric": "ttr",
+  "article": "ratusz_w_kaliszu",
+  "version": "adult_short",
+  "value": {
+    "ttr_tokens": 0.6728,
+    "ttr_lemmas": 0.6083
+  },
+  "computed_at": "2025-12-07T20:51:56.447145",
+  "extra": {
+    "unique_tokens": 292,
+    "total_tokens": 434,
+    "unique_lemmas": 264,
+    "total_lemmas": 434
+  }
+}

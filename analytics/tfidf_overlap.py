@@ -32,6 +32,7 @@ from common import (
     get_lemmas,
     list_articles,
     load_article,
+    save_aggregated_comparison_metric,
     save_comparison_result,
     VERSIONS,
 )
@@ -120,6 +121,8 @@ def process_all_articles():
     # Pary do porównania
     version_pairs = list(combinations(VERSIONS, 2))
     
+    aggregated = {}
+    
     for article_name in articles:
         # Wczytaj wszystkie wersje i wyodrębnij keywords
         version_keywords = {}
@@ -153,9 +156,15 @@ def process_all_articles():
                 extra_data={"top_n_keywords": TOP_N_KEYWORDS}
             )
             
+            aggregated[article_name] = comparisons
+            
             print(f"  {article_name}:")
             for key, val in comparisons.items():
                 print(f"    {key}: {val}%")
+    
+    # Zapisz agregowany JSON
+    if aggregated:
+        save_aggregated_comparison_metric("tfidf_overlap", aggregated)
     
     print("\nZakończono!")
 

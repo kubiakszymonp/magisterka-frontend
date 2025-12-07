@@ -1,0 +1,16 @@
+{
+  "metric": "ttr",
+  "article": "park_miejski_w_kaliszu",
+  "version": "adult_short",
+  "value": {
+    "ttr_tokens": 0.634,
+    "ttr_lemmas": 0.5304
+  },
+  "computed_at": "2025-12-07T20:51:58.300594",
+  "extra": {
+    "unique_tokens": 459,
+    "total_tokens": 724,
+    "unique_lemmas": 384,
+    "total_lemmas": 724
+  }
+}

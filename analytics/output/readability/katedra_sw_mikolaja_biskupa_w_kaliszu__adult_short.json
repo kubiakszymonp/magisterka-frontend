@@ -1,0 +1,17 @@
+{
+  "metric": "readability",
+  "article": "katedra_sw_mikolaja_biskupa_w_kaliszu",
+  "version": "adult_short",
+  "value": {
+    "flesch_reading_ease": -38.03,
+    "fog_index": 27.08,
+    "readability_level": "bardzo_trudny"
+  },
+  "computed_at": "2025-12-07T20:58:19.064673",
+  "extra": {
+    "avg_sentence_length": 13.0,
+    "avg_syllables_per_word": 2.74,
+    "hard_words_count": 320,
+    "hard_words_percent": 54.7
+  }
+}

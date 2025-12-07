@@ -1,0 +1,11 @@
+{
+  "metric": "avg_word_length",
+  "article": "zamek_w_kaliszu",
+  "version": "adult_short",
+  "value": 6.21,
+  "computed_at": "2025-12-07T20:53:17.084302",
+  "extra": {
+    "total_chars": 3428,
+    "word_count": 552
+  }
+}

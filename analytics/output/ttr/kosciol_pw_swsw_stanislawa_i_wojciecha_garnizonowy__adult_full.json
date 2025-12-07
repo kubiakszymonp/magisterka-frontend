@@ -1,0 +1,16 @@
+{
+  "metric": "ttr",
+  "article": "kosciol_pw_swsw_stanislawa_i_wojciecha_garnizonowy",
+  "version": "adult_full",
+  "value": {
+    "ttr_tokens": 0.5996,
+    "ttr_lemmas": 0.4647
+  },
+  "computed_at": "2025-12-07T20:51:50.730287",
+  "extra": {
+    "unique_tokens": 560,
+    "total_tokens": 934,
+    "unique_lemmas": 434,
+    "total_lemmas": 934
+  }
+}

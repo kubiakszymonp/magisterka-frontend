@@ -1,0 +1,19 @@
+{
+  "metric": "lexical_density",
+  "article": "zamek_w_kaliszu",
+  "version": "child_short",
+  "value": 63.1,
+  "computed_at": "2025-12-07T20:52:55.554835",
+  "extra": {
+    "content_words_count": 342,
+    "total_words_count": 542,
+    "function_words_count": 200,
+    "pos_breakdown": {
+      "nouns": 188,
+      "verbs": 68,
+      "adjectives": 61,
+      "adverbs": 25
+    },
+    "interpretation": "bardzo_gęsty"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "metric": "readability",
+  "article": "kosciol_pobernardynski_obecnie_oo_jezuitow",
+  "version": "child_short",
+  "value": {
+    "flesch_reading_ease": -30.01,
+    "fog_index": 24.7,
+    "readability_level": "bardzo_trudny"
+  },
+  "computed_at": "2025-12-07T20:57:50.810276",
+  "extra": {
+    "avg_sentence_length": 12.79,
+    "avg_syllables_per_word": 2.65,
+    "hard_words_count": 238,
+    "hard_words_percent": 48.97
+  }
+}

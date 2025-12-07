@@ -39,6 +39,7 @@ from common import (
     get_lemmas,
     list_articles,
     load_article,
+    save_aggregated_metric,
     save_metric_result,
     VERSIONS,
 )
@@ -92,7 +93,11 @@ def process_all_articles():
     
     print(f"Przetwarzanie {len(articles)} artykułów...")
     
+    aggregated = {}
+    
     for article_name in articles:
+        aggregated[article_name] = {}
+        
         for version in VERSIONS:
             try:
                 data = load_article(article_name, version)
@@ -100,24 +105,31 @@ def process_all_articles():
                 
                 results = calculate_mtld_from_text(content)
                 
+                value = {
+                    "mtld_tokens": results["mtld_tokens"],
+                    "mtld_lemmas": results["mtld_lemmas"]
+                }
+                
                 save_metric_result(
                     metric_name="mtld",
                     article_name=article_name,
                     version=version,
-                    value={
-                        "mtld_tokens": results["mtld_tokens"],
-                        "mtld_lemmas": results["mtld_lemmas"]
-                    },
+                    value=value,
                     extra_data={
                         "token_count": results["token_count"],
                         "lemma_count": results["lemma_count"]
                     }
                 )
                 
+                aggregated[article_name][version] = value
+                
                 print(f"  {article_name}/{version}: MTLD(tokens)={results['mtld_tokens']}, MTLD(lemmas)={results['mtld_lemmas']}")
                 
             except FileNotFoundError:
                 print(f"  POMINIĘTO: {article_name}/{version} (brak pliku)")
+    
+    # Zapisz agregowany JSON
+    save_aggregated_metric("mtld", aggregated)
     
     print("\nZakończono!")
 

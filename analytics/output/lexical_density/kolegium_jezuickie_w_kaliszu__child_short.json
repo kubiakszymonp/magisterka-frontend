@@ -1,0 +1,19 @@
+{
+  "metric": "lexical_density",
+  "article": "kolegium_jezuickie_w_kaliszu",
+  "version": "child_short",
+  "value": 64.42,
+  "computed_at": "2025-12-07T20:53:06.052218",
+  "extra": {
+    "content_words_count": 420,
+    "total_words_count": 652,
+    "function_words_count": 232,
+    "pos_breakdown": {
+      "nouns": 244,
+      "verbs": 71,
+      "adjectives": 83,
+      "adverbs": 22
+    },
+    "interpretation": "bardzo_gęsty"
+  }
+}

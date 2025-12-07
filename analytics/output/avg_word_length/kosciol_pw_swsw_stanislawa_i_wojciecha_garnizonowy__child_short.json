@@ -1,0 +1,11 @@
+{
+  "metric": "avg_word_length",
+  "article": "kosciol_pw_swsw_stanislawa_i_wojciecha_garnizonowy",
+  "version": "child_short",
+  "value": 5.57,
+  "computed_at": "2025-12-07T20:53:20.048810",
+  "extra": {
+    "total_chars": 3343,
+    "word_count": 600
+  }
+}

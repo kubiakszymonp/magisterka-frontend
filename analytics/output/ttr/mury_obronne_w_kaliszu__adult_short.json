@@ -1,0 +1,16 @@
+{
+  "metric": "ttr",
+  "article": "mury_obronne_w_kaliszu",
+  "version": "adult_short",
+  "value": {
+    "ttr_tokens": 0.6804,
+    "ttr_lemmas": 0.5876
+  },
+  "computed_at": "2025-12-07T20:51:47.853860",
+  "extra": {
+    "unique_tokens": 330,
+    "total_tokens": 485,
+    "unique_lemmas": 285,
+    "total_lemmas": 485
+  }
+}

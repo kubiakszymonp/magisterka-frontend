@@ -1,0 +1,11 @@
+{
+  "metric": "avg_sentence_length",
+  "article": "rogatka_wroclawska_w_kaliszu",
+  "version": "adult_full",
+  "value": 15.87,
+  "computed_at": "2025-12-07T20:50:03.077163",
+  "extra": {
+    "word_count": 984,
+    "sentence_count": 62
+  }
+}

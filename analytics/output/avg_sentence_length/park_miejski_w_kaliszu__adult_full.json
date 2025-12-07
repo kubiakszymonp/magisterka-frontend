@@ -1,0 +1,11 @@
+{
+  "metric": "avg_sentence_length",
+  "article": "park_miejski_w_kaliszu",
+  "version": "adult_full",
+  "value": 14.25,
+  "computed_at": "2025-12-07T20:49:28.446763",
+  "extra": {
+    "word_count": 1083,
+    "sentence_count": 76
+  }
+}

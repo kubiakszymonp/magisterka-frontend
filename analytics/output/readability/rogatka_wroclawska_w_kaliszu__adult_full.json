@@ -1,0 +1,17 @@
+{
+  "metric": "readability",
+  "article": "rogatka_wroclawska_w_kaliszu",
+  "version": "adult_full",
+  "value": {
+    "flesch_reading_ease": -41.75,
+    "fog_index": 27.89,
+    "readability_level": "bardzo_trudny"
+  },
+  "computed_at": "2025-12-07T20:59:02.959945",
+  "extra": {
+    "avg_sentence_length": 15.87,
+    "avg_syllables_per_word": 2.75,
+    "hard_words_count": 530,
+    "hard_words_percent": 53.86
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "metric": "avg_word_length",
+  "article": "grodzisko_na_zawodziu",
+  "version": "adult_short",
+  "value": 6.45,
+  "computed_at": "2025-12-07T20:53:27.616332",
+  "extra": {
+    "total_chars": 2072,
+    "word_count": 321
+  }
+}

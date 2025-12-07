@@ -1,0 +1,14 @@
+{
+  "metric": "mtld",
+  "article": "palac_trybunalski_w_kaliszu",
+  "version": "adult_full",
+  "value": {
+    "mtld_tokens": 303.1,
+    "mtld_lemmas": 171.25
+  },
+  "computed_at": "2025-12-07T20:52:43.939798",
+  "extra": {
+    "token_count": 1155,
+    "lemma_count": 1155
+  }
+}

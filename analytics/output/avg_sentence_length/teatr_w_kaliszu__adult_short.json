@@ -1,0 +1,11 @@
+{
+  "metric": "avg_sentence_length",
+  "article": "teatr_w_kaliszu",
+  "version": "adult_short",
+  "value": 11.07,
+  "computed_at": "2025-12-07T20:49:22.075596",
+  "extra": {
+    "word_count": 454,
+    "sentence_count": 41
+  }
+}

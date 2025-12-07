@@ -1,0 +1,17 @@
+{
+  "metric": "readability",
+  "article": "kolegium_jezuickie_w_kaliszu",
+  "version": "adult_full",
+  "value": {
+    "flesch_reading_ease": -47.96,
+    "fog_index": 28.08,
+    "readability_level": "bardzo_trudny"
+  },
+  "computed_at": "2025-12-07T20:58:34.441903",
+  "extra": {
+    "avg_sentence_length": 16.31,
+    "avg_syllables_per_word": 2.82,
+    "hard_words_count": 712,
+    "hard_words_percent": 53.9
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "metric": "avg_word_length",
+  "article": "rogatka_wroclawska_w_kaliszu",
+  "version": "adult_short",
+  "value": 6.44,
+  "computed_at": "2025-12-07T20:53:31.372215",
+  "extra": {
+    "total_chars": 3132,
+    "word_count": 486
+  }
+}

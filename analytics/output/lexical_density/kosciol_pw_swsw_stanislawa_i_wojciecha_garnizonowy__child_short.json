@@ -1,0 +1,19 @@
+{
+  "metric": "lexical_density",
+  "article": "kosciol_pw_swsw_stanislawa_i_wojciecha_garnizonowy",
+  "version": "child_short",
+  "value": 62.83,
+  "computed_at": "2025-12-07T20:52:58.099076",
+  "extra": {
+    "content_words_count": 377,
+    "total_words_count": 600,
+    "function_words_count": 223,
+    "pos_breakdown": {
+      "nouns": 200,
+      "verbs": 74,
+      "adjectives": 75,
+      "adverbs": 28
+    },
+    "interpretation": "bardzo_gęsty"
+  }
+}

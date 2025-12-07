@@ -1,0 +1,19 @@
+{
+  "metric": "lexical_density",
+  "article": "mury_obronne_w_kaliszu",
+  "version": "adult_short",
+  "value": 67.63,
+  "computed_at": "2025-12-07T20:52:56.187149",
+  "extra": {
+    "content_words_count": 328,
+    "total_words_count": 485,
+    "function_words_count": 157,
+    "pos_breakdown": {
+      "nouns": 182,
+      "verbs": 46,
+      "adjectives": 92,
+      "adverbs": 8
+    },
+    "interpretation": "bardzo_gęsty"
+  }
+}

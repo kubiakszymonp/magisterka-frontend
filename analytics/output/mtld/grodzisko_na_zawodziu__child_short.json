@@ -1,0 +1,14 @@
+{
+  "metric": "mtld",
+  "article": "grodzisko_na_zawodziu",
+  "version": "child_short",
+  "value": {
+    "mtld_tokens": 279.92,
+    "mtld_lemmas": 184.04
+  },
+  "computed_at": "2025-12-07T20:52:42.958277",
+  "extra": {
+    "token_count": 486,
+    "lemma_count": 486
+  }
+}

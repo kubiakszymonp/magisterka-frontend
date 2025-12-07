@@ -1,0 +1,19 @@
+{
+  "metric": "lexical_density",
+  "article": "kosciol_pw_sw_wojciecha_na_zawodziu",
+  "version": "adult_short",
+  "value": 67.24,
+  "computed_at": "2025-12-07T20:53:03.920293",
+  "extra": {
+    "content_words_count": 353,
+    "total_words_count": 525,
+    "function_words_count": 172,
+    "pos_breakdown": {
+      "nouns": 189,
+      "verbs": 40,
+      "adjectives": 117,
+      "adverbs": 7
+    },
+    "interpretation": "bardzo_gęsty"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "metric": "ttr",
+  "article": "kosciol_pobernardynski_obecnie_oo_jezuitow",
+  "version": "adult_short",
+  "value": {
+    "ttr_tokens": 0.6832,
+    "ttr_lemmas": 0.5921
+  },
+  "computed_at": "2025-12-07T20:51:49.594350",
+  "extra": {
+    "unique_tokens": 330,
+    "total_tokens": 483,
+    "unique_lemmas": 286,
+    "total_lemmas": 483
+  }
+}

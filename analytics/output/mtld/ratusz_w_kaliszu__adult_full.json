@@ -1,0 +1,14 @@
+{
+  "metric": "mtld",
+  "article": "ratusz_w_kaliszu",
+  "version": "adult_full",
+  "value": {
+    "mtld_tokens": 259.8,
+    "mtld_lemmas": 149.75
+  },
+  "computed_at": "2025-12-07T20:52:30.853485",
+  "extra": {
+    "token_count": 1100,
+    "lemma_count": 1100
+  }
+}

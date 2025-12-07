@@ -1,0 +1,19 @@
+{
+  "metric": "lexical_density",
+  "article": "katedra_sw_mikolaja_biskupa_w_kaliszu",
+  "version": "child_short",
+  "value": 65.77,
+  "computed_at": "2025-12-07T20:53:03.144633",
+  "extra": {
+    "content_words_count": 294,
+    "total_words_count": 447,
+    "function_words_count": 153,
+    "pos_breakdown": {
+      "nouns": 166,
+      "verbs": 51,
+      "adjectives": 65,
+      "adverbs": 12
+    },
+    "interpretation": "bardzo_gęsty"
+  }
+}

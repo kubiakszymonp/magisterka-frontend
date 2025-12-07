@@ -1,0 +1,11 @@
+{
+  "metric": "avg_sentence_length",
+  "article": "kolegiata_pw_wniebowziecia_nmp_kosciol_pw_sw_jozefa",
+  "version": "adult_full",
+  "value": 19.1,
+  "computed_at": "2025-12-07T20:49:55.721430",
+  "extra": {
+    "word_count": 1165,
+    "sentence_count": 61
+  }
+}

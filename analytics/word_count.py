@@ -19,6 +19,7 @@ from common import (
     get_tokens,
     list_articles,
     load_article,
+    save_aggregated_metric,
     save_metric_result,
     VERSIONS,
 )
@@ -44,7 +45,11 @@ def process_all_articles():
     
     print(f"Przetwarzanie {len(articles)} artykułów...")
     
+    aggregated = {}
+    
     for article_name in articles:
+        aggregated[article_name] = {}
+        
         for version in VERSIONS:
             try:
                 data = load_article(article_name, version)
@@ -59,10 +64,15 @@ def process_all_articles():
                     value=word_count
                 )
                 
+                aggregated[article_name][version] = word_count
+                
                 print(f"  {article_name}/{version}: {word_count} słów")
                 
             except FileNotFoundError:
                 print(f"  POMINIĘTO: {article_name}/{version} (brak pliku)")
+    
+    # Zapisz agregowany JSON
+    save_aggregated_metric("word_count", aggregated)
     
     print("\nZakończono!")
 

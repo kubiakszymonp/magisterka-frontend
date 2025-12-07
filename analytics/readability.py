@@ -54,6 +54,7 @@ from common import (
     count_syllables_polish,
     list_articles,
     load_article,
+    save_aggregated_metric,
     save_metric_result,
     VERSIONS,
 )
@@ -141,7 +142,11 @@ def process_all_articles():
     
     print(f"Przetwarzanie {len(articles)} artykułów...")
     
+    aggregated = {}
+    
     for article_name in articles:
+        aggregated[article_name] = {}
+        
         for version in VERSIONS:
             try:
                 data = load_article(article_name, version)
@@ -156,15 +161,17 @@ def process_all_articles():
                 total_syllables = sum(count_syllables_polish(w) for w in tokens)
                 hard_words = [w for w in tokens if count_syllables_polish(w) >= 3]
                 
+                value = {
+                    "flesch_reading_ease": fre,
+                    "fog_index": fog,
+                    "readability_level": get_readability_level(fre)
+                }
+                
                 save_metric_result(
                     metric_name="readability",
                     article_name=article_name,
                     version=version,
-                    value={
-                        "flesch_reading_ease": fre,
-                        "fog_index": fog,
-                        "readability_level": get_readability_level(fre)
-                    },
+                    value=value,
                     extra_data={
                         "avg_sentence_length": round(len(tokens) / max(len(sentences), 1), 2),
                         "avg_syllables_per_word": round(total_syllables / max(len(tokens), 1), 2),
@@ -173,10 +180,15 @@ def process_all_articles():
                     }
                 )
                 
+                aggregated[article_name][version] = value
+                
                 print(f"  {article_name}/{version}: FRE={fre}, FOG={fog}")
                 
             except FileNotFoundError:
                 print(f"  POMINIĘTO: {article_name}/{version} (brak pliku)")
+    
+    # Zapisz agregowany JSON
+    save_aggregated_metric("readability", aggregated)
     
     print("\nZakończono!")
 

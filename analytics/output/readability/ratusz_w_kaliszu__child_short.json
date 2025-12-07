@@ -1,0 +1,17 @@
+{
+  "metric": "readability",
+  "article": "ratusz_w_kaliszu",
+  "version": "child_short",
+  "value": {
+    "flesch_reading_ease": -13.75,
+    "fog_index": 22.46,
+    "readability_level": "bardzo_trudny"
+  },
+  "computed_at": "2025-12-07T20:58:08.897633",
+  "extra": {
+    "avg_sentence_length": 10.87,
+    "avg_syllables_per_word": 2.48,
+    "hard_words_count": 187,
+    "hard_words_percent": 45.28
+  }
+}

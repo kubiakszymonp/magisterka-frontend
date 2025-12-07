@@ -1,0 +1,16 @@
+{
+  "metric": "ttr",
+  "article": "kolegiata_pw_wniebowziecia_nmp_kosciol_pw_sw_jozefa",
+  "version": "adult_short",
+  "value": {
+    "ttr_tokens": 0.5397,
+    "ttr_lemmas": 0.4559
+  },
+  "computed_at": "2025-12-07T20:52:11.152305",
+  "extra": {
+    "unique_tokens": 367,
+    "total_tokens": 680,
+    "unique_lemmas": 310,
+    "total_lemmas": 680
+  }
+}
