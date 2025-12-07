@@ -37,11 +37,8 @@ from lexical_diversity import lex_div as ld
 from common import (
     get_tokens,
     get_lemmas,
-    list_articles,
-    load_article,
+    process_articles_parallel,
     save_aggregated_metric,
-    save_metric_result,
-    VERSIONS,
 )
 
 
@@ -66,7 +63,7 @@ def calculate_mtld(tokens: list[str]) -> float:
         return 0.0
 
 
-def calculate_mtld_from_text(text: str) -> dict:
+def calculate_mtld_from_text_full(text: str) -> dict:
     """
     Oblicza MTLD dla tekstu - zarówno na tokenach jak i lematach.
     
@@ -74,7 +71,7 @@ def calculate_mtld_from_text(text: str) -> dict:
         text: Tekst do analizy
     
     Returns:
-        Słownik z MTLD na tokenach i lematach
+        Słownik z MTLD na tokenach i lematach oraz statystykami
     """
     tokens = get_tokens(text, lowercase=True)
     lemmas = get_lemmas(text, lowercase=True)
@@ -87,46 +84,31 @@ def calculate_mtld_from_text(text: str) -> dict:
     }
 
 
+def calculate_mtld_from_text(text: str) -> dict:
+    """Zwraca główną wartość MTLD (dict z mtld_tokens i mtld_lemmas)."""
+    results = calculate_mtld_from_text_full(text)
+    return {
+        "mtld_tokens": results["mtld_tokens"],
+        "mtld_lemmas": results["mtld_lemmas"]
+    }
+
+
+def get_extra_data_mtld(content: str) -> dict:
+    """Zwraca dodatkowe dane dla MTLD."""
+    results = calculate_mtld_from_text_full(content)
+    return {
+        "token_count": results["token_count"],
+        "lemma_count": results["lemma_count"]
+    }
+
+
 def process_all_articles():
     """Przetwarza wszystkie artykuły i zapisuje wyniki."""
-    articles = list_articles()
-    
-    print(f"Przetwarzanie {len(articles)} artykułów...")
-    
-    aggregated = {}
-    
-    for article_name in articles:
-        aggregated[article_name] = {}
-        
-        for version in VERSIONS:
-            try:
-                data = load_article(article_name, version)
-                content = data.get("content", "")
-                
-                results = calculate_mtld_from_text(content)
-                
-                value = {
-                    "mtld_tokens": results["mtld_tokens"],
-                    "mtld_lemmas": results["mtld_lemmas"]
-                }
-                
-                save_metric_result(
-                    metric_name="mtld",
-                    article_name=article_name,
-                    version=version,
-                    value=value,
-                    extra_data={
-                        "token_count": results["token_count"],
-                        "lemma_count": results["lemma_count"]
-                    }
-                )
-                
-                aggregated[article_name][version] = value
-                
-                print(f"  {article_name}/{version}: MTLD(tokens)={results['mtld_tokens']}, MTLD(lemmas)={results['mtld_lemmas']}")
-                
-            except FileNotFoundError:
-                print(f"  POMINIĘTO: {article_name}/{version} (brak pliku)")
+    aggregated = process_articles_parallel(
+        metric_name="mtld",
+        calculate_func=calculate_mtld_from_text,
+        extra_data_func=get_extra_data_mtld
+    )
     
     # Zapisz agregowany JSON
     save_aggregated_metric("mtld", aggregated)

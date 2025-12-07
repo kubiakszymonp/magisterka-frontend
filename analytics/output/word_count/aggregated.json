@@ -1,86 +1,86 @@
 {
   "metric": "word_count",
-  "aggregated_at": "2025-12-07T20:57:19.326595",
+  "aggregated_at": "2025-12-07T21:19:05.008294",
   "data": {
     "zamek_w_kaliszu": {
-      "adult_full": 791,
+      "child_short": 542,
       "adult_short": 552,
-      "child_short": 542
+      "adult_full": 791
     },
     "mury_obronne_w_kaliszu": {
-      "adult_full": 946,
+      "child_short": 583,
       "adult_short": 485,
-      "child_short": 583
+      "adult_full": 946
     },
     "kosciol_pobernardynski_obecnie_oo_jezuitow": {
-      "adult_full": 899,
       "adult_short": 483,
-      "child_short": 486
+      "child_short": 486,
+      "adult_full": 899
     },
     "kosciol_pw_swsw_stanislawa_i_wojciecha_garnizonowy": {
-      "adult_full": 934,
+      "child_short": 600,
       "adult_short": 453,
-      "child_short": 600
+      "adult_full": 934
     },
     "teatr_w_kaliszu": {
-      "adult_full": 1200,
       "adult_short": 454,
-      "child_short": 579
+      "child_short": 579,
+      "adult_full": 1200
     },
     "ratusz_w_kaliszu": {
-      "adult_full": 1100,
+      "child_short": 413,
       "adult_short": 434,
-      "child_short": 413
+      "adult_full": 1100
     },
     "park_miejski_w_kaliszu": {
-      "adult_full": 1083,
+      "child_short": 577,
       "adult_short": 724,
-      "child_short": 577
+      "adult_full": 1083
     },
     "katedra_sw_mikolaja_biskupa_w_kaliszu": {
-      "adult_full": 910,
+      "child_short": 447,
       "adult_short": 585,
-      "child_short": 447
+      "adult_full": 910
     },
     "kosciol_pw_sw_wojciecha_na_zawodziu": {
-      "adult_full": 1223,
+      "child_short": 441,
       "adult_short": 525,
-      "child_short": 441
+      "adult_full": 1223
     },
     "kosciol_i_klasztor_oo_franciszkanow": {
-      "adult_full": 1031,
       "adult_short": 411,
-      "child_short": 551
+      "child_short": 551,
+      "adult_full": 1031
     },
     "kolegium_jezuickie_w_kaliszu": {
-      "adult_full": 1321,
       "adult_short": 573,
-      "child_short": 652
+      "child_short": 652,
+      "adult_full": 1321
     },
     "grodzisko_na_zawodziu": {
-      "adult_full": 1076,
       "adult_short": 321,
-      "child_short": 486
+      "child_short": 486,
+      "adult_full": 1076
     },
     "palac_trybunalski_w_kaliszu": {
-      "adult_full": 1155,
       "adult_short": 423,
-      "child_short": 490
+      "child_short": 490,
+      "adult_full": 1155
     },
     "kolegiata_pw_wniebowziecia_nmp_kosciol_pw_sw_jozefa": {
-      "adult_full": 1165,
+      "child_short": 584,
       "adult_short": 680,
-      "child_short": 584
+      "adult_full": 1165
     },
     "kosciol_poreformacki_obecnie_ss_nazaretanek": {
-      "adult_full": 1259,
       "adult_short": 318,
-      "child_short": 454
+      "child_short": 454,
+      "adult_full": 1259
     },
     "rogatka_wroclawska_w_kaliszu": {
-      "adult_full": 984,
       "adult_short": 486,
-      "child_short": 585
+      "child_short": 585,
+      "adult_full": 984
     }
   }
 }

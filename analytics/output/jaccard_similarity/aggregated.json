@@ -1,86 +1,86 @@
 {
   "metric": "jaccard_similarity",
-  "aggregated_at": "2025-12-07T20:59:28.633491",
+  "aggregated_at": "2025-12-07T21:20:52.450111",
   "data": {
-    "zamek_w_kaliszu": {
-      "adult_full__adult_short": 0.3009,
-      "adult_full__child_short": 0.2101,
-      "adult_short__child_short": 0.2575
-    },
-    "mury_obronne_w_kaliszu": {
-      "adult_full__adult_short": 0.2475,
-      "adult_full__child_short": 0.2151,
-      "adult_short__child_short": 0.2643
+    "kosciol_pw_swsw_stanislawa_i_wojciecha_garnizonowy": {
+      "adult_full__adult_short": 0.2981,
+      "adult_full__child_short": 0.2255,
+      "adult_short__child_short": 0.2275
     },
     "kosciol_pobernardynski_obecnie_oo_jezuitow": {
       "adult_full__adult_short": 0.2576,
       "adult_full__child_short": 0.2283,
       "adult_short__child_short": 0.2251
     },
-    "kosciol_pw_swsw_stanislawa_i_wojciecha_garnizonowy": {
-      "adult_full__adult_short": 0.2981,
-      "adult_full__child_short": 0.2255,
-      "adult_short__child_short": 0.2275
-    },
-    "teatr_w_kaliszu": {
-      "adult_full__adult_short": 0.253,
-      "adult_full__child_short": 0.214,
-      "adult_short__child_short": 0.2109
-    },
-    "ratusz_w_kaliszu": {
-      "adult_full__adult_short": 0.2376,
-      "adult_full__child_short": 0.2224,
-      "adult_short__child_short": 0.2382
-    },
-    "park_miejski_w_kaliszu": {
-      "adult_full__adult_short": 0.2845,
-      "adult_full__child_short": 0.2361,
-      "adult_short__child_short": 0.255
-    },
-    "katedra_sw_mikolaja_biskupa_w_kaliszu": {
-      "adult_full__adult_short": 0.2823,
-      "adult_full__child_short": 0.2241,
-      "adult_short__child_short": 0.258
+    "palac_trybunalski_w_kaliszu": {
+      "adult_full__adult_short": 0.2983,
+      "adult_full__child_short": 0.2529,
+      "adult_short__child_short": 0.2861
     },
     "kosciol_pw_sw_wojciecha_na_zawodziu": {
       "adult_full__adult_short": 0.3056,
       "adult_full__child_short": 0.2316,
       "adult_short__child_short": 0.2535
     },
-    "kosciol_i_klasztor_oo_franciszkanow": {
-      "adult_full__adult_short": 0.2368,
-      "adult_full__child_short": 0.2039,
-      "adult_short__child_short": 0.2461
+    "kosciol_poreformacki_obecnie_ss_nazaretanek": {
+      "adult_full__adult_short": 0.2815,
+      "adult_full__child_short": 0.266,
+      "adult_short__child_short": 0.302
     },
-    "kolegium_jezuickie_w_kaliszu": {
-      "adult_full__adult_short": 0.2923,
-      "adult_full__child_short": 0.2583,
-      "adult_short__child_short": 0.3276
+    "zamek_w_kaliszu": {
+      "adult_full__adult_short": 0.3009,
+      "adult_full__child_short": 0.2101,
+      "adult_short__child_short": 0.2575
     },
-    "grodzisko_na_zawodziu": {
-      "adult_full__adult_short": 0.2509,
-      "adult_full__child_short": 0.2142,
-      "adult_short__child_short": 0.2212
+    "teatr_w_kaliszu": {
+      "adult_full__adult_short": 0.253,
+      "adult_full__child_short": 0.214,
+      "adult_short__child_short": 0.2109
     },
-    "palac_trybunalski_w_kaliszu": {
-      "adult_full__adult_short": 0.2983,
-      "adult_full__child_short": 0.2529,
-      "adult_short__child_short": 0.2861
+    "mury_obronne_w_kaliszu": {
+      "adult_full__adult_short": 0.2475,
+      "adult_full__child_short": 0.2151,
+      "adult_short__child_short": 0.2643
+    },
+    "rogatka_wroclawska_w_kaliszu": {
+      "adult_full__adult_short": 0.3081,
+      "adult_full__child_short": 0.255,
+      "adult_short__child_short": 0.2965
     },
     "kolegiata_pw_wniebowziecia_nmp_kosciol_pw_sw_jozefa": {
       "adult_full__adult_short": 0.2678,
       "adult_full__child_short": 0.2484,
       "adult_short__child_short": 0.271
     },
-    "kosciol_poreformacki_obecnie_ss_nazaretanek": {
-      "adult_full__adult_short": 0.2815,
-      "adult_full__child_short": 0.266,
-      "adult_short__child_short": 0.302
+    "park_miejski_w_kaliszu": {
+      "adult_full__adult_short": 0.2845,
+      "adult_full__child_short": 0.2361,
+      "adult_short__child_short": 0.255
     },
-    "rogatka_wroclawska_w_kaliszu": {
-      "adult_full__adult_short": 0.3081,
-      "adult_full__child_short": 0.255,
-      "adult_short__child_short": 0.2965
+    "kolegium_jezuickie_w_kaliszu": {
+      "adult_full__adult_short": 0.2923,
+      "adult_full__child_short": 0.2583,
+      "adult_short__child_short": 0.3276
+    },
+    "kosciol_i_klasztor_oo_franciszkanow": {
+      "adult_full__adult_short": 0.2368,
+      "adult_full__child_short": 0.2039,
+      "adult_short__child_short": 0.2461
+    },
+    "ratusz_w_kaliszu": {
+      "adult_full__adult_short": 0.2376,
+      "adult_full__child_short": 0.2224,
+      "adult_short__child_short": 0.2382
+    },
+    "grodzisko_na_zawodziu": {
+      "adult_full__adult_short": 0.2509,
+      "adult_full__child_short": 0.2142,
+      "adult_short__child_short": 0.2212
+    },
+    "katedra_sw_mikolaja_biskupa_w_kaliszu": {
+      "adult_full__adult_short": 0.2823,
+      "adult_full__child_short": 0.2241,
+      "adult_short__child_short": 0.258
     }
   }
 }

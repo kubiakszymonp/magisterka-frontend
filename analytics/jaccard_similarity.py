@@ -28,8 +28,8 @@ from itertools import combinations
 
 from common import (
     get_lemmas,
-    list_articles,
     load_article,
+    process_comparison_articles_parallel,
     save_aggregated_comparison_metric,
     save_comparison_result,
     VERSIONS,
@@ -59,51 +59,48 @@ def calculate_jaccard(set_a: set, set_b: set) -> float:
     return round(intersection / union, 4)
 
 
-def process_all_articles():
-    """Przetwarza wszystkie artykuły i zapisuje wyniki."""
-    articles = list_articles()
-    
-    print(f"Przetwarzanie {len(articles)} artykułów...")
-    
+def process_single_article(article_name: str) -> dict:
+    """Przetwarza pojedynczy artykuł i zwraca porównania."""
     # Pary do porównania
     version_pairs = list(combinations(VERSIONS, 2))
     
-    aggregated = {}
+    # Wczytaj wszystkie wersje
+    version_lemmas = {}
     
-    for article_name in articles:
-        # Wczytaj wszystkie wersje
-        version_lemmas = {}
-        
-        for version in VERSIONS:
-            try:
-                data = load_article(article_name, version)
-                content = data.get("content", "")
-                lemmas = set(get_lemmas(content, lowercase=True))
-                version_lemmas[version] = lemmas
-            except FileNotFoundError:
-                print(f"  POMINIĘTO: {article_name}/{version} (brak pliku)")
-        
-        # Oblicz podobieństwo dla każdej pary
-        comparisons = {}
-        
-        for v1, v2 in version_pairs:
-            if v1 in version_lemmas and v2 in version_lemmas:
-                jaccard = calculate_jaccard(version_lemmas[v1], version_lemmas[v2])
-                key = f"{v1}__{v2}"
-                comparisons[key] = jaccard
-        
-        if comparisons:
-            save_comparison_result(
-                metric_name="jaccard_similarity",
-                article_name=article_name,
-                comparisons=comparisons
-            )
-            
-            aggregated[article_name] = comparisons
-            
-            print(f"  {article_name}:")
-            for key, val in comparisons.items():
-                print(f"    {key}: {val}")
+    for version in VERSIONS:
+        try:
+            data = load_article(article_name, version)
+            content = data.get("content", "")
+            lemmas = set(get_lemmas(content, lowercase=True))
+            version_lemmas[version] = lemmas
+        except FileNotFoundError:
+            pass  # Pominąć brakujące wersje
+    
+    # Oblicz podobieństwo dla każdej pary
+    comparisons = {}
+    
+    for v1, v2 in version_pairs:
+        if v1 in version_lemmas and v2 in version_lemmas:
+            jaccard = calculate_jaccard(version_lemmas[v1], version_lemmas[v2])
+            key = f"{v1}__{v2}"
+            comparisons[key] = jaccard
+    
+    if comparisons:
+        save_comparison_result(
+            metric_name="jaccard_similarity",
+            article_name=article_name,
+            comparisons=comparisons
+        )
+    
+    return comparisons
+
+
+def process_all_articles():
+    """Przetwarza wszystkie artykuły i zapisuje wyniki."""
+    aggregated = process_comparison_articles_parallel(
+        metric_name="jaccard_similarity",
+        process_article_func=process_single_article
+    )
     
     # Zapisz agregowany JSON
     if aggregated:

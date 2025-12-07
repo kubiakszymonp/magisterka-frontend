@@ -1,0 +1,86 @@
+{
+  "metric": "paragraph_count",
+  "aggregated_at": "2025-12-07T21:20:32.114471",
+  "data": {
+    "zamek_w_kaliszu": {
+      "adult_full": 15,
+      "adult_short": 9,
+      "child_short": 8
+    },
+    "mury_obronne_w_kaliszu": {
+      "adult_full": 15,
+      "adult_short": 11,
+      "child_short": 11
+    },
+    "kosciol_pobernardynski_obecnie_oo_jezuitow": {
+      "adult_full": 14,
+      "adult_short": 16,
+      "child_short": 18
+    },
+    "kosciol_pw_swsw_stanislawa_i_wojciecha_garnizonowy": {
+      "adult_full": 15,
+      "child_short": 8,
+      "adult_short": 18
+    },
+    "teatr_w_kaliszu": {
+      "adult_full": 13,
+      "child_short": 9,
+      "adult_short": 9
+    },
+    "ratusz_w_kaliszu": {
+      "child_short": 8,
+      "adult_full": 14,
+      "adult_short": 9
+    },
+    "park_miejski_w_kaliszu": {
+      "adult_short": 13,
+      "child_short": 13,
+      "adult_full": 15
+    },
+    "katedra_sw_mikolaja_biskupa_w_kaliszu": {
+      "child_short": 22,
+      "adult_full": 14,
+      "adult_short": 11
+    },
+    "kosciol_pw_sw_wojciecha_na_zawodziu": {
+      "child_short": 8,
+      "adult_short": 9,
+      "adult_full": 12
+    },
+    "kosciol_i_klasztor_oo_franciszkanow": {
+      "adult_full": 15,
+      "child_short": 10,
+      "adult_short": 10
+    },
+    "kolegium_jezuickie_w_kaliszu": {
+      "child_short": 10,
+      "adult_short": 8,
+      "adult_full": 16
+    },
+    "grodzisko_na_zawodziu": {
+      "adult_full": 12,
+      "adult_short": 5,
+      "child_short": 9
+    },
+    "palac_trybunalski_w_kaliszu": {
+      "adult_full": 13,
+      "adult_short": 9,
+      "child_short": 10
+    },
+    "kolegiata_pw_wniebowziecia_nmp_kosciol_pw_sw_jozefa": {
+      "adult_full": 20,
+      "adult_short": 29,
+      "child_short": 9
+    },
+    "kosciol_poreformacki_obecnie_ss_nazaretanek": {
+      "adult_full": 12,
+      "adult_short": 14,
+      "child_short": 24
+    },
+    "rogatka_wroclawska_w_kaliszu": {
+      "adult_full": 13,
+      "adult_short": 10,
+      "child_short": 10
+    }
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "metric": "sentence_count",
+  "aggregated_at": "2025-12-07T21:19:14.361101",
+  "data": {
+    "zamek_w_kaliszu": {
+      "adult_short": 48,
+      "adult_full": 69,
+      "child_short": 50
+    },
+    "mury_obronne_w_kaliszu": {
+      "child_short": 55,
+      "adult_full": 66,
+      "adult_short": 37
+    },
+    "kosciol_pobernardynski_obecnie_oo_jezuitow": {
+      "child_short": 38,
+      "adult_short": 33,
+      "adult_full": 59
+    },
+    "kosciol_pw_swsw_stanislawa_i_wojciecha_garnizonowy": {
+      "child_short": 42,
+      "adult_full": 51,
+      "adult_short": 34
+    },
+    "teatr_w_kaliszu": {
+      "child_short": 51,
+      "adult_full": 75,
+      "adult_short": 41
+    },
+    "ratusz_w_kaliszu": {
+      "adult_short": 39,
+      "child_short": 38,
+      "adult_full": 82
+    },
+    "park_miejski_w_kaliszu": {
+      "adult_short": 51,
+      "child_short": 59,
+      "adult_full": 76
+    },
+    "katedra_sw_mikolaja_biskupa_w_kaliszu": {
+      "child_short": 56,
+      "adult_short": 45,
+      "adult_full": 77
+    },
+    "kosciol_pw_sw_wojciecha_na_zawodziu": {
+      "adult_short": 38,
+      "child_short": 43,
+      "adult_full": 74
+    },
+    "kosciol_i_klasztor_oo_franciszkanow": {
+      "adult_short": 38,
+      "child_short": 45,
+      "adult_full": 74
+    },
+    "kolegium_jezuickie_w_kaliszu": {
+      "child_short": 60,
+      "adult_short": 36,
+      "adult_full": 81
+    },
+    "grodzisko_na_zawodziu": {
+      "adult_short": 15,
+      "child_short": 33,
+      "adult_full": 61
+    },
+    "palac_trybunalski_w_kaliszu": {
+      "adult_short": 29,
+      "child_short": 53,
+      "adult_full": 64
+    },
+    "kolegiata_pw_wniebowziecia_nmp_kosciol_pw_sw_jozefa": {
+      "child_short": 41,
+      "adult_short": 52,
+      "adult_full": 61
+    },
+    "kosciol_poreformacki_obecnie_ss_nazaretanek": {
+      "adult_short": 28,
+      "child_short": 46,
+      "adult_full": 79
+    },
+    "rogatka_wroclawska_w_kaliszu": {
+      "adult_short": 33,
+      "child_short": 53,
+      "adult_full": 62
+    }
+  }
+}

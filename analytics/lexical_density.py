@@ -34,11 +34,8 @@ ZASTOSOWANIE:
 from common import (
     get_nlp,
     get_tokens,
-    list_articles,
-    load_article,
+    process_articles_parallel,
     save_aggregated_metric,
-    save_metric_result,
-    VERSIONS,
 )
 
 
@@ -102,44 +99,36 @@ def get_density_interpretation(density: float) -> str:
         return "niski"
 
 
+def calculate_lexical_density_value(text: str) -> float:
+    """Zwraca tylko wartość gęstości leksykalnej."""
+    results = calculate_lexical_density(text)
+    return results["lexical_density"]
+
+
+def get_extra_data_lexical_density(content: str) -> dict:
+    """Zwraca dodatkowe dane dla lexical_density."""
+    results = calculate_lexical_density(content)
+    return {
+        "content_words_count": results["content_words_count"],
+        "total_words_count": results["total_words_count"],
+        "function_words_count": results["function_words_count"],
+        "pos_breakdown": results["pos_breakdown"],
+        "interpretation": get_density_interpretation(results["lexical_density"])
+    }
+
+
+def format_lexical_density_output(value: float) -> str:
+    """Formatuje wartość lexical_density do wyświetlenia."""
+    return f"{value}% ({get_density_interpretation(value)})"
+
+
 def process_all_articles():
     """Przetwarza wszystkie artykuły i zapisuje wyniki."""
-    articles = list_articles()
-    
-    print(f"Przetwarzanie {len(articles)} artykułów...")
-    
-    aggregated = {}
-    
-    for article_name in articles:
-        aggregated[article_name] = {}
-        
-        for version in VERSIONS:
-            try:
-                data = load_article(article_name, version)
-                content = data.get("content", "")
-                
-                results = calculate_lexical_density(content)
-                
-                save_metric_result(
-                    metric_name="lexical_density",
-                    article_name=article_name,
-                    version=version,
-                    value=results["lexical_density"],
-                    extra_data={
-                        "content_words_count": results["content_words_count"],
-                        "total_words_count": results["total_words_count"],
-                        "function_words_count": results["function_words_count"],
-                        "pos_breakdown": results["pos_breakdown"],
-                        "interpretation": get_density_interpretation(results["lexical_density"])
-                    }
-                )
-                
-                aggregated[article_name][version] = results["lexical_density"]
-                
-                print(f"  {article_name}/{version}: {results['lexical_density']}% ({get_density_interpretation(results['lexical_density'])})")
-                
-            except FileNotFoundError:
-                print(f"  POMINIĘTO: {article_name}/{version} (brak pliku)")
+    aggregated = process_articles_parallel(
+        metric_name="lexical_density",
+        calculate_func=calculate_lexical_density_value,
+        extra_data_func=get_extra_data_lexical_density
+    )
     
     # Zapisz agregowany JSON
     save_aggregated_metric("lexical_density", aggregated)

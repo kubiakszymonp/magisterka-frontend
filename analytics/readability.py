@@ -52,11 +52,8 @@ from common import (
     get_tokens,
     get_sentences,
     count_syllables_polish,
-    list_articles,
-    load_article,
+    process_articles_parallel,
     save_aggregated_metric,
-    save_metric_result,
-    VERSIONS,
 )
 
 
@@ -136,56 +133,40 @@ def get_readability_level(fre: float) -> str:
         return "bardzo_trudny"
 
 
+def calculate_readability(text: str) -> dict:
+    """Oblicza wskaźniki czytelności i zwraca główną wartość."""
+    fre = calculate_flesch_reading_ease(text)
+    fog = calculate_fog_index(text)
+    
+    return {
+        "flesch_reading_ease": fre,
+        "fog_index": fog,
+        "readability_level": get_readability_level(fre)
+    }
+
+
+def get_extra_data_readability(content: str) -> dict:
+    """Zwraca dodatkowe dane dla readability."""
+    tokens = get_tokens(content)
+    sentences = get_sentences(content)
+    total_syllables = sum(count_syllables_polish(w) for w in tokens)
+    hard_words = [w for w in tokens if count_syllables_polish(w) >= 3]
+    
+    return {
+        "avg_sentence_length": round(len(tokens) / max(len(sentences), 1), 2),
+        "avg_syllables_per_word": round(total_syllables / max(len(tokens), 1), 2),
+        "hard_words_count": len(hard_words),
+        "hard_words_percent": round(len(hard_words) / max(len(tokens), 1) * 100, 2)
+    }
+
+
 def process_all_articles():
     """Przetwarza wszystkie artykuły i zapisuje wyniki."""
-    articles = list_articles()
-    
-    print(f"Przetwarzanie {len(articles)} artykułów...")
-    
-    aggregated = {}
-    
-    for article_name in articles:
-        aggregated[article_name] = {}
-        
-        for version in VERSIONS:
-            try:
-                data = load_article(article_name, version)
-                content = data.get("content", "")
-                
-                fre = calculate_flesch_reading_ease(content)
-                fog = calculate_fog_index(content)
-                
-                # Dodatkowe dane
-                tokens = get_tokens(content)
-                sentences = get_sentences(content)
-                total_syllables = sum(count_syllables_polish(w) for w in tokens)
-                hard_words = [w for w in tokens if count_syllables_polish(w) >= 3]
-                
-                value = {
-                    "flesch_reading_ease": fre,
-                    "fog_index": fog,
-                    "readability_level": get_readability_level(fre)
-                }
-                
-                save_metric_result(
-                    metric_name="readability",
-                    article_name=article_name,
-                    version=version,
-                    value=value,
-                    extra_data={
-                        "avg_sentence_length": round(len(tokens) / max(len(sentences), 1), 2),
-                        "avg_syllables_per_word": round(total_syllables / max(len(tokens), 1), 2),
-                        "hard_words_count": len(hard_words),
-                        "hard_words_percent": round(len(hard_words) / max(len(tokens), 1) * 100, 2)
-                    }
-                )
-                
-                aggregated[article_name][version] = value
-                
-                print(f"  {article_name}/{version}: FRE={fre}, FOG={fog}")
-                
-            except FileNotFoundError:
-                print(f"  POMINIĘTO: {article_name}/{version} (brak pliku)")
+    aggregated = process_articles_parallel(
+        metric_name="readability",
+        calculate_func=calculate_readability,
+        extra_data_func=get_extra_data_readability
+    )
     
     # Zapisz agregowany JSON
     save_aggregated_metric("readability", aggregated)

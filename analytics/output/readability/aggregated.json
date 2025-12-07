@@ -1,11 +1,11 @@
 {
   "metric": "readability",
-  "aggregated_at": "2025-12-07T20:59:05.704311",
+  "aggregated_at": "2025-12-07T21:19:47.951135",
   "data": {
     "zamek_w_kaliszu": {
-      "adult_full": {
-        "flesch_reading_ease": -39.78,
-        "fog_index": 25.52,
+      "child_short": {
+        "flesch_reading_ease": -1.78,
+        "fog_index": 20.06,
         "readability_level": "bardzo_trudny"
       },
       "adult_short": {
@@ -13,18 +13,13 @@
         "fog_index": 24.6,
         "readability_level": "bardzo_trudny"
       },
-      "child_short": {
-        "flesch_reading_ease": -1.78,
-        "fog_index": 20.06,
+      "adult_full": {
+        "flesch_reading_ease": -39.78,
+        "fog_index": 25.52,
         "readability_level": "bardzo_trudny"
       }
     },
     "mury_obronne_w_kaliszu": {
-      "adult_full": {
-        "flesch_reading_ease": -32.63,
-        "fog_index": 26.11,
-        "readability_level": "bardzo_trudny"
-      },
       "adult_short": {
         "flesch_reading_ease": -27.83,
         "fog_index": 24.21,
@@ -34,14 +29,14 @@
         "flesch_reading_ease": -5.05,
         "fog_index": 20.5,
         "readability_level": "bardzo_trudny"
+      },
+      "adult_full": {
+        "flesch_reading_ease": -32.63,
+        "fog_index": 26.11,
+        "readability_level": "bardzo_trudny"
       }
     },
     "kosciol_pobernardynski_obecnie_oo_jezuitow": {
-      "adult_full": {
-        "flesch_reading_ease": -52.93,
-        "fog_index": 29.23,
-        "readability_level": "bardzo_trudny"
-      },
       "adult_short": {
         "flesch_reading_ease": -51.66,
         "fog_index": 28.63,
@@ -51,14 +46,14 @@
         "flesch_reading_ease": -30.01,
         "fog_index": 24.7,
         "readability_level": "bardzo_trudny"
+      },
+      "adult_full": {
+        "flesch_reading_ease": -52.93,
+        "fog_index": 29.23,
+        "readability_level": "bardzo_trudny"
       }
     },
     "kosciol_pw_swsw_stanislawa_i_wojciecha_garnizonowy": {
-      "adult_full": {
-        "flesch_reading_ease": -55.86,
-        "fog_index": 30.15,
-        "readability_level": "bardzo_trudny"
-      },
       "adult_short": {
         "flesch_reading_ease": -46.48,
         "fog_index": 28.11,
@@ -68,14 +63,14 @@
         "flesch_reading_ease": -14.23,
         "fog_index": 24.31,
         "readability_level": "bardzo_trudny"
+      },
+      "adult_full": {
+        "flesch_reading_ease": -55.86,
+        "fog_index": 30.15,
+        "readability_level": "bardzo_trudny"
       }
     },
     "teatr_w_kaliszu": {
-      "adult_full": {
-        "flesch_reading_ease": -41.07,
-        "fog_index": 27.77,
-        "readability_level": "bardzo_trudny"
-      },
       "adult_short": {
         "flesch_reading_ease": -38.82,
         "fog_index": 25.05,
@@ -85,12 +80,17 @@
         "flesch_reading_ease": -13.05,
         "fog_index": 21.33,
         "readability_level": "bardzo_trudny"
+      },
+      "adult_full": {
+        "flesch_reading_ease": -41.07,
+        "fog_index": 27.77,
+        "readability_level": "bardzo_trudny"
       }
     },
     "ratusz_w_kaliszu": {
-      "adult_full": {
-        "flesch_reading_ease": -39.05,
-        "fog_index": 26.67,
+      "child_short": {
+        "flesch_reading_ease": -13.75,
+        "fog_index": 22.46,
         "readability_level": "bardzo_trudny"
       },
       "adult_short": {
@@ -98,16 +98,16 @@
         "fog_index": 26.39,
         "readability_level": "bardzo_trudny"
       },
-      "child_short": {
-        "flesch_reading_ease": -13.75,
-        "fog_index": 22.46,
+      "adult_full": {
+        "flesch_reading_ease": -39.05,
+        "fog_index": 26.67,
         "readability_level": "bardzo_trudny"
       }
     },
     "park_miejski_w_kaliszu": {
-      "adult_full": {
-        "flesch_reading_ease": -26.28,
-        "fog_index": 25.42,
+      "child_short": {
+        "flesch_reading_ease": 1.61,
+        "fog_index": 20.2,
         "readability_level": "bardzo_trudny"
       },
       "adult_short": {
@@ -115,16 +115,16 @@
         "fog_index": 25.62,
         "readability_level": "bardzo_trudny"
       },
-      "child_short": {
-        "flesch_reading_ease": 1.61,
-        "fog_index": 20.2,
+      "adult_full": {
+        "flesch_reading_ease": -26.28,
+        "fog_index": 25.42,
         "readability_level": "bardzo_trudny"
       }
     },
     "katedra_sw_mikolaja_biskupa_w_kaliszu": {
-      "adult_full": {
-        "flesch_reading_ease": -35.9,
-        "fog_index": 26.31,
+      "child_short": {
+        "flesch_reading_ease": -18.54,
+        "fog_index": 23.06,
         "readability_level": "bardzo_trudny"
       },
       "adult_short": {
@@ -132,18 +132,13 @@
         "fog_index": 27.08,
         "readability_level": "bardzo_trudny"
       },
-      "child_short": {
-        "flesch_reading_ease": -18.54,
-        "fog_index": 23.06,
+      "adult_full": {
+        "flesch_reading_ease": -35.9,
+        "fog_index": 26.31,
         "readability_level": "bardzo_trudny"
       }
     },
     "kosciol_pw_sw_wojciecha_na_zawodziu": {
-      "adult_full": {
-        "flesch_reading_ease": -45.75,
-        "fog_index": 28.3,
-        "readability_level": "bardzo_trudny"
-      },
       "adult_short": {
         "flesch_reading_ease": -47.29,
         "fog_index": 27.7,
@@ -153,14 +148,14 @@
         "flesch_reading_ease": -16.51,
         "fog_index": 23.06,
         "readability_level": "bardzo_trudny"
+      },
+      "adult_full": {
+        "flesch_reading_ease": -45.75,
+        "fog_index": 28.3,
+        "readability_level": "bardzo_trudny"
       }
     },
     "kosciol_i_klasztor_oo_franciszkanow": {
-      "adult_full": {
-        "flesch_reading_ease": -39.94,
-        "fog_index": 27.3,
-        "readability_level": "bardzo_trudny"
-      },
       "adult_short": {
         "flesch_reading_ease": -41.89,
         "fog_index": 27.0,
@@ -170,14 +165,14 @@
         "flesch_reading_ease": -13.64,
         "fog_index": 23.12,
         "readability_level": "bardzo_trudny"
+      },
+      "adult_full": {
+        "flesch_reading_ease": -39.94,
+        "fog_index": 27.3,
+        "readability_level": "bardzo_trudny"
       }
     },
     "kolegium_jezuickie_w_kaliszu": {
-      "adult_full": {
-        "flesch_reading_ease": -47.96,
-        "fog_index": 28.08,
-        "readability_level": "bardzo_trudny"
-      },
       "adult_short": {
         "flesch_reading_ease": -48.5,
         "fog_index": 28.29,
@@ -187,14 +182,14 @@
         "flesch_reading_ease": -15.95,
         "fog_index": 22.63,
         "readability_level": "bardzo_trudny"
+      },
+      "adult_full": {
+        "flesch_reading_ease": -47.96,
+        "fog_index": 28.08,
+        "readability_level": "bardzo_trudny"
       }
     },
     "grodzisko_na_zawodziu": {
-      "adult_full": {
-        "flesch_reading_ease": -55.2,
-        "fog_index": 30.03,
-        "readability_level": "bardzo_trudny"
-      },
       "adult_short": {
         "flesch_reading_ease": -51.82,
         "fog_index": 31.11,
@@ -204,14 +199,14 @@
         "flesch_reading_ease": -30.75,
         "fog_index": 25.73,
         "readability_level": "bardzo_trudny"
+      },
+      "adult_full": {
+        "flesch_reading_ease": -55.2,
+        "fog_index": 30.03,
+        "readability_level": "bardzo_trudny"
       }
     },
     "palac_trybunalski_w_kaliszu": {
-      "adult_full": {
-        "flesch_reading_ease": -31.15,
-        "fog_index": 25.5,
-        "readability_level": "bardzo_trudny"
-      },
       "adult_short": {
         "flesch_reading_ease": -47.17,
         "fog_index": 28.06,
@@ -221,12 +216,17 @@
         "flesch_reading_ease": -8.35,
         "fog_index": 20.11,
         "readability_level": "bardzo_trudny"
+      },
+      "adult_full": {
+        "flesch_reading_ease": -31.15,
+        "fog_index": 25.5,
+        "readability_level": "bardzo_trudny"
       }
     },
     "kolegiata_pw_wniebowziecia_nmp_kosciol_pw_sw_jozefa": {
-      "adult_full": {
-        "flesch_reading_ease": -44.93,
-        "fog_index": 29.1,
+      "child_short": {
+        "flesch_reading_ease": -26.66,
+        "fog_index": 25.22,
         "readability_level": "bardzo_trudny"
       },
       "adult_short": {
@@ -234,18 +234,13 @@
         "fog_index": 26.11,
         "readability_level": "bardzo_trudny"
       },
-      "child_short": {
-        "flesch_reading_ease": -26.66,
-        "fog_index": 25.22,
+      "adult_full": {
+        "flesch_reading_ease": -44.93,
+        "fog_index": 29.1,
         "readability_level": "bardzo_trudny"
       }
     },
     "kosciol_poreformacki_obecnie_ss_nazaretanek": {
-      "adult_full": {
-        "flesch_reading_ease": -34.45,
-        "fog_index": 27.28,
-        "readability_level": "bardzo_trudny"
-      },
       "adult_short": {
         "flesch_reading_ease": -45.99,
         "fog_index": 27.56,
@@ -255,14 +250,14 @@
         "flesch_reading_ease": -21.76,
         "fog_index": 23.51,
         "readability_level": "bardzo_trudny"
+      },
+      "adult_full": {
+        "flesch_reading_ease": -34.45,
+        "fog_index": 27.28,
+        "readability_level": "bardzo_trudny"
       }
     },
     "rogatka_wroclawska_w_kaliszu": {
-      "adult_full": {
-        "flesch_reading_ease": -41.75,
-        "fog_index": 27.89,
-        "readability_level": "bardzo_trudny"
-      },
       "adult_short": {
         "flesch_reading_ease": -38.24,
         "fog_index": 27.62,
@@ -271,6 +266,11 @@
       "child_short": {
         "flesch_reading_ease": -18.4,
         "fog_index": 24.04,
+        "readability_level": "bardzo_trudny"
+      },
+      "adult_full": {
+        "flesch_reading_ease": -41.75,
+        "fog_index": 27.89,
         "readability_level": "bardzo_trudny"
       }
     }

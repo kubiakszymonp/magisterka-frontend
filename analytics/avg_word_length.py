@@ -22,15 +22,12 @@ ZASTOSOWANIE:
 
 from common import (
     get_tokens,
-    list_articles,
-    load_article,
+    process_articles_parallel,
     save_aggregated_metric,
-    save_metric_result,
-    VERSIONS,
 )
 
 
-def calculate_avg_word_length(text: str) -> dict:
+def calculate_avg_word_length_full(text: str) -> dict:
     """
     Oblicza średnią długość słowa.
     
@@ -59,41 +56,28 @@ def calculate_avg_word_length(text: str) -> dict:
     }
 
 
+def calculate_avg_word_length(text: str) -> float:
+    """Zwraca tylko średnią długość słowa."""
+    results = calculate_avg_word_length_full(text)
+    return results["avg_word_length"]
+
+
+def get_extra_data_avg_word_length(content: str) -> dict:
+    """Zwraca dodatkowe dane dla avg_word_length."""
+    results = calculate_avg_word_length_full(content)
+    return {
+        "total_chars": results["total_chars"],
+        "word_count": results["word_count"]
+    }
+
+
 def process_all_articles():
     """Przetwarza wszystkie artykuły i zapisuje wyniki."""
-    articles = list_articles()
-    
-    print(f"Przetwarzanie {len(articles)} artykułów...")
-    
-    aggregated = {}
-    
-    for article_name in articles:
-        aggregated[article_name] = {}
-        
-        for version in VERSIONS:
-            try:
-                data = load_article(article_name, version)
-                content = data.get("content", "")
-                
-                results = calculate_avg_word_length(content)
-                
-                save_metric_result(
-                    metric_name="avg_word_length",
-                    article_name=article_name,
-                    version=version,
-                    value=results["avg_word_length"],
-                    extra_data={
-                        "total_chars": results["total_chars"],
-                        "word_count": results["word_count"]
-                    }
-                )
-                
-                aggregated[article_name][version] = results["avg_word_length"]
-                
-                print(f"  {article_name}/{version}: {results['avg_word_length']} znaków/słowo")
-                
-            except FileNotFoundError:
-                print(f"  POMINIĘTO: {article_name}/{version} (brak pliku)")
+    aggregated = process_articles_parallel(
+        metric_name="avg_word_length",
+        calculate_func=calculate_avg_word_length,
+        extra_data_func=get_extra_data_avg_word_length
+    )
     
     # Zapisz agregowany JSON
     save_aggregated_metric("avg_word_length", aggregated)

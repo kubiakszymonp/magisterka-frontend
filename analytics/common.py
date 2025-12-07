@@ -10,9 +10,11 @@ Ten moduł zawiera:
 
 import json
 import os
+from concurrent.futures import ProcessPoolExecutor, as_completed
 from datetime import datetime
+from functools import partial
 from pathlib import Path
-from typing import Any, Generator
+from typing import Any, Callable, Generator
 
 import spacy
 
@@ -384,6 +386,211 @@ def get_content_words(text: str) -> list[str]:
         for token in doc
         if token.is_alpha and token.pos_ in content_pos
     ]
+
+
+def _process_single_article(
+    article_name: str,
+    version: str,
+    metric_name: str,
+    calculate_func: Callable[[str], Any],
+    extra_data_func: Callable[[str], dict] | None = None
+) -> tuple[str, str, Any, dict | None]:
+    """
+    Funkcja pomocnicza do przetwarzania pojedynczego artykułu.
+    Używana w równoległym przetwarzaniu - musi być na poziomie modułu.
+    
+    Args:
+        article_name: Nazwa artykułu
+        version: Wersja artykułu
+        metric_name: Nazwa metryki
+        calculate_func: Funkcja obliczająca metrykę (tekst -> wartość)
+        extra_data_func: Opcjonalna funkcja zwracająca dodatkowe dane
+    
+    Returns:
+        Tuple (article_name, version, value, extra_data)
+    """
+    try:
+        data = load_article(article_name, version)
+        content = data.get("content", "")
+        
+        value = calculate_func(content)
+        
+        extra_data = None
+        if extra_data_func:
+            extra_data = extra_data_func(content)
+        
+        save_metric_result(
+            metric_name=metric_name,
+            article_name=article_name,
+            version=version,
+            value=value,
+            extra_data=extra_data
+        )
+        
+        return (article_name, version, value, extra_data)
+    except FileNotFoundError:
+        return (article_name, version, None, None)
+
+
+def process_articles_parallel(
+    metric_name: str,
+    calculate_func: Callable[[str], Any],
+    extra_data_func: Callable[[str], dict] | None = None,
+    max_workers: int | None = None
+) -> dict[str, dict[str, Any]]:
+    """
+    Przetwarza wszystkie artykuły równolegle używając wielu procesów.
+    
+    Args:
+        metric_name: Nazwa metryki (np. "word_count")
+        calculate_func: Funkcja obliczająca metrykę dla tekstu (tekst -> wartość)
+        extra_data_func: Opcjonalna funkcja zwracająca dodatkowe dane dla każdego artykułu
+        max_workers: Liczba procesów (None = liczba CPU)
+    
+    Returns:
+        Słownik {article_name: {version: value}} z wynikami
+    """
+    articles = list_articles()
+    
+    print(f"Przetwarzanie {len(articles)} artykułów (równolegle, {max_workers or 'auto'} procesów)...")
+    
+    # Przygotuj listę zadań
+    tasks = []
+    for article_name in articles:
+        for version in VERSIONS:
+            tasks.append((article_name, version))
+    
+    aggregated = {article_name: {} for article_name in articles}
+    
+    # Przetwarzaj równolegle
+    with ProcessPoolExecutor(max_workers=max_workers) as executor:
+        # Utwórz funkcję częściową z parametrami
+        process_func = partial(
+            _process_single_article,
+            metric_name=metric_name,
+            calculate_func=calculate_func,
+            extra_data_func=extra_data_func
+        )
+        
+        # Wyślij wszystkie zadania
+        future_to_task = {
+            executor.submit(process_func, article_name, version): (article_name, version)
+            for article_name, version in tasks
+        }
+        
+        # Zbierz wyniki
+        completed = 0
+        for future in as_completed(future_to_task):
+            article_name, version = future_to_task[future]
+            try:
+                result_article, result_version, value, extra_data = future.result()
+                
+                if value is not None:
+                    aggregated[result_article][result_version] = value
+                    # Formatuj wartość dla wyświetlenia
+                    if isinstance(value, dict):
+                        value_str = ", ".join(f"{k}={v}" for k, v in value.items())
+                        print(f"  {result_article}/{result_version}: {value_str}")
+                    else:
+                        print(f"  {result_article}/{result_version}: {value}")
+                else:
+                    print(f"  POMINIĘTO: {article_name}/{version} (brak pliku)")
+                
+                completed += 1
+            except Exception as e:
+                print(f"  BŁĄD: {article_name}/{version}: {e}")
+                completed += 1
+    
+    return aggregated
+
+
+def _process_comparison_article(
+    article_name: str,
+    metric_name: str,
+    process_func: Callable[[str], dict]
+) -> tuple[str, dict | None]:
+    """
+    Funkcja pomocnicza do przetwarzania pojedynczego artykułu dla metryk porównawczych.
+    Używana w równoległym przetwarzaniu - musi być na poziomie modułu.
+    
+    Args:
+        article_name: Nazwa artykułu
+        metric_name: Nazwa metryki
+        process_func: Funkcja przetwarzająca artykuł (article_name -> comparisons dict)
+    
+    Returns:
+        Tuple (article_name, comparisons dict lub None)
+    """
+    try:
+        comparisons = process_func(article_name)
+        if comparisons:
+            # Funkcja process_func powinna sama zapisać wyniki
+            return (article_name, comparisons)
+        return (article_name, None)
+    except Exception as e:
+        print(f"  BŁĄD w {article_name}: {e}")
+        return (article_name, None)
+
+
+def process_comparison_articles_parallel(
+    metric_name: str,
+    process_article_func: Callable[[str], dict],
+    max_workers: int | None = None
+) -> dict[str, dict[str, Any]]:
+    """
+    Przetwarza wszystkie artykuły równolegle dla metryk porównawczych.
+    
+    Args:
+        metric_name: Nazwa metryki (np. "jaccard_similarity")
+        process_article_func: Funkcja przetwarzająca pojedynczy artykuł
+            (article_name -> comparisons dict)
+        max_workers: Liczba procesów (None = liczba CPU)
+    
+    Returns:
+        Słownik {article_name: comparisons} z wynikami
+    """
+    articles = list_articles()
+    
+    print(f"Przetwarzanie {len(articles)} artykułów (równolegle, {max_workers or 'auto'} procesów)...")
+    
+    aggregated = {}
+    
+    # Przetwarzaj równolegle
+    with ProcessPoolExecutor(max_workers=max_workers) as executor:
+        # Utwórz funkcję częściową z parametrami
+        process_func = partial(
+            _process_comparison_article,
+            metric_name=metric_name,
+            process_func=process_article_func
+        )
+        
+        # Wyślij wszystkie zadania
+        future_to_article = {
+            executor.submit(process_func, article_name): article_name
+            for article_name in articles
+        }
+        
+        # Zbierz wyniki
+        for future in as_completed(future_to_article):
+            article_name = future_to_article[future]
+            try:
+                result_article, comparisons = future.result()
+                
+                if comparisons is not None:
+                    aggregated[result_article] = comparisons
+                    print(f"  {result_article}:")
+                    for key, val in comparisons.items():
+                        if isinstance(val, float):
+                            print(f"    {key}: {val}")
+                        else:
+                            print(f"    {key}: {val}")
+                else:
+                    print(f"  POMINIĘTO: {article_name}")
+                    
+            except Exception as e:
+                print(f"  BŁĄD: {article_name}: {e}")
+    
+    return aggregated
 
 
 if __name__ == "__main__":

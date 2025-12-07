@@ -1,0 +1,86 @@
+{
+  "metric": "avg_word_length",
+  "aggregated_at": "2025-12-07T21:20:43.250872",
+  "data": {
+    "zamek_w_kaliszu": {
+      "adult_short": 6.21,
+      "child_short": 5.49,
+      "adult_full": 6.57
+    },
+    "mury_obronne_w_kaliszu": {
+      "adult_short": 6.25,
+      "child_short": 5.63,
+      "adult_full": 6.33
+    },
+    "kosciol_pobernardynski_obecnie_oo_jezuitow": {
+      "child_short": 6.18,
+      "adult_short": 6.74,
+      "adult_full": 6.64
+    },
+    "kosciol_pw_swsw_stanislawa_i_wojciecha_garnizonowy": {
+      "adult_short": 6.55,
+      "child_short": 5.57,
+      "adult_full": 6.58
+    },
+    "teatr_w_kaliszu": {
+      "adult_short": 6.25,
+      "child_short": 5.63,
+      "adult_full": 6.41
+    },
+    "ratusz_w_kaliszu": {
+      "adult_short": 6.13,
+      "child_short": 5.77,
+      "adult_full": 6.38
+    },
+    "park_miejski_w_kaliszu": {
+      "child_short": 5.43,
+      "adult_short": 6.15,
+      "adult_full": 6.03
+    },
+    "katedra_sw_mikolaja_biskupa_w_kaliszu": {
+      "adult_short": 6.3,
+      "child_short": 5.89,
+      "adult_full": 6.24
+    },
+    "kosciol_pw_sw_wojciecha_na_zawodziu": {
+      "child_short": 5.86,
+      "adult_short": 6.53,
+      "adult_full": 6.37
+    },
+    "kosciol_i_klasztor_oo_franciszkanow": {
+      "adult_short": 6.39,
+      "child_short": 5.64,
+      "adult_full": 6.49
+    },
+    "kolegium_jezuickie_w_kaliszu": {
+      "adult_short": 6.4,
+      "child_short": 5.76,
+      "adult_full": 6.52
+    },
+    "grodzisko_na_zawodziu": {
+      "adult_short": 6.45,
+      "child_short": 6.01,
+      "adult_full": 6.68
+    },
+    "palac_trybunalski_w_kaliszu": {
+      "adult_short": 6.7,
+      "child_short": 5.77,
+      "adult_full": 6.14
+    },
+    "kolegiata_pw_wniebowziecia_nmp_kosciol_pw_sw_jozefa": {
+      "adult_short": 5.99,
+      "child_short": 5.79,
+      "adult_full": 6.22
+    },
+    "kosciol_poreformacki_obecnie_ss_nazaretanek": {
+      "adult_short": 6.53,
+      "child_short": 5.79,
+      "adult_full": 6.2
+    },
+    "rogatka_wroclawska_w_kaliszu": {
+      "adult_short": 6.44,
+      "child_short": 5.89,
+      "adult_full": 6.55
+    }
+  }
+}

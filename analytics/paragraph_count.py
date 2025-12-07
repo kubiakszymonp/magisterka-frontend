@@ -16,11 +16,8 @@ ZASTOSOWANIE:
 """
 
 from common import (
-    list_articles,
-    load_article,
+    process_articles_parallel,
     save_aggregated_metric,
-    save_metric_result,
-    VERSIONS,
 )
 
 
@@ -45,35 +42,10 @@ def calculate_paragraph_count(text: str) -> int:
 
 def process_all_articles():
     """Przetwarza wszystkie artykuły i zapisuje wyniki."""
-    articles = list_articles()
-    
-    print(f"Przetwarzanie {len(articles)} artykułów...")
-    
-    aggregated = {}
-    
-    for article_name in articles:
-        aggregated[article_name] = {}
-        
-        for version in VERSIONS:
-            try:
-                data = load_article(article_name, version)
-                content = data.get("content", "")
-                
-                paragraph_count = calculate_paragraph_count(content)
-                
-                save_metric_result(
-                    metric_name="paragraph_count",
-                    article_name=article_name,
-                    version=version,
-                    value=paragraph_count
-                )
-                
-                aggregated[article_name][version] = paragraph_count
-                
-                print(f"  {article_name}/{version}: {paragraph_count} akapitów")
-                
-            except FileNotFoundError:
-                print(f"  POMINIĘTO: {article_name}/{version} (brak pliku)")
+    aggregated = process_articles_parallel(
+        metric_name="paragraph_count",
+        calculate_func=calculate_paragraph_count
+    )
     
     # Zapisz agregowany JSON
     save_aggregated_metric("paragraph_count", aggregated)

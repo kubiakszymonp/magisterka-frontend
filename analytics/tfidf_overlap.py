@@ -30,8 +30,8 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 
 from common import (
     get_lemmas,
-    list_articles,
     load_article,
+    process_comparison_articles_parallel,
     save_aggregated_comparison_metric,
     save_comparison_result,
     VERSIONS,
@@ -112,55 +112,52 @@ def calculate_keyword_overlap(keywords_a: set, keywords_b: set) -> float:
     return round(overlap, 2)
 
 
-def process_all_articles():
-    """Przetwarza wszystkie artykuły i zapisuje wyniki."""
-    articles = list_articles()
-    
-    print(f"Przetwarzanie {len(articles)} artykułów...")
-    
+def process_single_article(article_name: str) -> dict:
+    """Przetwarza pojedynczy artykuł i zwraca porównania."""
     # Pary do porównania
     version_pairs = list(combinations(VERSIONS, 2))
     
-    aggregated = {}
+    # Wczytaj wszystkie wersje i wyodrębnij keywords
+    version_keywords = {}
     
-    for article_name in articles:
-        # Wczytaj wszystkie wersje i wyodrębnij keywords
-        version_keywords = {}
-        
-        for version in VERSIONS:
-            try:
-                data = load_article(article_name, version)
-                content = data.get("content", "")
-                keywords = get_top_keywords(content, TOP_N_KEYWORDS)
-                version_keywords[version] = keywords
-            except FileNotFoundError:
-                print(f"  POMINIĘTO: {article_name}/{version} (brak pliku)")
-        
-        # Oblicz overlap dla każdej pary
-        comparisons = {}
-        
-        for v1, v2 in version_pairs:
-            if v1 in version_keywords and v2 in version_keywords:
-                overlap = calculate_keyword_overlap(
-                    version_keywords[v1], 
-                    version_keywords[v2]
-                )
-                key = f"{v1}__{v2}"
-                comparisons[key] = overlap
-        
-        if comparisons:
-            save_comparison_result(
-                metric_name="tfidf_overlap",
-                article_name=article_name,
-                comparisons=comparisons,
-                extra_data={"top_n_keywords": TOP_N_KEYWORDS}
+    for version in VERSIONS:
+        try:
+            data = load_article(article_name, version)
+            content = data.get("content", "")
+            keywords = get_top_keywords(content, TOP_N_KEYWORDS)
+            version_keywords[version] = keywords
+        except FileNotFoundError:
+            pass  # Pominąć brakujące wersje
+    
+    # Oblicz overlap dla każdej pary
+    comparisons = {}
+    
+    for v1, v2 in version_pairs:
+        if v1 in version_keywords and v2 in version_keywords:
+            overlap = calculate_keyword_overlap(
+                version_keywords[v1], 
+                version_keywords[v2]
             )
-            
-            aggregated[article_name] = comparisons
-            
-            print(f"  {article_name}:")
-            for key, val in comparisons.items():
-                print(f"    {key}: {val}%")
+            key = f"{v1}__{v2}"
+            comparisons[key] = overlap
+    
+    if comparisons:
+        save_comparison_result(
+            metric_name="tfidf_overlap",
+            article_name=article_name,
+            comparisons=comparisons,
+            extra_data={"top_n_keywords": TOP_N_KEYWORDS}
+        )
+    
+    return comparisons
+
+
+def process_all_articles():
+    """Przetwarza wszystkie artykuły i zapisuje wyniki."""
+    aggregated = process_comparison_articles_parallel(
+        metric_name="tfidf_overlap",
+        process_article_func=process_single_article
+    )
     
     # Zapisz agregowany JSON
     if aggregated:

@@ -1,0 +1,230 @@
+{
+  "metric": "ttr",
+  "aggregated_at": "2025-12-07T21:20:02.680845",
+  "data": {
+    "zamek_w_kaliszu": {
+      "adult_short": {
+        "ttr_tokens": 0.6395,
+        "ttr_lemmas": 0.5417
+      },
+      "child_short": {
+        "ttr_tokens": 0.6199,
+        "ttr_lemmas": 0.5295
+      },
+      "adult_full": {
+        "ttr_tokens": 0.6422,
+        "ttr_lemmas": 0.5183
+      }
+    },
+    "mury_obronne_w_kaliszu": {
+      "adult_short": {
+        "ttr_tokens": 0.6804,
+        "ttr_lemmas": 0.5876
+      },
+      "adult_full": {
+        "ttr_tokens": 0.5983,
+        "ttr_lemmas": 0.4767
+      },
+      "child_short": {
+        "ttr_tokens": 0.6021,
+        "ttr_lemmas": 0.4957
+      }
+    },
+    "kosciol_pobernardynski_obecnie_oo_jezuitow": {
+      "child_short": {
+        "ttr_tokens": 0.644,
+        "ttr_lemmas": 0.5761
+      },
+      "adult_full": {
+        "ttr_tokens": 0.6563,
+        "ttr_lemmas": 0.5562
+      },
+      "adult_short": {
+        "ttr_tokens": 0.6832,
+        "ttr_lemmas": 0.5921
+      }
+    },
+    "kosciol_pw_swsw_stanislawa_i_wojciecha_garnizonowy": {
+      "adult_short": {
+        "ttr_tokens": 0.6976,
+        "ttr_lemmas": 0.5894
+      },
+      "child_short": {
+        "ttr_tokens": 0.6167,
+        "ttr_lemmas": 0.5083
+      },
+      "adult_full": {
+        "ttr_tokens": 0.5996,
+        "ttr_lemmas": 0.4647
+      }
+    },
+    "teatr_w_kaliszu": {
+      "adult_short": {
+        "ttr_tokens": 0.6762,
+        "ttr_lemmas": 0.5749
+      },
+      "child_short": {
+        "ttr_tokens": 0.5872,
+        "ttr_lemmas": 0.4715
+      },
+      "adult_full": {
+        "ttr_tokens": 0.5983,
+        "ttr_lemmas": 0.4675
+      }
+    },
+    "ratusz_w_kaliszu": {
+      "child_short": {
+        "ttr_tokens": 0.678,
+        "ttr_lemmas": 0.569
+      },
+      "adult_short": {
+        "ttr_tokens": 0.6728,
+        "ttr_lemmas": 0.6083
+      },
+      "adult_full": {
+        "ttr_tokens": 0.5609,
+        "ttr_lemmas": 0.4609
+      }
+    },
+    "park_miejski_w_kaliszu": {
+      "child_short": {
+        "ttr_tokens": 0.6083,
+        "ttr_lemmas": 0.5199
+      },
+      "adult_short": {
+        "ttr_tokens": 0.634,
+        "ttr_lemmas": 0.5304
+      },
+      "adult_full": {
+        "ttr_tokens": 0.578,
+        "ttr_lemmas": 0.4626
+      }
+    },
+    "katedra_sw_mikolaja_biskupa_w_kaliszu": {
+      "adult_short": {
+        "ttr_tokens": 0.6769,
+        "ttr_lemmas": 0.5846
+      },
+      "child_short": {
+        "ttr_tokens": 0.6443,
+        "ttr_lemmas": 0.5548
+      },
+      "adult_full": {
+        "ttr_tokens": 0.6242,
+        "ttr_lemmas": 0.5077
+      }
+    },
+    "kosciol_pw_sw_wojciecha_na_zawodziu": {
+      "adult_short": {
+        "ttr_tokens": 0.6514,
+        "ttr_lemmas": 0.5276
+      },
+      "child_short": {
+        "ttr_tokens": 0.6939,
+        "ttr_lemmas": 0.5941
+      },
+      "adult_full": {
+        "ttr_tokens": 0.5331,
+        "ttr_lemmas": 0.4162
+      }
+    },
+    "kosciol_i_klasztor_oo_franciszkanow": {
+      "adult_short": {
+        "ttr_tokens": 0.7202,
+        "ttr_lemmas": 0.6618
+      },
+      "child_short": {
+        "ttr_tokens": 0.6152,
+        "ttr_lemmas": 0.5263
+      },
+      "adult_full": {
+        "ttr_tokens": 0.5587,
+        "ttr_lemmas": 0.4403
+      }
+    },
+    "kolegium_jezuickie_w_kaliszu": {
+      "adult_short": {
+        "ttr_tokens": 0.6911,
+        "ttr_lemmas": 0.6056
+      },
+      "child_short": {
+        "ttr_tokens": 0.635,
+        "ttr_lemmas": 0.5307
+      },
+      "adult_full": {
+        "ttr_tokens": 0.5655,
+        "ttr_lemmas": 0.4534
+      }
+    },
+    "grodzisko_na_zawodziu": {
+      "adult_short": {
+        "ttr_tokens": 0.7664,
+        "ttr_lemmas": 0.704
+      },
+      "child_short": {
+        "ttr_tokens": 0.6749,
+        "ttr_lemmas": 0.5802
+      },
+      "adult_full": {
+        "ttr_tokens": 0.5613,
+        "ttr_lemmas": 0.4387
+      }
+    },
+    "palac_trybunalski_w_kaliszu": {
+      "adult_short": {
+        "ttr_tokens": 0.7116,
+        "ttr_lemmas": 0.6217
+      },
+      "child_short": {
+        "ttr_tokens": 0.5959,
+        "ttr_lemmas": 0.5
+      },
+      "adult_full": {
+        "ttr_tokens": 0.5628,
+        "ttr_lemmas": 0.4355
+      }
+    },
+    "kolegiata_pw_wniebowziecia_nmp_kosciol_pw_sw_jozefa": {
+      "child_short": {
+        "ttr_tokens": 0.6199,
+        "ttr_lemmas": 0.5291
+      },
+      "adult_short": {
+        "ttr_tokens": 0.5397,
+        "ttr_lemmas": 0.4559
+      },
+      "adult_full": {
+        "ttr_tokens": 0.5339,
+        "ttr_lemmas": 0.4206
+      }
+    },
+    "kosciol_poreformacki_obecnie_ss_nazaretanek": {
+      "adult_short": {
+        "ttr_tokens": 0.7579,
+        "ttr_lemmas": 0.6541
+      },
+      "child_short": {
+        "ttr_tokens": 0.6608,
+        "ttr_lemmas": 0.5485
+      },
+      "adult_full": {
+        "ttr_tokens": 0.5052,
+        "ttr_lemmas": 0.3844
+      }
+    },
+    "rogatka_wroclawska_w_kaliszu": {
+      "adult_short": {
+        "ttr_tokens": 0.6975,
+        "ttr_lemmas": 0.6049
+      },
+      "child_short": {
+        "ttr_tokens": 0.6171,
+        "ttr_lemmas": 0.4991
+      },
+      "adult_full": {
+        "ttr_tokens": 0.6087,
+        "ttr_lemmas": 0.4736
+      }
+    }
+  }
+}

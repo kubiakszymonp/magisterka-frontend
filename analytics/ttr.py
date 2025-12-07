@@ -33,11 +33,8 @@ ZASTOSOWANIE:
 from common import (
     get_tokens,
     get_lemmas,
-    list_articles,
-    load_article,
+    process_articles_parallel,
     save_aggregated_metric,
-    save_metric_result,
-    VERSIONS,
 )
 
 
@@ -60,7 +57,7 @@ def calculate_ttr(tokens: list[str]) -> float:
     return round(ttr, 4)
 
 
-def calculate_ttr_from_text(text: str) -> dict:
+def calculate_ttr_from_text_full(text: str) -> dict:
     """
     Oblicza TTR dla tekstu - zarówno na tokenach jak i lematach.
     
@@ -83,48 +80,40 @@ def calculate_ttr_from_text(text: str) -> dict:
     }
 
 
+def calculate_ttr_from_text(text: str) -> dict:
+    """Zwraca główną wartość TTR (dict z ttr_tokens i ttr_lemmas)."""
+    results = calculate_ttr_from_text_full(text)
+    return {
+        "ttr_tokens": results["ttr_tokens"],
+        "ttr_lemmas": results["ttr_lemmas"]
+    }
+
+
+def get_extra_data_ttr(content: str) -> dict:
+    """Zwraca dodatkowe dane dla TTR."""
+    results = calculate_ttr_from_text_full(content)
+    return {
+        "unique_tokens": results["unique_tokens"],
+        "total_tokens": results["total_tokens"],
+        "unique_lemmas": results["unique_lemmas"],
+        "total_lemmas": results["total_lemmas"]
+    }
+
+
+def format_ttr_output(value: dict) -> str:
+    """Formatuje wartość TTR do wyświetlenia."""
+    if isinstance(value, dict) and "ttr_tokens" in value:
+        return f"TTR(tokens)={value['ttr_tokens']:.3f}, TTR(lemmas)={value['ttr_lemmas']:.3f}"
+    return str(value)
+
+
 def process_all_articles():
     """Przetwarza wszystkie artykuły i zapisuje wyniki."""
-    articles = list_articles()
-    
-    print(f"Przetwarzanie {len(articles)} artykułów...")
-    
-    aggregated = {}
-    
-    for article_name in articles:
-        aggregated[article_name] = {}
-        
-        for version in VERSIONS:
-            try:
-                data = load_article(article_name, version)
-                content = data.get("content", "")
-                
-                results = calculate_ttr_from_text(content)
-                
-                value = {
-                    "ttr_tokens": results["ttr_tokens"],
-                    "ttr_lemmas": results["ttr_lemmas"]
-                }
-                
-                save_metric_result(
-                    metric_name="ttr",
-                    article_name=article_name,
-                    version=version,
-                    value=value,
-                    extra_data={
-                        "unique_tokens": results["unique_tokens"],
-                        "total_tokens": results["total_tokens"],
-                        "unique_lemmas": results["unique_lemmas"],
-                        "total_lemmas": results["total_lemmas"]
-                    }
-                )
-                
-                aggregated[article_name][version] = value
-                
-                print(f"  {article_name}/{version}: TTR(tokens)={results['ttr_tokens']:.3f}, TTR(lemmas)={results['ttr_lemmas']:.3f}")
-                
-            except FileNotFoundError:
-                print(f"  POMINIĘTO: {article_name}/{version} (brak pliku)")
+    aggregated = process_articles_parallel(
+        metric_name="ttr",
+        calculate_func=calculate_ttr_from_text,
+        extra_data_func=get_extra_data_ttr
+    )
     
     # Zapisz agregowany JSON
     save_aggregated_metric("ttr", aggregated)

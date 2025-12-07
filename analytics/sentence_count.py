@@ -19,11 +19,8 @@ ZASTOSOWANIE:
 
 from common import (
     get_sentences,
-    list_articles,
-    load_article,
+    process_articles_parallel,
     save_aggregated_metric,
-    save_metric_result,
-    VERSIONS,
 )
 
 
@@ -43,35 +40,10 @@ def calculate_sentence_count(text: str) -> int:
 
 def process_all_articles():
     """Przetwarza wszystkie artykuły i zapisuje wyniki."""
-    articles = list_articles()
-    
-    print(f"Przetwarzanie {len(articles)} artykułów...")
-    
-    aggregated = {}
-    
-    for article_name in articles:
-        aggregated[article_name] = {}
-        
-        for version in VERSIONS:
-            try:
-                data = load_article(article_name, version)
-                content = data.get("content", "")
-                
-                sentence_count = calculate_sentence_count(content)
-                
-                save_metric_result(
-                    metric_name="sentence_count",
-                    article_name=article_name,
-                    version=version,
-                    value=sentence_count
-                )
-                
-                aggregated[article_name][version] = sentence_count
-                
-                print(f"  {article_name}/{version}: {sentence_count} zdań")
-                
-            except FileNotFoundError:
-                print(f"  POMINIĘTO: {article_name}/{version} (brak pliku)")
+    aggregated = process_articles_parallel(
+        metric_name="sentence_count",
+        calculate_func=calculate_sentence_count
+    )
     
     # Zapisz agregowany JSON
     save_aggregated_metric("sentence_count", aggregated)
