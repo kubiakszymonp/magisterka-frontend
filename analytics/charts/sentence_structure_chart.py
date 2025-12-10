@@ -41,15 +41,14 @@ def create_structure_charts():
     paragraphs_by_version = aggregate_by_version(paragraph_data)
     versions = get_ordered_versions()
     
-    # ===== WYKRES 1: Porównanie zdań i paragrafów =====
-    fig1, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
+    # ===== WYKRES 1: Liczba zdań =====
+    fig1, ax1 = plt.subplots(figsize=(10, 6))
     
     x = np.arange(len(versions))
     width = 0.6
     labels = [VERSION_LABELS[v] for v in versions]
     colors = [VERSION_COLORS[v] for v in versions]
     
-    # Lewy wykres - liczba zdań
     means_sent = [np.mean(sentences_by_version[v]) for v in versions]
     stds_sent = [np.std(sentences_by_version[v]) for v in versions]
     
@@ -77,7 +76,13 @@ def create_structure_charts():
                     xytext=(0, 5), textcoords='offset points',
                     ha='center', va='bottom', fontsize=11, fontweight='bold')
     
-    # Prawy wykres - liczba paragrafów
+    plt.tight_layout()
+    save_chart(fig1, "sentence_count")
+    plt.close(fig1)
+    
+    # ===== WYKRES 2: Liczba paragrafów =====
+    fig2, ax2 = plt.subplots(figsize=(10, 6))
+    
     means_para = [np.mean(paragraphs_by_version[v]) for v in versions]
     stds_para = [np.std(paragraphs_by_version[v]) for v in versions]
     
@@ -106,10 +111,11 @@ def create_structure_charts():
                     ha='center', va='bottom', fontsize=11, fontweight='bold')
     
     plt.tight_layout()
-    save_chart(fig1, "sentence_paragraph_comparison")
+    save_chart(fig2, "paragraph_count")
+    plt.close(fig2)
     
-    # ===== WYKRES 2: Stosunek zdań do paragrafów =====
-    fig2, ax3 = plt.subplots(figsize=(10, 6))
+    # ===== WYKRES 3: Stosunek zdań do paragrafów =====
+    fig3, ax3 = plt.subplots(figsize=(10, 6))
     
     # Oblicz stosunek dla każdego artykułu
     ratios_by_version = {}
@@ -149,8 +155,8 @@ def create_structure_charts():
                     ha='center', va='bottom', fontsize=11, fontweight='bold')
     
     plt.tight_layout()
-    save_chart(fig2, "sentences_per_paragraph")
-    plt.close(fig2)
+    save_chart(fig3, "sentences_per_paragraph")
+    plt.close(fig3)
     
     # Wyświetl statystyki
     print("\n" + "="*60)
@@ -164,8 +170,6 @@ def create_structure_charts():
         print(f"  Zdania: {stats_sent['mean']:.1f} ± {stats_sent['std']:.1f}")
         print(f"  Paragrafy: {stats_para['mean']:.1f} ± {stats_para['std']:.1f}")
         print(f"  Zdań/paragraf: {stats_ratio['mean']:.2f} ± {stats_ratio['std']:.2f}")
-    
-    plt.close(fig1)
 
 
 if __name__ == "__main__":

@@ -41,15 +41,14 @@ def create_complexity_charts():
     sent_len_by_version = aggregate_by_version(sentence_length_data)
     versions = get_ordered_versions()
     
-    # ===== WYKRES 1: Porównanie obu metryk =====
-    fig1, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
+    # ===== WYKRES 1: Długość słów =====
+    fig1, ax1 = plt.subplots(figsize=(10, 6))
     
     x = np.arange(len(versions))
     width = 0.6
     labels = [VERSION_LABELS[v] for v in versions]
     colors = [VERSION_COLORS[v] for v in versions]
     
-    # Lewy wykres - długość słów
     means_word = [np.mean(word_len_by_version[v]) for v in versions]
     stds_word = [np.std(word_len_by_version[v]) for v in versions]
     
@@ -78,7 +77,13 @@ def create_complexity_charts():
                     xytext=(0, 5), textcoords='offset points',
                     ha='center', va='bottom', fontsize=11, fontweight='bold')
     
-    # Prawy wykres - długość zdań
+    plt.tight_layout()
+    save_chart(fig1, "complexity_word_length")
+    plt.close(fig1)
+    
+    # ===== WYKRES 2: Długość zdań =====
+    fig2, ax2 = plt.subplots(figsize=(10, 6))
+    
     means_sent = [np.mean(sent_len_by_version[v]) for v in versions]
     stds_sent = [np.std(sent_len_by_version[v]) for v in versions]
     
@@ -107,10 +112,11 @@ def create_complexity_charts():
                     ha='center', va='bottom', fontsize=11, fontweight='bold')
     
     plt.tight_layout()
-    save_chart(fig1, "complexity_comparison")
+    save_chart(fig2, "complexity_sentence_length")
+    plt.close(fig2)
     
-    # ===== WYKRES 2: Scatter plot - korelacja między metrykami =====
-    fig2, ax3 = plt.subplots(figsize=(10, 8))
+    # ===== WYKRES 3: Scatter plot - korelacja między metrykami =====
+    fig3, ax3 = plt.subplots(figsize=(10, 8))
     
     for version in versions:
         ax3.scatter(word_len_by_version[version], sent_len_by_version[version],
@@ -131,14 +137,14 @@ def create_complexity_charts():
     ax3.legend(loc='upper left', bbox_to_anchor=(1.02, 1), title='Wersja tekstu', framealpha=0.9, fontsize=10, title_fontsize=11)
     
     plt.tight_layout()
-    save_chart(fig2, "complexity_correlation")
+    save_chart(fig3, "complexity_correlation")
+    plt.close(fig3)
     
-    # ===== WYKRES 3: Violin plot =====
-    fig3, (ax4, ax5) = plt.subplots(1, 2, figsize=(14, 6))
+    # ===== WYKRES 4: Violin plot - długość słów =====
+    fig4, ax4 = plt.subplots(figsize=(10, 6))
     
     # Przygotuj dane do violin plot
     word_data = [word_len_by_version[v] for v in versions]
-    sent_data = [sent_len_by_version[v] for v in versions]
     
     # Violin plot dla długości słów
     vp1 = ax4.violinplot(word_data, positions=x, showmeans=True, showmedians=True)
@@ -158,6 +164,16 @@ def create_complexity_charts():
                        for v in versions]
     ax4.legend(handles=legend_elements, title='Wersja tekstu', loc='upper left', 
                bbox_to_anchor=(1.02, 1), framealpha=0.9, fontsize=10, title_fontsize=11)
+    
+    plt.tight_layout()
+    save_chart(fig4, "complexity_word_length_violin")
+    plt.close(fig4)
+    
+    # ===== WYKRES 5: Violin plot - długość zdań =====
+    fig5, ax5 = plt.subplots(figsize=(10, 6))
+    
+    # Przygotuj dane do violin plot
+    sent_data = [sent_len_by_version[v] for v in versions]
     
     # Violin plot dla długości zdań
     vp2 = ax5.violinplot(sent_data, positions=x, showmeans=True, showmedians=True)
@@ -179,10 +195,8 @@ def create_complexity_charts():
                bbox_to_anchor=(1.02, 1), framealpha=0.9, fontsize=10, title_fontsize=11)
     
     plt.tight_layout()
-    save_chart(fig3, "complexity_violin")
-    plt.close(fig3)
-    plt.close(fig1)
-    plt.close(fig2)
+    save_chart(fig5, "complexity_sentence_length_violin")
+    plt.close(fig5)
     
     # Wyświetl statystyki
     print("\n" + "="*60)

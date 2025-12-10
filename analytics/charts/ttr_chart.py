@@ -44,46 +44,84 @@ def create_ttr_charts():
     ttr_lemmas_by_version = aggregate_by_version(raw_data, "ttr_lemmas")
     versions = get_ordered_versions()
     
-    # ===== WYKRES 1: Grouped bar chart =====
-    fig1, ax1 = plt.subplots(figsize=(12, 6))
+    # ===== WYKRES 1: TTR tokeny =====
+    fig1, ax1 = plt.subplots(figsize=(10, 6))
     
     x = np.arange(len(versions))
-    width = 0.35
+    width = 0.6
     labels = [VERSION_LABELS[v] for v in versions]
+    colors = [VERSION_COLORS[v] for v in versions]
     
     means_tokens = [np.mean(ttr_tokens_by_version[v]) for v in versions]
-    means_lemmas = [np.mean(ttr_lemmas_by_version[v]) for v in versions]
     stds_tokens = [np.std(ttr_tokens_by_version[v]) for v in versions]
-    stds_lemmas = [np.std(ttr_lemmas_by_version[v]) for v in versions]
     
-    bars1 = ax1.bar(x - width/2, means_tokens, width, yerr=stds_tokens, 
-                   label='TTR (tokeny)', color='#3498db', edgecolor='black',
-                   capsize=4, error_kw={'linewidth': 1.5})
-    bars2 = ax1.bar(x + width/2, means_lemmas, width, yerr=stds_lemmas,
-                   label='TTR (lematy)', color='#e74c3c', edgecolor='black',
-                   capsize=4, error_kw={'linewidth': 1.5})
+    bars1 = ax1.bar(x, means_tokens, width, yerr=stds_tokens, 
+                   color=colors, edgecolor='black', linewidth=1.2,
+                   capsize=5, error_kw={'linewidth': 2, 'capthick': 2})
     
     ax1.set_xlabel('Wersja tekstu', fontsize=12, fontweight='bold')
-    ax1.set_ylabel('Type-Token Ratio', fontsize=12, fontweight='bold')
-    ax1.set_title('Bogactwo słownictwa: Type-Token Ratio\n(wyższy = bardziej zróżnicowane słownictwo, n=16 artykułów)', 
+    ax1.set_ylabel('Type-Token Ratio (tokeny)', fontsize=12, fontweight='bold')
+    ax1.set_title('Bogactwo słownictwa: TTR tokeny\n(wyższy = bardziej zróżnicowane słownictwo, n=16 artykułów)', 
                   fontsize=14, fontweight='bold', pad=15)
     ax1.set_xticks(x)
     ax1.set_xticklabels(labels)
-    ax1.legend(title='Typ analizy', loc='upper left', bbox_to_anchor=(1.02, 1), framealpha=0.9, fontsize=10, title_fontsize=11)
     ax1.set_ylim(0.35, 0.85)
     
+    # Legenda
+    from matplotlib.patches import Patch
+    legend_elements = [Patch(facecolor=VERSION_COLORS[v], edgecolor='black', label=VERSION_LABELS[v]) 
+                       for v in versions]
+    ax1.legend(handles=legend_elements, title='Wersja tekstu', loc='upper left', 
+               bbox_to_anchor=(1.02, 1), framealpha=0.9, fontsize=10, title_fontsize=11)
+    
     # Dodaj wartości
-    for bars, means in [(bars1, means_tokens), (bars2, means_lemmas)]:
-        for bar, mean in zip(bars, means):
-            ax1.annotate(f'{mean:.3f}',
-                        xy=(bar.get_x() + bar.get_width()/2, bar.get_height()),
-                        xytext=(0, 5), textcoords='offset points',
-                        ha='center', va='bottom', fontsize=9, fontweight='bold')
+    for bar, mean in zip(bars1, means_tokens):
+        ax1.annotate(f'{mean:.3f}',
+                    xy=(bar.get_x() + bar.get_width()/2, bar.get_height()),
+                    xytext=(0, 5), textcoords='offset points',
+                    ha='center', va='bottom', fontsize=11, fontweight='bold')
     
     plt.tight_layout()
-    save_chart(fig1, "ttr_grouped")
+    save_chart(fig1, "ttr_tokens")
+    plt.close(fig1)
     
-    # ===== WYKRES 2: Radar/Spider chart dla TTR tokenów =====
+    # ===== WYKRES 2: TTR lematy =====
+    fig2, ax2 = plt.subplots(figsize=(10, 6))
+    
+    means_lemmas = [np.mean(ttr_lemmas_by_version[v]) for v in versions]
+    stds_lemmas = [np.std(ttr_lemmas_by_version[v]) for v in versions]
+    
+    bars2 = ax2.bar(x, means_lemmas, width, yerr=stds_lemmas,
+                   color=colors, edgecolor='black', linewidth=1.2,
+                   capsize=5, error_kw={'linewidth': 2, 'capthick': 2})
+    
+    ax2.set_xlabel('Wersja tekstu', fontsize=12, fontweight='bold')
+    ax2.set_ylabel('Type-Token Ratio (lematy)', fontsize=12, fontweight='bold')
+    ax2.set_title('Bogactwo słownictwa: TTR lematy\n(wyższy = bardziej zróżnicowane słownictwo, n=16 artykułów)', 
+                  fontsize=14, fontweight='bold', pad=15)
+    ax2.set_xticks(x)
+    ax2.set_xticklabels(labels)
+    ax2.set_ylim(0.35, 0.85)
+    
+    # Legenda
+    from matplotlib.patches import Patch
+    legend_elements = [Patch(facecolor=VERSION_COLORS[v], edgecolor='black', label=VERSION_LABELS[v]) 
+                       for v in versions]
+    ax2.legend(handles=legend_elements, title='Wersja tekstu', loc='upper left', 
+               bbox_to_anchor=(1.02, 1), framealpha=0.9, fontsize=10, title_fontsize=11)
+    
+    # Dodaj wartości
+    for bar, mean in zip(bars2, means_lemmas):
+        ax2.annotate(f'{mean:.3f}',
+                    xy=(bar.get_x() + bar.get_width()/2, bar.get_height()),
+                    xytext=(0, 5), textcoords='offset points',
+                    ha='center', va='bottom', fontsize=11, fontweight='bold')
+    
+    plt.tight_layout()
+    save_chart(fig2, "ttr_lemmas")
+    plt.close(fig2)
+    
+    # ===== WYKRES 3: Radar/Spider chart dla TTR tokenów =====
     fig2, ax2 = plt.subplots(figsize=(10, 8), subplot_kw=dict(projection='polar'))
     
     categories = labels
@@ -107,39 +145,24 @@ def create_ttr_charts():
     ax2.legend(loc='upper right', bbox_to_anchor=(1.3, 1.0), title='Typ analizy', framealpha=0.9, fontsize=10, title_fontsize=11)
     
     plt.tight_layout()
-    save_chart(fig2, "ttr_radar")
+    save_chart(fig3, "ttr_radar")
+    plt.close(fig3)
     
-    # ===== WYKRES 3: Boxplot porównawczy =====
-    fig3, (ax3, ax4) = plt.subplots(1, 2, figsize=(14, 6))
+    # ===== WYKRES 4: Boxplot TTR tokeny =====
+    fig4, ax4 = plt.subplots(figsize=(10, 6))
     
     colors = [VERSION_COLORS[v] for v in versions]
     
     # TTR tokens
     tokens_data = [ttr_tokens_by_version[v] for v in versions]
-    bp1 = ax3.boxplot(tokens_data, labels=labels, patch_artist=True,
+    bp1 = ax4.boxplot(tokens_data, labels=labels, patch_artist=True,
                       medianprops={'color': 'black', 'linewidth': 2})
     for patch, color in zip(bp1['boxes'], colors):
         patch.set_facecolor(color)
         patch.set_alpha(0.7)
-    ax3.set_ylabel('TTR (tokeny)', fontsize=12, fontweight='bold')
-    ax3.set_title('Rozkład TTR dla tokenów (boxplot)', fontsize=14, fontweight='bold', pad=15)
-    
-    # Legenda
-    from matplotlib.patches import Patch
-    legend_elements = [Patch(facecolor=VERSION_COLORS[v], edgecolor='black', alpha=0.7, label=VERSION_LABELS[v]) 
-                       for v in versions]
-    ax3.legend(handles=legend_elements, title='Wersja tekstu', loc='upper left', 
-               bbox_to_anchor=(1.02, 1), framealpha=0.9, fontsize=10, title_fontsize=11)
-    
-    # TTR lemmas
-    lemmas_data = [ttr_lemmas_by_version[v] for v in versions]
-    bp2 = ax4.boxplot(lemmas_data, labels=labels, patch_artist=True,
-                      medianprops={'color': 'black', 'linewidth': 2})
-    for patch, color in zip(bp2['boxes'], colors):
-        patch.set_facecolor(color)
-        patch.set_alpha(0.7)
-    ax4.set_ylabel('TTR (lematy)', fontsize=12, fontweight='bold')
-    ax4.set_title('Rozkład TTR dla lemmatów (boxplot)', fontsize=14, fontweight='bold', pad=15)
+    ax4.set_xlabel('Wersja tekstu', fontsize=12, fontweight='bold')
+    ax4.set_ylabel('TTR (tokeny)', fontsize=12, fontweight='bold')
+    ax4.set_title('Rozkład TTR dla tokenów (boxplot)', fontsize=14, fontweight='bold', pad=15)
     
     # Legenda
     from matplotlib.patches import Patch
@@ -149,33 +172,56 @@ def create_ttr_charts():
                bbox_to_anchor=(1.02, 1), framealpha=0.9, fontsize=10, title_fontsize=11)
     
     plt.tight_layout()
-    save_chart(fig3, "ttr_boxplot")
+    save_chart(fig4, "ttr_tokens_boxplot")
+    plt.close(fig4)
     
-    # ===== WYKRES 4: Scatter - związek TTR tokens vs lemmas =====
-    fig4, ax5 = plt.subplots(figsize=(10, 8))
+    # ===== WYKRES 5: Boxplot TTR lematy =====
+    fig5, ax5 = plt.subplots(figsize=(10, 6))
+    
+    # TTR lemmas
+    lemmas_data = [ttr_lemmas_by_version[v] for v in versions]
+    bp2 = ax5.boxplot(lemmas_data, labels=labels, patch_artist=True,
+                      medianprops={'color': 'black', 'linewidth': 2})
+    for patch, color in zip(bp2['boxes'], colors):
+        patch.set_facecolor(color)
+        patch.set_alpha(0.7)
+    ax5.set_xlabel('Wersja tekstu', fontsize=12, fontweight='bold')
+    ax5.set_ylabel('TTR (lematy)', fontsize=12, fontweight='bold')
+    ax5.set_title('Rozkład TTR dla lemmatów (boxplot)', fontsize=14, fontweight='bold', pad=15)
+    
+    # Legenda
+    from matplotlib.patches import Patch
+    legend_elements = [Patch(facecolor=VERSION_COLORS[v], edgecolor='black', alpha=0.7, label=VERSION_LABELS[v]) 
+                       for v in versions]
+    ax5.legend(handles=legend_elements, title='Wersja tekstu', loc='upper left', 
+               bbox_to_anchor=(1.02, 1), framealpha=0.9, fontsize=10, title_fontsize=11)
+    
+    plt.tight_layout()
+    save_chart(fig5, "ttr_lemmas_boxplot")
+    plt.close(fig5)
+    
+    # ===== WYKRES 6: Scatter - związek TTR tokens vs lemmas =====
+    fig6, ax6 = plt.subplots(figsize=(10, 8))
     
     for version in versions:
-        ax5.scatter(ttr_tokens_by_version[version], ttr_lemmas_by_version[version],
+        ax6.scatter(ttr_tokens_by_version[version], ttr_lemmas_by_version[version],
                    c=VERSION_COLORS[version], label=VERSION_LABELS[version],
                    s=100, alpha=0.7, edgecolors='black', linewidth=1)
     
     # Linia y=x jako odniesienie
-    ax5.plot([0.4, 0.8], [0.4, 0.8], 'k--', alpha=0.3, label='y = x')
+    ax6.plot([0.4, 0.8], [0.4, 0.8], 'k--', alpha=0.3, label='y = x')
     
-    ax5.set_xlabel('TTR (tokeny)', fontsize=12, fontweight='bold')
-    ax5.set_ylabel('TTR (lematy)', fontsize=12, fontweight='bold')
-    ax5.set_title('Korelacja między TTR tokenów a lemmatów\n(punkty poniżej linii = lematyzacja redukuje liczbę unikalnych form, n=16)', 
+    ax6.set_xlabel('TTR (tokeny)', fontsize=12, fontweight='bold')
+    ax6.set_ylabel('TTR (lematy)', fontsize=12, fontweight='bold')
+    ax6.set_title('Korelacja między TTR tokenów a lemmatów\n(punkty poniżej linii = lematyzacja redukuje liczbę unikalnych form, n=16)', 
                   fontsize=14, fontweight='bold', pad=15)
-    ax5.legend(title='Wersja tekstu', loc='upper left', bbox_to_anchor=(1.02, 1), framealpha=0.9, fontsize=10, title_fontsize=11)
-    ax5.set_xlim(0.45, 0.8)
-    ax5.set_ylim(0.35, 0.75)
+    ax6.legend(title='Wersja tekstu', loc='upper left', bbox_to_anchor=(1.02, 1), framealpha=0.9, fontsize=10, title_fontsize=11)
+    ax6.set_xlim(0.45, 0.8)
+    ax6.set_ylim(0.35, 0.75)
     
     plt.tight_layout()
-    save_chart(fig4, "ttr_correlation")
-    plt.close(fig4)
-    plt.close(fig1)
-    plt.close(fig2)
-    plt.close(fig3)
+    save_chart(fig6, "ttr_correlation")
+    plt.close(fig6)
     
     # Wyświetl statystyki
     print("\n" + "="*60)

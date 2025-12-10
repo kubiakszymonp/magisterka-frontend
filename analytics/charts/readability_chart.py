@@ -157,8 +157,8 @@ def create_readability_charts():
     plt.tight_layout()
     save_chart(fig3, "readability_comparison")
     
-    # ===== WYKRES 4: Boxplot obu metryk =====
-    fig4, (ax4, ax5) = plt.subplots(1, 2, figsize=(14, 6))
+    # ===== WYKRES 4: Boxplot Flesch =====
+    fig4, ax4 = plt.subplots(figsize=(10, 6))
     
     # Flesch boxplot
     flesch_data = [flesch_by_version[v] for v in versions]
@@ -167,6 +167,7 @@ def create_readability_charts():
     for patch, color in zip(bp1['boxes'], colors):
         patch.set_facecolor(color)
         patch.set_alpha(0.7)
+    ax4.set_xlabel('Wersja tekstu', fontsize=12, fontweight='bold')
     ax4.set_ylabel('Flesch Reading Ease', fontsize=12, fontweight='bold')
     ax4.set_title('Rozkład Flesch Reading Ease (boxplot)', fontsize=14, fontweight='bold', pad=15)
     ax4.axhline(y=0, color='red', linestyle='--', alpha=0.5)
@@ -178,6 +179,13 @@ def create_readability_charts():
     ax4.legend(handles=legend_elements, title='Wersja tekstu', loc='upper left', 
                bbox_to_anchor=(1.02, 1), framealpha=0.9, fontsize=10, title_fontsize=11)
     
+    plt.tight_layout()
+    save_chart(fig4, "readability_flesch_boxplot")
+    plt.close(fig4)
+    
+    # ===== WYKRES 5: Boxplot FOG =====
+    fig5, ax5 = plt.subplots(figsize=(10, 6))
+    
     # FOG boxplot
     fog_data = [fog_by_version[v] for v in versions]
     bp2 = ax5.boxplot(fog_data, labels=labels, patch_artist=True,
@@ -185,6 +193,7 @@ def create_readability_charts():
     for patch, color in zip(bp2['boxes'], colors):
         patch.set_facecolor(color)
         patch.set_alpha(0.7)
+    ax5.set_xlabel('Wersja tekstu', fontsize=12, fontweight='bold')
     ax5.set_ylabel('Gunning FOG Index', fontsize=12, fontweight='bold')
     ax5.set_title('Rozkład Gunning FOG Index (boxplot)', fontsize=14, fontweight='bold', pad=15)
     
@@ -196,8 +205,8 @@ def create_readability_charts():
                bbox_to_anchor=(1.02, 1), framealpha=0.9, fontsize=10, title_fontsize=11)
     
     plt.tight_layout()
-    save_chart(fig4, "readability_boxplot")
-    plt.close(fig4)
+    save_chart(fig5, "readability_fog_boxplot")
+    plt.close(fig5)
     plt.close(fig1)
     plt.close(fig2)
     plt.close(fig3)
