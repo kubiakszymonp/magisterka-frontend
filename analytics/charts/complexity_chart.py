@@ -69,8 +69,8 @@ def create_complexity_charts():
     from matplotlib.patches import Patch
     legend_elements = [Patch(facecolor=VERSION_COLORS[v], edgecolor='black', label=VERSION_LABELS[v]) 
                        for v in versions]
-    ax1.legend(handles=legend_elements, title='Wersja tekstu', loc='upper right', 
-               framealpha=0.9, fontsize=10, title_fontsize=11)
+    ax1.legend(handles=legend_elements, title='Wersja tekstu', loc='upper left', 
+               bbox_to_anchor=(1.02, 1), framealpha=0.9, fontsize=10, title_fontsize=11)
     
     for bar, mean in zip(bars1, means_word):
         ax1.annotate(f'{mean:.2f}',
@@ -97,8 +97,8 @@ def create_complexity_charts():
     from matplotlib.patches import Patch
     legend_elements = [Patch(facecolor=VERSION_COLORS[v], edgecolor='black', label=VERSION_LABELS[v]) 
                        for v in versions]
-    ax2.legend(handles=legend_elements, title='Wersja tekstu', loc='upper right', 
-               framealpha=0.9, fontsize=10, title_fontsize=11)
+    ax2.legend(handles=legend_elements, title='Wersja tekstu', loc='upper left', 
+               bbox_to_anchor=(1.02, 1), framealpha=0.9, fontsize=10, title_fontsize=11)
     
     for bar, mean in zip(bars2, means_sent):
         ax2.annotate(f'{mean:.1f}',
@@ -128,7 +128,7 @@ def create_complexity_charts():
     ax3.set_ylabel('Średnia długość zdania (słowa)', fontsize=12, fontweight='bold')
     ax3.set_title('Korelacja złożoności słownictwa i składni\n(★ = średnia dla wersji, ● = pojedyncze artykuły, n=16)', 
                   fontsize=14, fontweight='bold', pad=15)
-    ax3.legend(loc='upper left', title='Wersja tekstu', framealpha=0.9, fontsize=10, title_fontsize=11)
+    ax3.legend(loc='upper left', bbox_to_anchor=(1.02, 1), title='Wersja tekstu', framealpha=0.9, fontsize=10, title_fontsize=11)
     
     plt.tight_layout()
     save_chart(fig2, "complexity_correlation")
@@ -156,8 +156,8 @@ def create_complexity_charts():
     from matplotlib.patches import Patch
     legend_elements = [Patch(facecolor=VERSION_COLORS[v], edgecolor='black', alpha=0.7, label=VERSION_LABELS[v]) 
                        for v in versions]
-    ax4.legend(handles=legend_elements, title='Wersja tekstu', loc='upper right', 
-               framealpha=0.9, fontsize=10, title_fontsize=11)
+    ax4.legend(handles=legend_elements, title='Wersja tekstu', loc='upper left', 
+               bbox_to_anchor=(1.02, 1), framealpha=0.9, fontsize=10, title_fontsize=11)
     
     # Violin plot dla długości zdań
     vp2 = ax5.violinplot(sent_data, positions=x, showmeans=True, showmedians=True)
@@ -175,8 +175,8 @@ def create_complexity_charts():
     from matplotlib.patches import Patch
     legend_elements = [Patch(facecolor=VERSION_COLORS[v], edgecolor='black', alpha=0.7, label=VERSION_LABELS[v]) 
                        for v in versions]
-    ax5.legend(handles=legend_elements, title='Wersja tekstu', loc='upper right', 
-               framealpha=0.9, fontsize=10, title_fontsize=11)
+    ax5.legend(handles=legend_elements, title='Wersja tekstu', loc='upper left', 
+               bbox_to_anchor=(1.02, 1), framealpha=0.9, fontsize=10, title_fontsize=11)
     
     plt.tight_layout()
     save_chart(fig3, "complexity_violin")

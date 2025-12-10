@@ -65,14 +65,14 @@ def create_lexical_density_charts():
     ax1.set_xticks(x)
     ax1.set_xticklabels(labels)
     ax1.set_ylim(55, 75)
-    ax1.legend(loc='lower right', title='Poziomy gęstości', framealpha=0.9, fontsize=9)
+    ax1.legend(loc='lower right', bbox_to_anchor=(1.02, 0), title='Poziomy gęstości', framealpha=0.9, fontsize=9)
     
     # Legenda kolorów wersji
     from matplotlib.patches import Patch
     version_legend = [Patch(facecolor=VERSION_COLORS[v], edgecolor='black', label=VERSION_LABELS[v]) 
                       for v in versions]
     ax1.legend(handles=version_legend + ax1.get_legend().get_patches(), 
-               title='Wersja tekstu / Poziomy', loc='lower right', framealpha=0.9, fontsize=9)
+               title='Wersja tekstu / Poziomy', loc='lower left', bbox_to_anchor=(1.02, 0), framealpha=0.9, fontsize=9)
     
     for bar, mean, std in zip(bars, means, stds):
         ax1.annotate(f'{mean:.1f}%',
@@ -113,8 +113,8 @@ def create_lexical_density_charts():
                        for v in versions]
     from matplotlib.lines import Line2D
     legend_elements.append(Line2D([0], [0], color='red', linestyle='--', alpha=0.5, label='Wysoka gęstość (60%)'))
-    ax2.legend(handles=legend_elements, title='Legenda', loc='upper right', 
-               framealpha=0.9, fontsize=10, title_fontsize=11)
+    ax2.legend(handles=legend_elements, title='Legenda', loc='upper left', 
+               bbox_to_anchor=(1.02, 1), framealpha=0.9, fontsize=10, title_fontsize=11)
     
     plt.tight_layout()
     save_chart(fig2, "lexical_density_boxplot")
@@ -158,7 +158,7 @@ def create_lexical_density_charts():
     ax4.set_ylabel('Gęstość leksykalna (%)', fontsize=12, fontweight='bold')
     ax4.set_title('Korelacja: gęstość leksykalna vs długość słów\n(dłuższe słowa często = więcej słów znaczących, n=16)', 
                   fontsize=14, fontweight='bold', pad=15)
-    ax4.legend(title='Wersja tekstu', framealpha=0.9, fontsize=10, title_fontsize=11)
+    ax4.legend(title='Wersja tekstu', loc='upper left', bbox_to_anchor=(1.02, 1), framealpha=0.9, fontsize=10, title_fontsize=11)
     
     plt.tight_layout()
     save_chart(fig4, "lexical_density_vs_word_length")

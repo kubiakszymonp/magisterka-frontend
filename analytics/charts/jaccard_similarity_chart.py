@@ -71,8 +71,8 @@ def create_jaccard_charts():
     from matplotlib.patches import Patch
     legend_elements = [Patch(facecolor=PAIR_COLORS[p], edgecolor='black', label=PAIR_LABELS[p]) 
                        for p in pairs]
-    ax1.legend(handles=legend_elements, title='Para wersji', loc='upper right', 
-               framealpha=0.9, fontsize=10, title_fontsize=11)
+    ax1.legend(handles=legend_elements, title='Para wersji', loc='upper left', 
+               bbox_to_anchor=(1.02, 1), framealpha=0.9, fontsize=10, title_fontsize=11)
     
     for bar, mean, std in zip(bars, means, stds):
         ax1.annotate(f'{mean:.3f}',
@@ -112,8 +112,8 @@ def create_jaccard_charts():
     from matplotlib.patches import Patch
     legend_elements = [Patch(facecolor=PAIR_COLORS[p], edgecolor='black', alpha=0.7, label=PAIR_LABELS[p]) 
                        for p in pairs]
-    ax2.legend(handles=legend_elements, title='Para wersji', loc='upper right', 
-               framealpha=0.9, fontsize=10, title_fontsize=11)
+    ax2.legend(handles=legend_elements, title='Para wersji', loc='upper left', 
+               bbox_to_anchor=(1.02, 1), framealpha=0.9, fontsize=10, title_fontsize=11)
     
     plt.tight_layout()
     save_chart(fig2, "jaccard_boxplot")

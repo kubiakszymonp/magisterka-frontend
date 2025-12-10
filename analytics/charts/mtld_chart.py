@@ -73,7 +73,7 @@ def create_mtld_charts():
                   fontsize=14, fontweight='bold', pad=15)
     ax1.set_xticks(x)
     ax1.set_xticklabels(labels)
-    ax1.legend(loc='upper right', title='Typ analizy', framealpha=0.9, fontsize=10, title_fontsize=11)
+    ax1.legend(loc='upper left', bbox_to_anchor=(1.02, 1), title='Typ analizy', framealpha=0.9, fontsize=10, title_fontsize=11)
     
     # Dodaj wartości
     for bars, means in [(bars1, means_tokens), (bars2, means_lemmas)]:
@@ -109,7 +109,7 @@ def create_mtld_charts():
     ax2.axhline(y=200, color='green', linestyle='--', alpha=0.5, label='Dobra różnorodność (200)')
     ax2.set_ylabel('MTLD (tokeny)', fontsize=12, fontweight='bold')
     ax2.set_title('Rozkład MTLD dla tokenów (boxplot)', fontsize=14, fontweight='bold', pad=15)
-    ax2.legend(framealpha=0.9, fontsize=9)
+    ax2.legend(loc='upper left', bbox_to_anchor=(1.02, 1), framealpha=0.9, fontsize=9)
     
     # MTLD lemmas
     lemmas_data = [mtld_lemmas_by_version[v] for v in versions]
@@ -153,7 +153,7 @@ def create_mtld_charts():
     ax4.set_ylabel('MTLD (tokeny)', fontsize=12, fontweight='bold')
     ax4.set_title('MTLD vs długość tekstu\n(MTLD powinno być stabilne niezależnie od długości, n=16)', 
                   fontsize=14, fontweight='bold', pad=15)
-    ax4.legend(title='Wersja tekstu', framealpha=0.9, fontsize=10, title_fontsize=11)
+    ax4.legend(title='Wersja tekstu', loc='upper left', bbox_to_anchor=(1.02, 1), framealpha=0.9, fontsize=10, title_fontsize=11)
     
     plt.tight_layout()
     save_chart(fig3, "mtld_vs_length")
@@ -186,7 +186,7 @@ def create_mtld_charts():
     
     ax5.set_title('Rozkład MTLD: tokeny vs lematy (violin plot)', fontsize=14, fontweight='bold', pad=15)
     ax5.axhline(y=200, color='green', linestyle='--', alpha=0.5, label='Dobra różnorodność (200)')
-    ax5.legend(framealpha=0.9, fontsize=9)
+    ax5.legend(loc='upper left', bbox_to_anchor=(1.02, 1), framealpha=0.9, fontsize=9)
     
     plt.tight_layout()
     save_chart(fig4, "mtld_violin")

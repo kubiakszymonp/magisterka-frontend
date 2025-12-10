@@ -69,7 +69,7 @@ def create_ttr_charts():
                   fontsize=14, fontweight='bold', pad=15)
     ax1.set_xticks(x)
     ax1.set_xticklabels(labels)
-    ax1.legend(title='Typ analizy', framealpha=0.9, fontsize=10, title_fontsize=11)
+    ax1.legend(title='Typ analizy', loc='upper left', bbox_to_anchor=(1.02, 1), framealpha=0.9, fontsize=10, title_fontsize=11)
     ax1.set_ylim(0.35, 0.85)
     
     # Dodaj wartości
@@ -128,8 +128,8 @@ def create_ttr_charts():
     from matplotlib.patches import Patch
     legend_elements = [Patch(facecolor=VERSION_COLORS[v], edgecolor='black', alpha=0.7, label=VERSION_LABELS[v]) 
                        for v in versions]
-    ax3.legend(handles=legend_elements, title='Wersja tekstu', loc='upper right', 
-               framealpha=0.9, fontsize=10, title_fontsize=11)
+    ax3.legend(handles=legend_elements, title='Wersja tekstu', loc='upper left', 
+               bbox_to_anchor=(1.02, 1), framealpha=0.9, fontsize=10, title_fontsize=11)
     
     # TTR lemmas
     lemmas_data = [ttr_lemmas_by_version[v] for v in versions]
@@ -145,8 +145,8 @@ def create_ttr_charts():
     from matplotlib.patches import Patch
     legend_elements = [Patch(facecolor=VERSION_COLORS[v], edgecolor='black', alpha=0.7, label=VERSION_LABELS[v]) 
                        for v in versions]
-    ax4.legend(handles=legend_elements, title='Wersja tekstu', loc='upper right', 
-               framealpha=0.9, fontsize=10, title_fontsize=11)
+    ax4.legend(handles=legend_elements, title='Wersja tekstu', loc='upper left', 
+               bbox_to_anchor=(1.02, 1), framealpha=0.9, fontsize=10, title_fontsize=11)
     
     plt.tight_layout()
     save_chart(fig3, "ttr_boxplot")
@@ -166,7 +166,7 @@ def create_ttr_charts():
     ax5.set_ylabel('TTR (lematy)', fontsize=12, fontweight='bold')
     ax5.set_title('Korelacja między TTR tokenów a lemmatów\n(punkty poniżej linii = lematyzacja redukuje liczbę unikalnych form, n=16)', 
                   fontsize=14, fontweight='bold', pad=15)
-    ax5.legend(title='Wersja tekstu', framealpha=0.9, fontsize=10, title_fontsize=11)
+    ax5.legend(title='Wersja tekstu', loc='upper left', bbox_to_anchor=(1.02, 1), framealpha=0.9, fontsize=10, title_fontsize=11)
     ax5.set_xlim(0.45, 0.8)
     ax5.set_ylim(0.35, 0.75)
     

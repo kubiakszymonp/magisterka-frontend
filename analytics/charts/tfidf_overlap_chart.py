@@ -69,14 +69,14 @@ def create_tfidf_charts():
     ax1.set_xticks(x)
     ax1.set_xticklabels(labels, rotation=10, ha='right')
     ax1.set_ylim(0, 100)
-    ax1.legend(loc='lower right', title='Poziomy overlap', framealpha=0.9, fontsize=9)
+    ax1.legend(loc='lower left', bbox_to_anchor=(1.02, 0), title='Poziomy overlap', framealpha=0.9, fontsize=9)
     
     # Legenda kolorów par
     from matplotlib.patches import Patch
     pair_legend = [Patch(facecolor=PAIR_COLORS[p], edgecolor='black', label=PAIR_LABELS[p]) 
                     for p in pairs]
     ax1.legend(handles=pair_legend + ax1.get_legend().get_patches(), 
-               title='Para wersji / Poziomy', loc='lower right', framealpha=0.9, fontsize=9)
+               title='Para wersji / Poziomy', loc='lower left', bbox_to_anchor=(1.02, 0), framealpha=0.9, fontsize=9)
     
     for bar, mean, std in zip(bars, means, stds):
         ax1.annotate(f'{mean:.0f}%',
@@ -119,8 +119,8 @@ def create_tfidf_charts():
                        for p in pairs]
     from matplotlib.lines import Line2D
     legend_elements.append(Line2D([0], [0], color='orange', linestyle='--', alpha=0.5, label='50% overlap'))
-    ax2.legend(handles=legend_elements, title='Legenda', loc='upper right', 
-               framealpha=0.9, fontsize=10, title_fontsize=11)
+    ax2.legend(handles=legend_elements, title='Legenda', loc='upper left', 
+               bbox_to_anchor=(1.02, 1), framealpha=0.9, fontsize=10, title_fontsize=11)
     
     plt.tight_layout()
     save_chart(fig2, "tfidf_boxplot")
@@ -188,7 +188,7 @@ def create_tfidf_charts():
                   fontsize=14, fontweight='bold', pad=15)
     ax4.set_xticks(x)
     ax4.set_xticklabels(labels, rotation=10, ha='right')
-    ax4.legend(title='Metryka', framealpha=0.9, fontsize=10, title_fontsize=11)
+    ax4.legend(title='Metryka', loc='upper left', bbox_to_anchor=(1.02, 1), framealpha=0.9, fontsize=10, title_fontsize=11)
     
     # Wartości
     for bars, means in [(bars1, tfidf_means), (bars2, jaccard_means)]:
@@ -220,7 +220,7 @@ def create_tfidf_charts():
     ax5.set_ylabel('TF-IDF Overlap (%)', fontsize=12, fontweight='bold')
     ax5.set_title('Korelacja: TF-IDF Overlap vs Jaccard Similarity\n(n=16 artykułów)', 
                   fontsize=14, fontweight='bold', pad=15)
-    ax5.legend(title='Para wersji', framealpha=0.9, fontsize=10, title_fontsize=11)
+    ax5.legend(title='Para wersji', loc='upper left', bbox_to_anchor=(1.02, 1), framealpha=0.9, fontsize=10, title_fontsize=11)
     
     plt.tight_layout()
     save_chart(fig5, "tfidf_jaccard_correlation")

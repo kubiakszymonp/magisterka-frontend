@@ -68,14 +68,14 @@ def create_readability_charts():
                   fontsize=14, fontweight='bold', pad=15)
     ax1.set_xticks(x)
     ax1.set_xticklabels(labels)
-    ax1.legend(loc='upper right', fontsize=9, title='Poziomy czytelności', framealpha=0.9)
+    ax1.legend(loc='upper left', bbox_to_anchor=(1.02, 1), fontsize=9, title='Poziomy czytelności', framealpha=0.9)
     
     # Legenda kolorów wersji
     from matplotlib.patches import Patch
     version_legend = [Patch(facecolor=VERSION_COLORS[v], edgecolor='black', label=VERSION_LABELS[v]) 
                       for v in versions]
     ax1.legend(handles=version_legend + ax1.get_legend().get_patches(), 
-               title='Wersja tekstu / Poziomy', loc='upper right', framealpha=0.9, fontsize=9)
+               title='Wersja tekstu / Poziomy', loc='upper left', bbox_to_anchor=(1.02, 1), framealpha=0.9, fontsize=9)
     
     for bar, mean in zip(bars1, means_flesch):
         y_pos = bar.get_height() + 2 if bar.get_height() >= 0 else bar.get_height() - 8
@@ -110,14 +110,14 @@ def create_readability_charts():
                   fontsize=14, fontweight='bold', pad=15)
     ax2.set_xticks(x)
     ax2.set_xticklabels(labels)
-    ax2.legend(loc='upper right', fontsize=9, title='Poziomy trudności', framealpha=0.9)
+    ax2.legend(loc='upper left', bbox_to_anchor=(1.02, 1), fontsize=9, title='Poziomy trudności', framealpha=0.9)
     
     # Legenda kolorów wersji
     from matplotlib.patches import Patch
     version_legend = [Patch(facecolor=VERSION_COLORS[v], edgecolor='black', label=VERSION_LABELS[v]) 
                       for v in versions]
     ax2.legend(handles=version_legend + ax2.get_legend().get_patches(), 
-               title='Wersja tekstu / Poziomy', loc='upper right', framealpha=0.9, fontsize=9)
+               title='Wersja tekstu / Poziomy', loc='upper left', bbox_to_anchor=(1.02, 1), framealpha=0.9, fontsize=9)
     
     for bar, mean in zip(bars2, means_fog):
         ax2.annotate(f'{mean:.1f}',
@@ -151,7 +151,7 @@ def create_readability_charts():
                   fontsize=14, fontweight='bold', pad=15)
     ax3.set_xticks(x)
     ax3.set_xticklabels(labels)
-    ax3.legend(title='Wskaźnik', framealpha=0.9, fontsize=10, title_fontsize=11)
+    ax3.legend(title='Wskaźnik', loc='upper left', bbox_to_anchor=(1.02, 1), framealpha=0.9, fontsize=10, title_fontsize=11)
     ax3.set_ylim(0, 110)
     
     plt.tight_layout()
@@ -175,8 +175,8 @@ def create_readability_charts():
     from matplotlib.patches import Patch
     legend_elements = [Patch(facecolor=VERSION_COLORS[v], edgecolor='black', alpha=0.7, label=VERSION_LABELS[v]) 
                        for v in versions]
-    ax4.legend(handles=legend_elements, title='Wersja tekstu', loc='upper right', 
-               framealpha=0.9, fontsize=10, title_fontsize=11)
+    ax4.legend(handles=legend_elements, title='Wersja tekstu', loc='upper left', 
+               bbox_to_anchor=(1.02, 1), framealpha=0.9, fontsize=10, title_fontsize=11)
     
     # FOG boxplot
     fog_data = [fog_by_version[v] for v in versions]
@@ -192,8 +192,8 @@ def create_readability_charts():
     from matplotlib.patches import Patch
     legend_elements = [Patch(facecolor=VERSION_COLORS[v], edgecolor='black', alpha=0.7, label=VERSION_LABELS[v]) 
                        for v in versions]
-    ax5.legend(handles=legend_elements, title='Wersja tekstu', loc='upper right', 
-               framealpha=0.9, fontsize=10, title_fontsize=11)
+    ax5.legend(handles=legend_elements, title='Wersja tekstu', loc='upper left', 
+               bbox_to_anchor=(1.02, 1), framealpha=0.9, fontsize=10, title_fontsize=11)
     
     plt.tight_layout()
     save_chart(fig4, "readability_boxplot")

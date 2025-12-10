@@ -137,7 +137,7 @@ def setup_polish_matplotlib():
     return plt
 
 
-def save_chart(fig, filename: str, formats: List[str] = ['png', 'pdf']):
+def save_chart(fig, filename: str, formats: List[str] = ['png']):
     """Zapisuje wykres w wielu formatach."""
     CHARTS_OUTPUT_DIR.mkdir(exist_ok=True)
     

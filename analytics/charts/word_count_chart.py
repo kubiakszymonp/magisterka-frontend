@@ -75,8 +75,8 @@ def create_word_count_charts():
     from matplotlib.patches import Patch
     legend_elements = [Patch(facecolor=VERSION_COLORS[v], edgecolor='black', label=VERSION_LABELS[v]) 
                        for v in versions]
-    ax1.legend(handles=legend_elements, title='Wersja tekstu', loc='upper left', 
-               framealpha=0.9, fontsize=10, title_fontsize=11)
+    ax1.legend(handles=legend_elements, title='Wersja tekstu', loc='upper right', 
+               bbox_to_anchor=(1.02, 1), framealpha=0.9, fontsize=10, title_fontsize=11)
     
     plt.tight_layout()
     save_chart(fig1, "word_count_bar")
@@ -115,8 +115,8 @@ def create_word_count_charts():
                        for v in versions]
     legend_elements.append(Line2D([0], [0], marker='o', color='w', markerfacecolor='black', 
                                   markersize=8, alpha=0.6, label='Pojedyncze artykuły'))
-    ax2.legend(handles=legend_elements, title='Legenda', loc='upper left', 
-               framealpha=0.9, fontsize=10, title_fontsize=11)
+    ax2.legend(handles=legend_elements, title='Legenda', loc='upper right', 
+               bbox_to_anchor=(1.02, 1), framealpha=0.9, fontsize=10, title_fontsize=11)
     
     plt.tight_layout()
     save_chart(fig2, "word_count_boxplot")

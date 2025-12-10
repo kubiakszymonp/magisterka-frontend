@@ -68,8 +68,8 @@ def create_structure_charts():
     from matplotlib.patches import Patch
     legend_elements = [Patch(facecolor=VERSION_COLORS[v], edgecolor='black', label=VERSION_LABELS[v]) 
                        for v in versions]
-    ax1.legend(handles=legend_elements, title='Wersja tekstu', loc='upper right', 
-               framealpha=0.9, fontsize=10, title_fontsize=11)
+    ax1.legend(handles=legend_elements, title='Wersja tekstu', loc='upper left', 
+               bbox_to_anchor=(1.02, 1), framealpha=0.9, fontsize=10, title_fontsize=11)
     
     for bar, mean in zip(bars1, means_sent):
         ax1.annotate(f'{mean:.0f}',
@@ -96,8 +96,8 @@ def create_structure_charts():
     from matplotlib.patches import Patch
     legend_elements = [Patch(facecolor=VERSION_COLORS[v], edgecolor='black', label=VERSION_LABELS[v]) 
                        for v in versions]
-    ax2.legend(handles=legend_elements, title='Wersja tekstu', loc='upper right', 
-               framealpha=0.9, fontsize=10, title_fontsize=11)
+    ax2.legend(handles=legend_elements, title='Wersja tekstu', loc='upper left', 
+               bbox_to_anchor=(1.02, 1), framealpha=0.9, fontsize=10, title_fontsize=11)
     
     for bar, mean in zip(bars2, means_para):
         ax2.annotate(f'{mean:.0f}',
@@ -139,8 +139,8 @@ def create_structure_charts():
     from matplotlib.patches import Patch
     legend_elements = [Patch(facecolor=VERSION_COLORS[v], edgecolor='black', label=VERSION_LABELS[v]) 
                        for v in versions]
-    ax3.legend(handles=legend_elements, title='Wersja tekstu', loc='upper right', 
-               framealpha=0.9, fontsize=10, title_fontsize=11)
+    ax3.legend(handles=legend_elements, title='Wersja tekstu', loc='upper left', 
+               bbox_to_anchor=(1.02, 1), framealpha=0.9, fontsize=10, title_fontsize=11)
     
     for bar, mean in zip(bars3, means_ratio):
         ax3.annotate(f'{mean:.1f}',
