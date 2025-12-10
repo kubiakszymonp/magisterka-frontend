@@ -122,7 +122,7 @@ def create_ttr_charts():
     plt.close(fig2)
     
     # ===== WYKRES 3: Radar/Spider chart dla TTR tokenów =====
-    fig2, ax2 = plt.subplots(figsize=(10, 8), subplot_kw=dict(projection='polar'))
+    fig3, ax3 = plt.subplots(figsize=(10, 8), subplot_kw=dict(projection='polar'))
     
     categories = labels
     N = len(categories)
@@ -135,14 +135,14 @@ def create_ttr_charts():
     ]:
         values = [np.mean(metric_data[v]) for v in versions]
         values += values[:1]
-        ax2.plot(angles, values, 'o-', linewidth=2, label=label, color=color)
-        ax2.fill(angles, values, alpha=0.25, color=color)
+        ax3.plot(angles, values, 'o-', linewidth=2, label=label, color=color)
+        ax3.fill(angles, values, alpha=0.25, color=color)
     
-    ax2.set_xticks(angles[:-1])
-    ax2.set_xticklabels(categories)
-    ax2.set_ylim(0.4, 0.75)
-    ax2.set_title('Porównanie TTR między wersjami (wykres radarowy)', y=1.08, fontsize=14, fontweight='bold')
-    ax2.legend(loc='upper right', bbox_to_anchor=(1.3, 1.0), title='Typ analizy', framealpha=0.9, fontsize=10, title_fontsize=11)
+    ax3.set_xticks(angles[:-1])
+    ax3.set_xticklabels(categories)
+    ax3.set_ylim(0.4, 0.75)
+    ax3.set_title('Porównanie TTR między wersjami (wykres radarowy)', y=1.08, fontsize=14, fontweight='bold')
+    ax3.legend(loc='upper right', bbox_to_anchor=(1.3, 1.0), title='Typ analizy', framealpha=0.9, fontsize=10, title_fontsize=11)
     
     plt.tight_layout()
     save_chart(fig3, "ttr_radar")
