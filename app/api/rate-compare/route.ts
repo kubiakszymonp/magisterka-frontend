@@ -18,6 +18,7 @@ export async function POST(request: Request) {
       bestForChildren: body.bestForChildren || "",
       bestForQuickLook: body.bestForQuickLook || "",
       bestForPlanning: body.bestForPlanning || "",
+      ageGroup: body.ageGroup || "",
       comment: body.comment || "",
     };
 
@@ -56,6 +57,8 @@ export async function GET() {
     return NextResponse.json([]);
   }
 }
+
+
 
 
 

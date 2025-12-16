@@ -20,6 +20,7 @@ export async function POST(request: Request) {
       usefulness: parseInt(body.usefulness) || 0,
       length: body.length || "",
       enjoyment: parseInt(body.enjoyment) || 0,
+      ageGroup: body.ageGroup || "",
       comment: body.comment || "",
     };
 
@@ -58,6 +59,8 @@ export async function GET() {
     return NextResponse.json([]);
   }
 }
+
+
 
 
 

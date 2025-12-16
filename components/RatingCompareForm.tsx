@@ -18,6 +18,16 @@ const versionOptions = [
   { value: "child_short", label: "Dzieci – skrót" },
 ];
 
+const ageGroups = [
+  { value: "1-10", label: "1-10" },
+  { value: "11-20", label: "11-20" },
+  { value: "21-30", label: "21-30" },
+  { value: "31-40", label: "31-40" },
+  { value: "41-50", label: "41-50" },
+  { value: "51-60", label: "51-60" },
+  { value: "60+", label: "60+" },
+];
+
 function VersionSelect({
   name,
   label,
@@ -69,6 +79,7 @@ export function RatingCompareForm({ placeId, onSuccess }: RatingCompareFormProps
     bestForChildren: "",
     bestForQuickLook: "",
     bestForPlanning: "",
+    ageGroup: "",
     comment: "",
   });
 
@@ -172,6 +183,34 @@ export function RatingCompareForm({ placeId, onSuccess }: RatingCompareFormProps
           transition={{ delay: 0.3 }}
           className="space-y-2"
         >
+          <Label className="text-xs font-medium text-muted-foreground">Grupa wiekowa</Label>
+          <RadioGroup
+            value={formData.ageGroup}
+            onValueChange={(v) => setFormData({ ...formData, ageGroup: v })}
+            className="flex gap-4 flex-wrap"
+          >
+            {ageGroups.map((option) => (
+              <motion.div
+                key={option.value}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="flex items-center gap-2"
+              >
+                <RadioGroupItem value={option.value} id={`compare-ageGroup-${option.value}`} />
+                <Label htmlFor={`compare-ageGroup-${option.value}`} className="text-xs cursor-pointer">
+                  {option.label}
+                </Label>
+              </motion.div>
+            ))}
+          </RadioGroup>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.35 }}
+          className="space-y-2"
+        >
           <Label htmlFor="compare-comment" className="text-xs font-medium text-muted-foreground">
             Komentarz (opcjonalnie)
           </Label>
@@ -189,7 +228,7 @@ export function RatingCompareForm({ placeId, onSuccess }: RatingCompareFormProps
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.35 }}
+          transition={{ delay: 0.4 }}
           whileHover={{ scale: 1.01 }}
           whileTap={{ scale: 0.99 }}
         >

@@ -464,3 +464,5 @@ Wszystkie metryki zostały obliczone dla 16 artykułów w trzech wersjach, co po
 
 Wykresy wizualizują wyniki w sposób umożliwiający szybką interpretację i porównanie wartości między wersjami tekstów.
 
+
+

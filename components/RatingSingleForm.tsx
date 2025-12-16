@@ -15,6 +15,16 @@ interface RatingSingleFormProps {
 
 const ratingLabels = ["1", "2", "3", "4", "5"];
 
+const ageGroups = [
+  { value: "1-10", label: "1-10" },
+  { value: "11-20", label: "11-20" },
+  { value: "21-30", label: "21-30" },
+  { value: "31-40", label: "31-40" },
+  { value: "41-50", label: "41-50" },
+  { value: "51-60", label: "51-60" },
+  { value: "60+", label: "60+" },
+];
+
 function RatingScale({
   name,
   label,
@@ -78,6 +88,7 @@ export function RatingSingleForm({
     usefulness: "",
     length: "",
     enjoyment: "",
+    ageGroup: "",
     comment: "",
   });
 
@@ -202,6 +213,34 @@ export function RatingSingleForm({
         transition={{ delay: 0.15 }}
         className="space-y-2"
       >
+        <Label className="text-xs font-medium text-muted-foreground">Grupa wiekowa</Label>
+        <RadioGroup
+          value={formData.ageGroup}
+          onValueChange={(v) => setFormData({ ...formData, ageGroup: v })}
+          className="flex gap-4 flex-wrap"
+        >
+          {ageGroups.map((option) => (
+            <motion.div
+              key={option.value}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="flex items-center gap-2"
+            >
+              <RadioGroupItem value={option.value} id={`ageGroup-${option.value}`} />
+              <Label htmlFor={`ageGroup-${option.value}`} className="text-xs cursor-pointer">
+                {option.label}
+              </Label>
+            </motion.div>
+          ))}
+        </RadioGroup>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2 }}
+        className="space-y-2"
+      >
         <Label htmlFor="comment" className="text-xs font-medium text-muted-foreground">
           Komentarz (opcjonalnie)
         </Label>
@@ -219,7 +258,7 @@ export function RatingSingleForm({
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2 }}
+        transition={{ delay: 0.25 }}
         whileHover={{ scale: 1.01 }}
         whileTap={{ scale: 0.99 }}
       >
