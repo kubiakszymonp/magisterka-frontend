@@ -75,7 +75,7 @@ def create_violin_ratings_chart():
     ax.set_xticklabels(ax.get_xticklabels(), rotation=15, ha='right')
     
     # Legenda po prawej stronie
-    ax.legend(title='Typ artykułu', loc='upper right', bbox_to_anchor=(1.18, 1), 
+    ax.legend(title='Typ artykułu', loc='upper left', bbox_to_anchor=(1.02, 1), 
               framealpha=0.9, fontsize=10, title_fontsize=11)
     
     plt.tight_layout()

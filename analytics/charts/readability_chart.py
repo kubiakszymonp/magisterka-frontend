@@ -77,14 +77,20 @@ def create_readability_charts():
     ax1.legend(handles=version_legend + ax1.get_legend().get_patches(), 
                title='Wersja tekstu / Poziomy', loc='upper left', bbox_to_anchor=(1.02, 1), framealpha=0.9, fontsize=9)
     
-    for bar, mean in zip(bars1, means_flesch):
-        y_pos = bar.get_height() + 2 if bar.get_height() >= 0 else bar.get_height() - 8
+    for bar, mean, std in zip(bars1, means_flesch, stds_flesch):
+        # Pozycja powyżej error bars
+        if bar.get_height() >= 0:
+            y_pos = bar.get_height() + std
+            offset = (0, 8)
+            va = 'bottom'
+        else:
+            y_pos = bar.get_height() - std
+            offset = (0, -8)
+            va = 'top'
         ax1.annotate(f'{mean:.1f}',
-                    xy=(bar.get_x() + bar.get_width()/2, bar.get_height()),
-                    xytext=(0, 5 if bar.get_height() >= 0 else -15), 
-                    textcoords='offset points',
-                    ha='center', va='bottom' if bar.get_height() >= 0 else 'top',
-                    fontsize=11, fontweight='bold')
+                    xy=(bar.get_x() + bar.get_width()/2, y_pos),
+                    xytext=offset, textcoords='offset points',
+                    ha='center', va=va, fontsize=11, fontweight='bold')
     
     plt.tight_layout()
     save_chart(fig1, "readability_flesch")
@@ -119,10 +125,10 @@ def create_readability_charts():
     ax2.legend(handles=version_legend + ax2.get_legend().get_patches(), 
                title='Wersja tekstu / Poziomy', loc='upper left', bbox_to_anchor=(1.02, 1), framealpha=0.9, fontsize=9)
     
-    for bar, mean in zip(bars2, means_fog):
+    for bar, mean, std in zip(bars2, means_fog, stds_fog):
         ax2.annotate(f'{mean:.1f}',
-                    xy=(bar.get_x() + bar.get_width()/2, bar.get_height()),
-                    xytext=(0, 5), textcoords='offset points',
+                    xy=(bar.get_x() + bar.get_width()/2, bar.get_height() + std),
+                    xytext=(0, 8), textcoords='offset points',
                     ha='center', va='bottom', fontsize=11, fontweight='bold')
     
     plt.tight_layout()

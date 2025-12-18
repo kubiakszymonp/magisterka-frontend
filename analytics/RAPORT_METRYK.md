@@ -466,3 +466,5 @@ Wykresy wizualizują wyniki w sposób umożliwiający szybką interpretację i p
 
 
 
+
+

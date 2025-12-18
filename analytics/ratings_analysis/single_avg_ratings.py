@@ -66,11 +66,11 @@ def create_avg_ratings_chart():
                      edgecolor='black', linewidth=1,
                      error_kw={'linewidth': 1.5, 'capthick': 1.5})
         
-        # Dodaj wartości na słupkach
-        for bar, mean in zip(bars, means):
+        # Dodaj wartości na słupkach (powyżej error bars)
+        for bar, mean, std in zip(bars, means, stds):
             ax.annotate(f'{mean:.2f}',
-                       xy=(bar.get_x() + bar.get_width()/2, bar.get_height()),
-                       xytext=(0, 3), textcoords='offset points',
+                       xy=(bar.get_x() + bar.get_width()/2, bar.get_height() + std),
+                       xytext=(0, 5), textcoords='offset points',
                        ha='center', va='bottom', fontsize=9, fontweight='bold')
     
     ax.set_xlabel('Kategoria oceny', fontsize=12, fontweight='bold')
@@ -86,7 +86,7 @@ def create_avg_ratings_chart():
     legend_elements = [Patch(facecolor=VERSION_COLORS[v], edgecolor='black', label=VERSION_LABELS[v]) 
                        for v in versions]
     ax.legend(handles=legend_elements, title='Typ artykułu', 
-              loc='upper right', bbox_to_anchor=(1.22, 1), 
+              loc='upper left', bbox_to_anchor=(1.02, 1), 
               framealpha=0.9, fontsize=10, title_fontsize=11)
     
     plt.tight_layout()

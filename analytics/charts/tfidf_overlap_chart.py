@@ -80,8 +80,8 @@ def create_tfidf_charts():
     
     for bar, mean, std in zip(bars, means, stds):
         ax1.annotate(f'{mean:.0f}%',
-                    xy=(bar.get_x() + bar.get_width()/2, bar.get_height()),
-                    xytext=(0, 5), textcoords='offset points',
+                    xy=(bar.get_x() + bar.get_width()/2, bar.get_height() + std),
+                    xytext=(0, 8), textcoords='offset points',
                     ha='center', va='bottom', fontsize=11, fontweight='bold')
     
     plt.tight_layout()

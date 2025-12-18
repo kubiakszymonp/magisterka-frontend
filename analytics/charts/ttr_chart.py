@@ -74,11 +74,11 @@ def create_ttr_charts():
     ax1.legend(handles=legend_elements, title='Wersja tekstu', loc='upper left', 
                bbox_to_anchor=(1.02, 1), framealpha=0.9, fontsize=10, title_fontsize=11)
     
-    # Dodaj wartości
-    for bar, mean in zip(bars1, means_tokens):
+    # Dodaj wartości (powyżej error bars)
+    for bar, mean, std in zip(bars1, means_tokens, stds_tokens):
         ax1.annotate(f'{mean:.3f}',
-                    xy=(bar.get_x() + bar.get_width()/2, bar.get_height()),
-                    xytext=(0, 5), textcoords='offset points',
+                    xy=(bar.get_x() + bar.get_width()/2, bar.get_height() + std),
+                    xytext=(0, 8), textcoords='offset points',
                     ha='center', va='bottom', fontsize=11, fontweight='bold')
     
     plt.tight_layout()
@@ -110,11 +110,11 @@ def create_ttr_charts():
     ax2.legend(handles=legend_elements, title='Wersja tekstu', loc='upper left', 
                bbox_to_anchor=(1.02, 1), framealpha=0.9, fontsize=10, title_fontsize=11)
     
-    # Dodaj wartości
-    for bar, mean in zip(bars2, means_lemmas):
+    # Dodaj wartości (powyżej error bars)
+    for bar, mean, std in zip(bars2, means_lemmas, stds_lemmas):
         ax2.annotate(f'{mean:.3f}',
-                    xy=(bar.get_x() + bar.get_width()/2, bar.get_height()),
-                    xytext=(0, 5), textcoords='offset points',
+                    xy=(bar.get_x() + bar.get_width()/2, bar.get_height() + std),
+                    xytext=(0, 8), textcoords='offset points',
                     ha='center', va='bottom', fontsize=11, fontweight='bold')
     
     plt.tight_layout()
@@ -142,7 +142,7 @@ def create_ttr_charts():
     ax3.set_xticklabels(categories)
     ax3.set_ylim(0.4, 0.75)
     ax3.set_title('Porównanie TTR między wersjami (wykres radarowy)', y=1.08, fontsize=14, fontweight='bold')
-    ax3.legend(loc='upper right', bbox_to_anchor=(1.3, 1.0), title='Typ analizy', framealpha=0.9, fontsize=10, title_fontsize=11)
+    ax3.legend(loc='upper left', bbox_to_anchor=(1.02, 1.0), title='Typ analizy', framealpha=0.9, fontsize=10, title_fontsize=11)
     
     plt.tight_layout()
     save_chart(fig3, "ttr_radar")

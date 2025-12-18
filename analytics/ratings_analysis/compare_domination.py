@@ -98,7 +98,7 @@ def create_domination_chart():
     legend_elements = [Patch(facecolor=c, edgecolor='black', label=l) 
                       for c, l in zip(legend_colors, legend_labels)]
     ax.legend(handles=legend_elements, title='Wybór we wszystkich\nkategoriach', 
-              loc='upper right', bbox_to_anchor=(1.45, 1), 
+              loc='upper left', bbox_to_anchor=(1.02, 1), 
               framealpha=0.9, fontsize=10, title_fontsize=11)
     
     plt.tight_layout()

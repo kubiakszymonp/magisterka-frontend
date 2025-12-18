@@ -93,7 +93,7 @@ def create_preferences_by_age_chart():
     legend_elements = [Patch(facecolor=VERSION_COLORS[v], edgecolor='black', 
                             label=VERSION_LABELS[v]) for v in versions]
     ax.legend(handles=legend_elements, title='Typ artykułu', 
-              loc='upper right', bbox_to_anchor=(1.2, 1), 
+              loc='upper left', bbox_to_anchor=(1.02, 1), 
               framealpha=0.9, fontsize=10, title_fontsize=11)
     
     plt.tight_layout()

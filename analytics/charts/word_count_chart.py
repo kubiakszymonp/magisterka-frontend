@@ -64,10 +64,10 @@ def create_word_count_charts():
     ax1.set_xticklabels(labels)
     ax1.set_ylim(0, max(means) * 1.3)
     
-    # Dodaj wartości na słupkach
+    # Dodaj wartości na słupkach (powyżej error bars)
     for bar, mean, std in zip(bars, means, stds):
         ax1.annotate(f'{mean:.0f}±{std:.0f}',
-                    xy=(bar.get_x() + bar.get_width()/2, bar.get_height()),
+                    xy=(bar.get_x() + bar.get_width()/2, bar.get_height() + std),
                     xytext=(0, 8), textcoords='offset points',
                     ha='center', va='bottom', fontsize=11, fontweight='bold')
     
@@ -75,7 +75,7 @@ def create_word_count_charts():
     from matplotlib.patches import Patch
     legend_elements = [Patch(facecolor=VERSION_COLORS[v], edgecolor='black', label=VERSION_LABELS[v]) 
                        for v in versions]
-    ax1.legend(handles=legend_elements, title='Wersja tekstu', loc='upper right', 
+    ax1.legend(handles=legend_elements, title='Wersja tekstu', loc='upper left', 
                bbox_to_anchor=(1.02, 1), framealpha=0.9, fontsize=10, title_fontsize=11)
     
     plt.tight_layout()
@@ -115,7 +115,7 @@ def create_word_count_charts():
                        for v in versions]
     legend_elements.append(Line2D([0], [0], marker='o', color='w', markerfacecolor='black', 
                                   markersize=8, alpha=0.6, label='Pojedyncze artykuły'))
-    ax2.legend(handles=legend_elements, title='Legenda', loc='upper right', 
+    ax2.legend(handles=legend_elements, title='Legenda', loc='upper left', 
                bbox_to_anchor=(1.02, 1), framealpha=0.9, fontsize=10, title_fontsize=11)
     
     plt.tight_layout()

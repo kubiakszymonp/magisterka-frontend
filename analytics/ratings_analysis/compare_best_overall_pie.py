@@ -63,7 +63,7 @@ def create_best_overall_pie_chart():
                             label=f"{VERSION_LABELS[v]}: {wins[v]} ({wins[v]/total*100:.1f}%)") 
                       for v in versions]
     ax.legend(handles=legend_elements, title='Typ artykułu', 
-              loc='upper right', bbox_to_anchor=(1.35, 1), 
+              loc='upper left', bbox_to_anchor=(1.02, 1), 
               framealpha=0.9, fontsize=10, title_fontsize=11)
     
     plt.tight_layout()

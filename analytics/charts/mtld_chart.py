@@ -82,11 +82,11 @@ def create_mtld_charts():
     ax1.legend(handles=legend_elements, title='Wersja tekstu / Poziomy', loc='upper left', 
                bbox_to_anchor=(1.02, 1), framealpha=0.9, fontsize=10, title_fontsize=11)
     
-    # Dodaj wartości
-    for bar, mean in zip(bars1, means_tokens):
+    # Dodaj wartości (powyżej error bars)
+    for bar, mean, std in zip(bars1, means_tokens, stds_tokens):
         ax1.annotate(f'{mean:.0f}',
-                    xy=(bar.get_x() + bar.get_width()/2, bar.get_height()),
-                    xytext=(0, 5), textcoords='offset points',
+                    xy=(bar.get_x() + bar.get_width()/2, bar.get_height() + std),
+                    xytext=(0, 8), textcoords='offset points',
                     ha='center', va='bottom', fontsize=11, fontweight='bold')
     
     plt.tight_layout()
@@ -126,11 +126,11 @@ def create_mtld_charts():
     ax2.legend(handles=legend_elements, title='Wersja tekstu / Poziomy', loc='upper left', 
                bbox_to_anchor=(1.02, 1), framealpha=0.9, fontsize=10, title_fontsize=11)
     
-    # Dodaj wartości
-    for bar, mean in zip(bars2, means_lemmas):
+    # Dodaj wartości (powyżej error bars)
+    for bar, mean, std in zip(bars2, means_lemmas, stds_lemmas):
         ax2.annotate(f'{mean:.0f}',
-                    xy=(bar.get_x() + bar.get_width()/2, bar.get_height()),
-                    xytext=(0, 5), textcoords='offset points',
+                    xy=(bar.get_x() + bar.get_width()/2, bar.get_height() + std),
+                    xytext=(0, 8), textcoords='offset points',
                     ha='center', va='bottom', fontsize=11, fontweight='bold')
     
     plt.tight_layout()

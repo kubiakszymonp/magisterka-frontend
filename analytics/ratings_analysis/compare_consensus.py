@@ -106,7 +106,7 @@ def create_consensus_chart():
         plt.Line2D([0], [0], color='orange', linestyle='--', label='Większość (50%)')
     ])
     ax.legend(handles=legend_elements, title='Legenda', 
-              loc='upper right', bbox_to_anchor=(1.25, 1), 
+              loc='upper left', bbox_to_anchor=(1.02, 1), 
               framealpha=0.9, fontsize=10, title_fontsize=11)
     
     plt.tight_layout()

@@ -94,7 +94,7 @@ def create_length_perception_chart():
     legend_elements = [Patch(facecolor=LENGTH_COLORS[l], edgecolor='black', 
                             label=LENGTH_LABELS[l]) for l in LENGTH_VALUES]
     ax.legend(handles=legend_elements, title='Ocena długości', 
-              loc='upper right', bbox_to_anchor=(1.22, 1), 
+              loc='upper left', bbox_to_anchor=(1.02, 1), 
               framealpha=0.9, fontsize=10, title_fontsize=11)
     
     plt.tight_layout()
